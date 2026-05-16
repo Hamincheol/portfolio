@@ -102,6 +102,11 @@
       font-weight: 700;
     }
 
+    button.btn {
+      cursor: pointer;
+      font: inherit;
+    }
+
     /* ==============================
       04. Hero Section
       - 첫 화면에서 직무/포트폴리오 성격을 빠르게 전달
@@ -264,6 +269,12 @@
       font-size: 13px;
     }
 
+    /* 테스트케이스 샘플 섹션을 위 포트폴리오 영역과 시각적으로 분리 */
+    #testcases {
+      margin-top: 28px;
+      scroll-margin-top: 24px;
+    }
+
     /* ==============================
       06. Pills / Tags
       - 역량, 우선순위, 상태값 표시용 뱃지
@@ -313,8 +324,8 @@
 
     /* 원형 프로필 이미지 프레임 */
     .profile-photo {
-      width: 112px;
-      height: 112px;
+      width: 128px;
+      height: 128px;
       border-radius: 50%;
       overflow: hidden;
       border: 4px solid var(--primary-soft);
@@ -327,6 +338,7 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+      object-position: center 36%; /* 머리 잘림 방지: 값을 낮추면 이미지가 조금 더 아래로 내려가 보임 */
       display: block;
     }
 
@@ -360,6 +372,56 @@
     .label { color: var(--muted); font-size: 13px; font-weight: 700; }
     .value { font-weight: 700; }
 
+    .profile-link {
+      color: var(--primary-dark);
+      font-weight: 900;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .profile-link:not([href]) {
+      color: var(--text);
+      text-decoration: none;
+      cursor: default;
+    }
+
+    .github-link-wrap {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .github-icon-link {
+      width: 30px;
+      height: 30px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--primary-soft);
+      color: var(--primary-dark);
+      transition: transform 0.16s ease, border-color 0.16s ease, background 0.16s ease;
+    }
+
+    .github-icon-link:hover {
+      transform: translateY(-2px);
+      border-color: rgba(31, 78, 140, 0.35);
+      background: #fff;
+    }
+
+    .github-icon-link svg {
+      width: 17px;
+      height: 17px;
+      fill: currentColor;
+    }
+
+    .github-icon-link:not([href]) {
+      opacity: 0.45;
+      pointer-events: none;
+    }
+
     .timeline { display: grid; gap: 14px; }
 
     .timeline-item {
@@ -382,6 +444,14 @@
     .timeline-item strong {
       display: block;
       letter-spacing: -0.02em;
+    }
+
+    .timeline-period {
+      display: block;
+      color: var(--primary-dark);
+      font-size: 12px;
+      font-weight: 800;
+      margin-top: 2px;
     }
 
     .timeline-item span {
@@ -558,6 +628,31 @@
       line-height: 1.5;
     }
 
+    .file-meta {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 8px;
+    }
+
+    .file-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 54px;
+      padding: 5px 9px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 900;
+      color: #fff;
+      letter-spacing: -0.01em;
+    }
+
+    /* 파일 형식 구분 배지: Excel은 초록색, Word는 파란색, PowerPoint는 주황색 */
+    .file-badge.excel { background: #217346; }
+    .file-badge.word { background: #2b579a; }
+    .file-badge.powerpoint { background: #d24726; }
+
     /* ==============================
       10. Test Case Filter
       - 검색창, 필터 select, TC 카드 리스트
@@ -646,6 +741,44 @@
       text-align: center;
       color: var(--muted);
       background: #fff;
+    }
+
+    .tc-actions {
+      display: flex;
+      justify-content: center;
+      margin-top: 14px;
+    }
+
+    .tc-pagination {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .page-btn {
+      border: 0;
+      background: transparent;
+      color: var(--muted);
+      font: inherit;
+      font-weight: 800;
+      cursor: pointer;
+      padding: 4px 6px;
+      border-radius: 8px;
+    }
+
+    .page-btn:hover,
+    .page-btn.active {
+      color: var(--primary-dark);
+      background: var(--primary-soft);
+    }
+
+    .page-divider {
+      color: #c7d0dd;
+      font-weight: 700;
     }
 
     /* ==============================
@@ -756,32 +889,42 @@
           <!-- [항목 제목: 프로필 사진] 실제 이미지는 ./assets/profile/mincheol_profile.jpg.jpeg 경로에 업로드 -->
           <div class="profile-box">
             <div class="profile-photo">
-              <img src="./assets/profile/mincheol_profile.jpg.jpeg" alt="Mincheol 프로필 사진" />
+              <img id="profileImage" src="./assets/profile/mincheol_profile.jpg.jpeg" alt="Mincheol 프로필 사진" />
             </div>
             <div>
-              <div class="profile-name">Mincheol</div>
-              <div class="profile-role">Game QA Tester</div>
+              <div class="profile-name" data-profile="name">Mincheol</div>
+              <div class="profile-role" data-profile="role">Game QA Tester</div>
             </div>
           </div>
 
           <ul class="info-list">
             <!-- [항목 제목: 이름] 표시 이름 수정 영역 -->
-            <li><span class="label">이름</span><span class="value">Mincheol</span></li>
+            <li><span class="label">이름</span><span class="value" data-profile="name">Mincheol</span></li>
 
             <!-- [항목 제목: 직무] 지원 직무 수정 영역 -->
-            <li><span class="label">직무</span><span class="value">Game QA Tester</span></li>
+            <li><span class="label">직무</span><span class="value" data-profile="role">Game QA Tester</span></li>
 
             <!-- [항목 제목: 생년월일] 필요 시 실제 생년월일로 변경 -->
-            <li><span class="label">생년월일</span><span class="value">YYYY.MM.DD</span></li>
+            <li><span class="label">생년월일</span><span class="value" data-profile="birthDate">YYYY.MM.DD</span></li>
 
             <!-- [항목 제목: 전화번호] 필요 시 실제 연락처로 변경 -->
-            <li><span class="label">전화번호</span><span class="value">010-0000-0000</span></li>
+            <li><span class="label">전화번호</span><span class="value" data-profile="phone">010-0000-0000</span></li>
 
             <!-- [항목 제목: 이메일] 연락 가능한 이메일 주소 -->
-            <li><span class="label">이메일</span><span class="value">jka3200@naver.com</span></li>
+            <li><span class="label">이메일</span><span class="value" data-profile="email">jka3200@naver.com</span></li>
 
             <!-- [항목 제목: 포트폴리오] GitHub 링크 또는 배포 URL 입력 -->
-            <li><span class="label">포트폴리오</span><span class="value">GitHub 링크</span></li>
+            <li>
+              <span class="label">GitHub</span>
+              <span class="github-link-wrap">
+                <a class="github-icon-link" data-profile-link="github" data-profile-link-type="icon" aria-label="GitHub 바로가기" title="GitHub 바로가기">
+                  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path d="M12 2C6.48 2 2 6.58 2 12.26c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-1.04-.01-1.89-2.78.62-3.37-1.21-3.37-1.21-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.63.07-.63 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.04 1.03-2.76-.1-.26-.45-1.31.1-2.72 0 0 .84-.28 2.75 1.05A9.3 9.3 0 0 1 12 6.99c.85 0 1.7.12 2.5.34 1.9-1.33 2.74-1.05 2.74-1.05.55 1.41.2 2.46.1 2.72.64.72 1.03 1.64 1.03 2.76 0 3.94-2.34 4.8-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.59.69.49A10.08 10.08 0 0 0 22 12.26C22 6.58 17.52 2 12 2Z" />
+                  </svg>
+                </a>
+                <a class="value profile-link" data-profile-link="github" data-profile-link-type="text" data-link-label="GitHub 바로가기">GitHub 바로가기</a>
+              </span>
+            </li>
 
             <!-- [항목 제목: 공개 제외] 포트폴리오에 노출하지 않을 개인정보
             <li><span class="label">공개 제외</span><span class="value">주소</span></li> -->
@@ -808,48 +951,26 @@
           </div>
         </section>
 
-        <!-- [섹션 제목: 경력] 짧은 경력/프로젝트 경험 요약 -->
+        <!-- [섹션 제목: 경력] assets/data/experience.json에서 항목 로드 -->
         <section class="card">
           <div class="section-title">
             <h2>경력</h2>
             <small>Experience</small>
           </div>
 
-          <div class="timeline">
-            <!-- [항목 제목: 경력 항목] timeline-item을 복사해 경력 또는 프로젝트 경험 추가 -->
-            <div class="timeline-item">
-              <strong>QA 포트폴리오 프로젝트</strong>
-              <span>inZOI 캐릭터 커스터마이징 기능 검증, TC 작성, Excel 산출물 정리</span>
-            </div>
-            <div class="timeline-item">
-              <strong>테스트 문서화 및 자동화 학습</strong>
-              <span>테스트 전략, 우선순위 분류, Airtest 자동화 매핑 흐름 구성</span>
-            </div>
-          </div>
+          <!-- [항목 제목: 경력 목록] experience.json에서 title, desc 값을 불러와 렌더링 -->
+          <div class="timeline" id="experienceTimeline"></div>
         </section>
 
-        <!-- [섹션 제목: 교육 및 활동] 사실 기반 교육/활동 타임라인 -->
+        <!-- [섹션 제목: 교육 및 활동] assets/data/activities.json에서 항목 로드 -->
         <section class="card">
           <div class="section-title">
             <h2>교육 및 활동</h2>
             <small>Activities</small>
           </div>
 
-          <div class="timeline">
-            <!-- [항목 제목: 교육/활동 항목] timeline-item을 복사해 교육 또는 활동 이력 추가 -->
-            <div class="timeline-item">
-              <strong>Game QA 포트폴리오 제작</strong>
-              <span>캐릭터 커스터마이징 기능 검증 기준 수립 및 TC 설계</span>
-            </div>
-            <div class="timeline-item">
-              <strong>테스트 자동화 학습</strong>
-              <span>Airtest 이미지 기반 UI 테스트 흐름 설계</span>
-            </div>
-            <div class="timeline-item">
-              <strong>QA 학습 / 활동 입력</strong>
-              <span>교육 과정명, 수료 기간, 관련 활동 등 사실 정보 중심 입력</span>
-            </div>
-          </div>
+          <!-- [항목 제목: 교육/활동 목록] activities.json에서 title, desc 값을 불러와 렌더링 -->
+          <div class="timeline" id="activitiesTimeline"></div>
         </section>
       </aside>
 
@@ -902,7 +1023,7 @@
             <div class="portfolio-more-head">
               <div>
                 <h4>다른 포트폴리오</h4>
-                <p>각 포트폴리오의 미리보기 이미지는 카드 안에서 바로 확인할 수 있고, 카드를 클릭하면 해당 원본 파일이 다운로드됩니다. TC는 Excel, 분석서는 PowerPoint로 연결합니다. 항목 추가 시 portfolio-card를 복사해 이미지 경로, 원본 파일 경로, 제목, 설명만 변경하면 됩니다.</p>
+                <p>각 포트폴리오의 미리보기 이미지는 카드 안에서 바로 확인할 수 있고, 카드를 클릭하면 해당 원본 파일이 다운로드됩니다. TC는 Excel 또는 Word, 분석서는 PowerPoint로 연결합니다. 항목 추가 시 portfolio-card를 복사해 이미지 경로, 원본 파일 경로, 제목, 설명만 변경하면 됩니다.</p>
               </div>
             </div>
 
@@ -920,6 +1041,7 @@
                   <span class="preview-placeholder">Preview 준비 중</span>
                 </div>
                 <div class="portfolio-body">
+                  <div class="file-meta"><span class="file-badge excel">Excel</span></div>
                   <strong>inZOI Overview</strong>
                   <p>inZOI 캐릭터 커스터마이징 테스트케이스 Overview 이미지입니다. 클릭 시 Excel 원본이 다운로드됩니다.</p>
                 </div>
@@ -937,6 +1059,7 @@
                   <span class="preview-placeholder">Preview 준비 중</span>
                 </div>
                 <div class="portfolio-body">
+                  <div class="file-meta"><span class="file-badge excel">Excel</span></div>
                   <strong>mapleIdle Overview</strong>
                   <p>메이플키우기 테스트케이스 Overview 이미지입니다. 클릭 시 Excel 원본이 다운로드됩니다.</p>
                 </div>
@@ -954,25 +1077,24 @@
                   <span class="preview-placeholder">Preview 준비 중</span>
                 </div>
                 <div class="portfolio-body">
+                  <div class="file-meta"><span class="file-badge powerpoint">PowerPoint</span></div>
                   <strong>Seven Knights Rebirth 분석서</strong>
                   <p>Seven Knights Rebirth 게임 분석 내용을 정리한 PowerPoint 문서입니다. 클릭 시 PPTX 원본이 다운로드됩니다.</p>
                 </div>
-              </a>
-
-              <!-- [항목 제목: TC.tese 미리보기/다운로드 카드] -->
-              <a class="portfolio-card" id="preview-tc-tese" href="./assets/tc/tc_tese/tc_tese.xlsx" download aria-label="TC.tese Excel 다운로드">
+              </a><!-- [항목 제목: TC.test 미리보기/다운로드 카드] Word 문서만 유지 -->
+              <a class="portfolio-card" id="preview-tc-test" href="./assets/tc/tc_test/tc_test.docx" download aria-label="TC.test Word 다운로드">
                 <div class="portfolio-preview">
-                  <img src="./assets/tc/tc_tese/tc_tese.preview.png" alt="TC.tese Overview 미리보기" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                  <img src="./assets/tc/tc_test/tc_test.preview.png" alt="TC.test Overview 미리보기" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
                   <span class="preview-placeholder">Preview 준비 중</span>
                 </div>
                 <div class="portfolio-body">
-                  <strong>TC.tese Overview</strong>
-                  <p>새로운 게임 TC를 추가할 때 복사해서 사용할 수 있는 예시 카드입니다. 클릭 시 Excel 원본이 다운로드됩니다.</p>
+                  <div class="file-meta"><span class="file-badge word">Word</span></div>
+                  <strong>TC.test Overview</strong>
+                  <p>TC.test Overview 문서를 정리한 Word 파일입니다. 클릭 시 DOCX 원본이 다운로드됩니다.</p>
                 </div>
               </a>
             </div>
           </div>
-        </section>
 
         <!-- [섹션 제목: 테스트케이스 샘플] JSON 데이터 기반으로 대표 TC를 카드 형태로 표시 -->
         <section class="card" id="testcases">
@@ -1042,6 +1164,14 @@
 
           <!-- 검색 결과가 없을 때 표시되는 영역 -->
           <div class="empty" id="emptyState">조건에 맞는 테스트케이스가 없습니다.</div>
+
+          <!-- [항목 제목: 전체 TC 보기 버튼] 기본 화면에는 최대 5개만 표시하고, 버튼으로 전체보기/접기 전환 -->
+          <div class="tc-actions">
+            <button class="btn primary" id="openAllCasesBtn" type="button" style="display: none;">전체보기</button>
+          </div>
+
+          <!-- [항목 제목: TC 페이지네이션] 전체보기 상태에서 15개 초과 시 1 | 2 | 3 형태로 페이지 표시 -->
+          <div class="tc-pagination" id="tcPagination" aria-label="테스트케이스 페이지"></div>
         </section>
       </section>
     </main>
@@ -1076,24 +1206,133 @@
 
     /* ==============================
       01. Test Case Data Source
-      - 대표 TC 샘플은 ./assets/data/tc_preview.json 파일에서 불러옴
-      - JSON 파일이 없거나 로드 실패 시 fallbackTestCases 데이터를 사용
-      - 전체 TC 원본은 Excel로 보관하고, 포트폴리오 화면에서는 Overview 이미지를 카드 안에 표시
+      - 테스트케이스 샘플 데이터는 assets/data/tc_preview.json 파일에서만 관리
+      - JSON 파일이 없거나 문법 오류가 있으면 빈 목록을 표시
     ============================== */
+    /* ==============================
+      01-1. Profile Data Source
+      - 민감하거나 자주 바뀌는 프로필 정보는 assets/data/profile.json에서 불러옴
+      - 단, GitHub Pages에 업로드한 JSON은 누구나 볼 수 있으므로 공개 가능한 정보만 배포
+    ============================== */
+    const PROFILE_DATA_PATH = "./assets/data/profile.json";
+    const EXPERIENCE_DATA_PATH = "./assets/data/experience.json";
+    const ACTIVITIES_DATA_PATH = "./assets/data/activities.json";
+
+    function normalizeExternalUrl(value) {
+      const url = String(value || "").trim();
+
+      if (!url) return "";
+      if (/^https?:\/\//i.test(url)) return url;
+      if (/^(github\.com|www\.github\.com)\//i.test(url)) return `https://${url}`;
+
+      return "";
+    }
+
+    async function loadProfileData() {
+      try {
+        const response = await fetch(PROFILE_DATA_PATH, { cache: "no-store" });
+
+        if (!response.ok) {
+          throw new Error(`Profile JSON load failed: ${response.status}`);
+        }
+
+        const profile = await response.json();
+
+        document.querySelectorAll("[data-profile]").forEach((el) => {
+          const key = el.dataset.profile;
+          if (profile[key]) {
+            el.textContent = profile[key];
+          }
+        });
+
+        document.querySelectorAll("[data-profile-link]").forEach((el) => {
+          const key = el.dataset.profileLink;
+          const value = profile[key] || profile.githubUrl || "";
+          const url = normalizeExternalUrl(value);
+          const linkType = el.dataset.profileLinkType || "text";
+
+          if (value && linkType !== "icon") {
+            el.textContent = el.dataset.linkLabel || "GitHub 바로가기";
+          }
+
+          if (url) {
+            el.href = url;
+            el.target = "_blank";
+            el.rel = "noopener";
+            el.title = "GitHub 바로가기";
+          } else {
+            el.removeAttribute("href");
+            el.removeAttribute("target");
+            el.removeAttribute("rel");
+            el.title = "profile.json의 github 항목에 유효한 GitHub URL을 입력하면 바로가기가 활성화됩니다.";
+          }
+        });
+
+        const profileImage = document.getElementById("profileImage");
+        if (profileImage && profile.profileImage) {
+          profileImage.src = profile.profileImage;
+        }
+      } catch (error) {
+        console.warn("profile.json을 불러오지 못했습니다. 기본 표시값을 사용합니다.", error);
+      }
+    }
+
+    function createTimelineItem(item) {
+      const title = item.title || item.name || "항목 제목";
+      const period = item.period || item.date || "";
+      const desc = item.desc || item.description || item.detail || "설명 내용을 입력하세요.";
+      const periodHTML = period ? `<em class="timeline-period">${escapeHTML(period)}</em>` : "";
+
+      return `
+        <div class="timeline-item">
+          <strong>${escapeHTML(title)}</strong>
+          ${periodHTML}
+          <span>${escapeHTML(desc)}</span>
+        </div>
+      `;
+    }
+
+    async function loadTimelineData(path, containerId, label) {
+      const container = document.getElementById(containerId);
+      if (!container) return;
+
+      try {
+        const response = await fetch(path, { cache: "no-store" });
+
+        if (!response.ok) {
+          throw new Error(`${label} JSON load failed: ${response.status}`);
+        }
+
+        const data = await response.json();
+
+        if (!Array.isArray(data)) {
+          throw new Error(`${label} JSON must be an array.`);
+        }
+
+        container.innerHTML = data.length
+          ? data.map(createTimelineItem).join("")
+          : createTimelineItem({ title: `${label} 준비 중`, desc: "JSON 파일에 항목을 추가하면 이 영역에 표시됩니다." });
+      } catch (error) {
+        console.warn(`${label} JSON을 불러오지 못했습니다.`, error);
+        container.innerHTML = createTimelineItem({
+          title: `${label} 준비 중`,
+          desc: `assets/data/${containerId === "experienceTimeline" ? "experience" : "activities"}.json 파일을 추가하면 이 영역에 표시됩니다.`
+        });
+      }
+    }
+
     const TC_DATA_PATH = "./assets/data/tc_preview.json";
+    const TC_PREVIEW_LIMIT = 5;
+    const TC_PAGE_SIZE = 15;
 
-    /* [항목 제목: TC JSON 데이터]
-      - 테스트케이스 샘플 데이터는 HTML 내부에 작성하지 않음
-      - assets/data/tc_preview.json 파일에서만 관리
-      - JSON 파일이 없거나 로드 실패 시 빈 목록을 표시
-    */
-
-    // JSON 또는 fallback 데이터가 최종 저장되는 배열
     let testCases = [];
+    let currentFilteredCases = [];
+    let isAllCasesExpanded = false;
+    let currentPage = 1;
 
     /* ==============================
       02. DOM References
-      - 검색/필터 입력 요소와 결과 렌더링 영역을 변수로 저장
+      - 요소가 없을 경우를 대비해 null-safe 방식으로 처리
     ============================== */
     const list = document.getElementById("tcList");
     const emptyState = document.getElementById("emptyState");
@@ -1102,13 +1341,22 @@
     const componentFilter = document.getElementById("componentFilter");
     const priorityFilter = document.getElementById("priorityFilter");
     const automationFilter = document.getElementById("automationFilter");
+    const openAllCasesBtn = document.getElementById("openAllCasesBtn");
+    const tcPagination = document.getElementById("tcPagination");
 
     /* ==============================
-      03. Data Normalize
-      - JSON 데이터에 일부 값이 빠져도 카드 렌더링이 가능하도록 기본값 부여
-      - TC 추가 시 권장 필드: game, id, title, component, priority, automation, desc
-      - priority는 Jira 기본 우선순위 기준: Highest, High, Medium, Low, Lowest
+      03. Utility
+      - JSON 데이터 누락/특수문자 표시 문제 방지
     ============================== */
+    function escapeHTML(value) {
+      return String(value ?? "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
     function normalizeCase(tc) {
       return {
         game: tc.game || "General",
@@ -1121,11 +1369,21 @@
       };
     }
 
+    function getPriorityClass(priority) {
+      const priorityMap = {
+        Highest: "priority-highest",
+        High: "priority-high",
+        Medium: "priority-medium",
+        Low: "priority-low",
+        Lowest: "priority-lowest"
+      };
+
+      return priorityMap[priority] || "priority-medium";
+    }
+
     /* ==============================
-      04. Load Test Cases
-      - assets/data/tc_preview.json 파일을 불러와 TC 카드 데이터로 사용
-      - Live Server 또는 GitHub Pages 환경에서 정상 동작
-      - JSON 로드 실패 시 fallbackTestCases 사용
+      04. Data Load
+      - tc_preview.json 파일을 불러와 카드 데이터로 사용
     ============================== */
     async function loadTestCases() {
       try {
@@ -1151,18 +1409,15 @@
       renderCases();
     }
 
-    /* ==============================
-      05. Game Filter Options
-      - JSON 데이터의 game 값을 기준으로 게임 필터 option 자동 생성
-      - 새로운 게임 TC를 추가해도 HTML select를 직접 수정할 필요 없음
-    ============================== */
     function populateGameFilter() {
+      if (!gameFilter) return;
+
       const selectedGame = gameFilter.value;
       const games = [...new Set(testCases.map((tc) => tc.game).filter(Boolean))].sort();
 
       gameFilter.innerHTML = `
         <option value="all">전체 게임</option>
-        ${games.map((game) => `<option value="${game}">${game}</option>`).join("")}
+        ${games.map((game) => `<option value="${escapeHTML(game)}">${escapeHTML(game)}</option>`).join("")}
       `;
 
       if (games.includes(selectedGame)) {
@@ -1171,36 +1426,38 @@
     }
 
     /* ==============================
-      06. Priority Style
-      - Jira Priority 기준으로 우선순위별 폰트/배경 색상을 분리
+      05. Render
+      - 기본 5개 표시
+      - 전체보기 상태에서는 15개 단위 페이지네이션 표시
     ============================== */
-    function getPriorityClass(priority) {
-      const priorityMap = {
-        Highest: "priority-highest",
-        High: "priority-high",
-        Medium: "priority-medium",
-        Low: "priority-low",
-        Lowest: "priority-lowest"
-      };
-
-      return priorityMap[priority] || "priority-medium";
+    function createCaseCard(tc) {
+      return `
+        <article class="tc-card">
+          <div class="tc-top">
+            <div>
+              <div class="tc-id">${escapeHTML(tc.id)}</div>
+              <div class="tc-title">${escapeHTML(tc.title)}</div>
+            </div>
+            <span class="pill ${getPriorityClass(tc.priority)}">${escapeHTML(tc.priority)}</span>
+          </div>
+          <div class="tc-desc">${escapeHTML(tc.desc)}</div>
+          <div class="tc-tags">
+            <span class="tag">${escapeHTML(tc.game)}</span>
+            <span class="tag">${escapeHTML(tc.component)}</span>
+            <span class="tag">Automation: ${escapeHTML(tc.automation)}</span>
+          </div>
+        </article>
+      `;
     }
 
-    /* ==============================
-      06. Render Function
-      - 검색어, 게임, 컴포넌트, 우선순위, 자동화 여부에 따라 TC 목록 필터링
-      - 필터링 결과를 카드 형태로 화면에 출력
-    ============================== */
-    function renderCases() {
-      // 현재 입력된 검색어와 필터값을 읽음
-      const keyword = searchInput.value.trim().toLowerCase();
-      const game = gameFilter.value;
-      const component = componentFilter.value;
-      const priority = priorityFilter.value;
-      const automation = automationFilter.value;
+    function getFilteredCases() {
+      const keyword = (searchInput?.value || "").trim().toLowerCase();
+      const game = gameFilter?.value || "all";
+      const component = componentFilter?.value || "all";
+      const priority = priorityFilter?.value || "all";
+      const automation = automationFilter?.value || "all";
 
-      // 각 TC가 검색어와 필터 조건에 모두 부합하는지 확인
-      const filtered = testCases.filter((tc) => {
+      return testCases.filter((tc) => {
         const matchesKeyword = [tc.game, tc.id, tc.title, tc.desc, tc.component, tc.priority]
           .join(" ")
           .toLowerCase()
@@ -1213,43 +1470,103 @@
 
         return matchesKeyword && matchesGame && matchesComponent && matchesPriority && matchesAutomation;
       });
+    }
 
-      // 필터링된 TC 배열을 HTML 카드 문자열로 변환 후 삽입
-      list.innerHTML = filtered.map((tc) => `
-        <article class="tc-card">
-          <div class="tc-top">
-            <div>
-              <div class="tc-id">${tc.id}</div>
-              <div class="tc-title">${tc.title}</div>
-            </div>
-            <span class="pill ${getPriorityClass(tc.priority)}">${tc.priority}</span>
-          </div>
-          <div class="tc-desc">${tc.desc}</div>
-          <div class="tc-tags">
-            <span class="tag">${tc.game}</span>
-            <span class="tag">${tc.component}</span>
-            <span class="tag">Automation: ${tc.automation}</span>
-          </div>
-        </article>
-      `).join("");
+    function renderPagination(totalCount) {
+      if (!tcPagination) return;
 
-      // 검색 결과가 없으면 empty state를 표시
+      if (!isAllCasesExpanded || totalCount <= TC_PAGE_SIZE) {
+        tcPagination.style.display = "none";
+        tcPagination.innerHTML = "";
+        return;
+      }
+
+      const totalPages = Math.ceil(totalCount / TC_PAGE_SIZE);
+      currentPage = Math.min(Math.max(currentPage, 1), totalPages);
+
+      tcPagination.style.display = "flex";
+      tcPagination.innerHTML = Array.from({ length: totalPages }, (_, index) => {
+        const page = index + 1;
+        const divider = index === 0 ? "" : '<span class="page-divider">|</span>';
+        const activeClass = page === currentPage ? " active" : "";
+        return `${divider}<button class="page-btn${activeClass}" type="button" data-page="${page}">${page}</button>`;
+      }).join("");
+    }
+
+    function renderCases() {
+      if (!list || !emptyState || !openAllCasesBtn) return;
+
+      const filtered = getFilteredCases();
+      currentFilteredCases = filtered;
+
+      let visibleCases;
+      if (isAllCasesExpanded) {
+        const totalPages = Math.max(1, Math.ceil(filtered.length / TC_PAGE_SIZE));
+        currentPage = Math.min(Math.max(currentPage, 1), totalPages);
+        const startIndex = (currentPage - 1) * TC_PAGE_SIZE;
+        visibleCases = filtered.slice(startIndex, startIndex + TC_PAGE_SIZE);
+      } else {
+        currentPage = 1;
+        visibleCases = filtered.slice(0, TC_PREVIEW_LIMIT);
+      }
+
+      list.innerHTML = visibleCases.map(createCaseCard).join("");
       emptyState.style.display = filtered.length ? "none" : "block";
+
+      if (filtered.length > TC_PREVIEW_LIMIT) {
+        openAllCasesBtn.style.display = "inline-flex";
+        openAllCasesBtn.textContent = isAllCasesExpanded ? "접기" : "전체보기";
+      } else {
+        openAllCasesBtn.style.display = "none";
+        isAllCasesExpanded = false;
+      }
+
+      renderPagination(filtered.length);
+    }
+
+    function toggleAllCases() {
+      isAllCasesExpanded = !isAllCasesExpanded;
+      currentPage = 1;
+      renderCases();
+
+      if (!isAllCasesExpanded) {
+        document.getElementById("testcases")?.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
     }
 
     /* ==============================
-      07. Event Binding
-      - 검색창 입력 또는 select 변경 시 TC 목록을 즉시 갱신
+      06. Event Binding
     ============================== */
-    [searchInput, gameFilter, componentFilter, priorityFilter, automationFilter].forEach((el) => {
-      el.addEventListener("input", renderCases);
-      el.addEventListener("change", renderCases);
+    [searchInput, gameFilter, componentFilter, priorityFilter, automationFilter]
+      .filter(Boolean)
+      .forEach((el) => {
+        el.addEventListener("input", () => {
+          isAllCasesExpanded = false;
+          currentPage = 1;
+          renderCases();
+        });
+
+        el.addEventListener("change", () => {
+          isAllCasesExpanded = false;
+          currentPage = 1;
+          renderCases();
+        });
+      });
+
+    openAllCasesBtn?.addEventListener("click", toggleAllCases);
+
+    tcPagination?.addEventListener("click", (event) => {
+      const pageButton = event.target.closest("[data-page]");
+      if (!pageButton) return;
+
+      currentPage = Number(pageButton.dataset.page);
+      renderCases();
+      document.getElementById("testcases")?.scrollIntoView({ behavior: "smooth", block: "start" });
     });
 
-    /* ==============================
-      08. Initial Render
-      - 페이지 최초 로드 시 JSON 데이터를 불러온 뒤 TC 목록 출력
-    ============================== */
+    loadProfileData();
+    loadTimelineData(EXPERIENCE_DATA_PATH, "experienceTimeline", "경력");
+    loadTimelineData(ACTIVITIES_DATA_PATH, "activitiesTimeline", "교육 및 활동");
     loadTestCases();
   </script>
 </body>
