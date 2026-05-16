@@ -902,7 +902,7 @@
             <div class="portfolio-more-head">
               <div>
                 <h4>다른 포트폴리오</h4>
-                <p>각 테스트케이스의 Overview 이미지는 카드 안에서 바로 확인할 수 있고, 카드를 클릭하면 해당 Excel 원본이 다운로드됩니다. 항목 추가 시 portfolio-card를 복사해 이미지 경로, Excel 경로, 제목, 설명만 변경하면 됩니다.</p>
+                <p>각 포트폴리오의 미리보기 이미지는 카드 안에서 바로 확인할 수 있고, 카드를 클릭하면 해당 원본 파일이 다운로드됩니다. TC는 Excel, 분석서는 PowerPoint로 연결합니다. 항목 추가 시 portfolio-card를 복사해 이미지 경로, 원본 파일 경로, 제목, 설명만 변경하면 됩니다.</p>
               </div>
             </div>
 
@@ -942,15 +942,20 @@
                 </div>
               </a>
 
-              <!-- [항목 제목: TC.test 미리보기/다운로드 카드] -->
-              <a class="portfolio-card" id="preview-tc-test" href="./assets/tc/tc_test/tc_test.xlsx" download aria-label="TC.test Excel 다운로드">
+              <!-- [항목 제목: Seven Knights Rebirth 분석서 카드] PowerPoint 분석서 다운로드 -->
+              <a class="portfolio-card" id="preview-seven-knights-rebirth" href="./assets/analysis/seven_knights_rebirth/Seven%20Knights%20Rebirth(%EA%B2%8C%EC%9E%84%EB%B6%84%EC%84%9D%EC%84%9C).pptx" download aria-label="Seven Knights Rebirth 게임분석서 PowerPoint 다운로드">
                 <div class="portfolio-preview">
-                  <img src="./assets/tc/tc_test/tc_test.preview.png" alt="TC.test Overview 미리보기" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                  <img
+                  src="./assets/analysis/seven_knights_rebirth/sevenKnightsRebirth.preview.png?v=20260516"
+                  data-fallbacks="./assets/analysis/seven_knights_rebirth/sevenKnightsRebirth.preview.png|/portfolio_repo/assets/analysis/seven_knights_rebirth/sevenKnightsRebirth.preview.png|assets/analysis/seven_knights_rebirth/sevenKnightsRebirth.preview.png"
+                  alt="Seven Knights Rebirth 게임분석서 미리보기"
+                  onerror="loadPreviewFallback(this)"
+                />
                   <span class="preview-placeholder">Preview 준비 중</span>
                 </div>
                 <div class="portfolio-body">
-                  <strong>TC.test Overview</strong>
-                  <p>추가 테스트케이스의 Overview 이미지 미리보기 예시입니다. 클릭 시 Excel 원본이 다운로드됩니다.</p>
+                  <strong>Seven Knights Rebirth 분석서</strong>
+                  <p>Seven Knights Rebirth 게임 분석 내용을 정리한 PowerPoint 문서입니다. 클릭 시 PPTX 원본이 다운로드됩니다.</p>
                 </div>
               </a>
 
