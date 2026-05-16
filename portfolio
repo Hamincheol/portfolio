@@ -1,1 +1,1101 @@
 
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <!-- 문서 기본 설정: 한글 인코딩, 반응형 viewport, 페이지 제목 -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QA Resume & Portfolio Mockup</title>
+
+  <style>
+    /* ==============================
+      01. Design Tokens
+      - 전체 페이지에서 재사용할 색상, 그림자, radius 변수 정의
+    ============================== */
+    :root {
+      --bg: #f7f8fb;
+      --surface: #ffffff;
+      --text: #202124;
+      --muted: #686f7a;
+      --line: #e7eaf0;
+      --primary: #e94f64;
+      --primary-dark: #c93e52;
+      --primary-soft: #fff0f3;
+      --blue-soft: #eef5ff;
+      --green-soft: #effaf4;
+      --yellow-soft: #fff7df;
+      --shadow: 0 16px 40px rgba(27, 31, 35, 0.08);
+      --radius: 22px;
+    }
+
+    /* 모든 요소의 박스 모델을 border-box로 통일 */
+    * { box-sizing: border-box; }
+
+    /* ==============================
+      02. Base Layout
+      - 페이지 배경, 기본 폰트, 링크 스타일 정의
+    ============================== */
+    body {
+      margin: 0;
+      font-family: Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background: radial-gradient(circle at top left, #ffe9ee 0, transparent 32%), var(--bg);
+      line-height: 1.55;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* 전체 페이지 최대 너비와 좌우 여백 */
+    .page {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 34px 0 64px;
+    }
+
+    /* ==============================
+      03. Top Navigation
+      - 상단 로고와 섹션 이동 버튼
+    ============================== */
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--primary), #ff9a77);
+      box-shadow: 0 10px 24px rgba(233, 79, 100, 0.3);
+    }
+
+    .nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .nav a,
+    .btn {
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.74);
+      padding: 9px 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .btn.primary {
+      border-color: transparent;
+      background: var(--primary);
+      color: #fff;
+      font-weight: 700;
+    }
+
+    /* ==============================
+      04. Hero Section
+      - 첫 화면에서 직무/포트폴리오 성격을 빠르게 전달
+    ============================== */
+    .hero {
+      background: linear-gradient(135deg, #e94f64 0%, #ff7d69 52%, #ffb36b 100%);
+      color: #fff;
+      border-radius: 34px;
+      padding: 38px;
+      box-shadow: var(--shadow);
+      display: grid;
+      grid-template-columns: 1.45fr 0.95fr;
+      gap: 28px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Hero 우측 상단 장식용 원형 배경 */
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 360px;
+      height: 360px;
+      right: -110px;
+      top: -130px;
+      background: rgba(255,255,255,0.16);
+      border-radius: 50%;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.18);
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+
+    .hero h1 {
+      margin: 0 0 14px;
+      font-size: clamp(36px, 5vw, 62px);
+      letter-spacing: -0.055em;
+      line-height: 1.02;
+    }
+
+    .hero .subtitle {
+      max-width: 700px;
+      font-size: 18px;
+      color: rgba(255,255,255,0.88);
+      margin: 0 0 24px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .hero-actions a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 16px;
+      border-radius: 14px;
+      font-size: 14px;
+      font-weight: 800;
+      background: #fff;
+      color: var(--primary-dark);
+    }
+
+    .hero-actions a.secondary {
+      color: #fff;
+      background: rgba(255,255,255,0.17);
+      border: 1px solid rgba(255,255,255,0.32);
+    }
+
+    /* Hero 우측 요약 카드 */
+    .hero-card {
+      position: relative;
+      z-index: 1;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.25);
+      border-radius: 26px;
+      padding: 22px;
+      backdrop-filter: blur(8px);
+    }
+
+    .hero-card h2 { margin: 0 0 14px; font-size: 18px; }
+    .hero-facts { display: grid; gap: 12px; }
+
+    .fact {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.13);
+    }
+
+    .fact span:first-child {
+      color: rgba(255,255,255,0.72);
+      font-size: 13px;
+    }
+
+    .fact span:last-child {
+      font-weight: 800;
+      text-align: right;
+    }
+
+    /* ==============================
+      05. Main Grid
+      - 좌측 이력, 우측 포트폴리오 2단 구성
+    ============================== */
+    main {
+      display: grid;
+      grid-template-columns: 0.92fr 1.58fr;
+      gap: 24px;
+      margin-top: 24px;
+      align-items: start;
+    }
+
+    .stack { display: grid; gap: 18px; }
+
+    /* 공통 카드 스타일 */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: 0 10px 30px rgba(27, 31, 35, 0.045);
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .section-title h2 {
+      margin: 0;
+      font-size: 20px;
+      letter-spacing: -0.035em;
+    }
+
+    .section-title small {
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    /* ==============================
+      06. Pills / Tags
+      - 역량, 우선순위, 상태값 표시용 뱃지
+    ============================== */
+    .pill-row { display: flex; flex-wrap: wrap; gap: 8px; }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      padding: 7px 10px;
+      font-size: 12px;
+      font-weight: 800;
+      background: #f2f4f8;
+      color: #4b5563;
+      white-space: nowrap;
+    }
+
+    .pill.red { background: var(--primary-soft); color: var(--primary-dark); }
+    .pill.blue { background: var(--blue-soft); color: #2f67b1; }
+    .pill.green { background: var(--green-soft); color: #248a52; }
+    .pill.yellow { background: var(--yellow-soft); color: #9a6b00; }
+
+    /* ==============================
+      07. Resume Sidebar
+      - 기본 이력, 역량, 학력/교육/활동 카드
+    ============================== */
+    .info-list {
+      display: grid;
+      gap: 10px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .info-list li {
+      display: grid;
+      grid-template-columns: 96px 1fr;
+      gap: 10px;
+      padding-bottom: 10px;
+      border-bottom: 1px dashed var(--line);
+    }
+
+    .info-list li:last-child { border-bottom: 0; padding-bottom: 0; }
+    .label { color: var(--muted); font-size: 13px; font-weight: 700; }
+    .value { font-weight: 700; }
+
+    .timeline { display: grid; gap: 14px; }
+
+    .timeline-item {
+      position: relative;
+      padding-left: 18px;
+      border-left: 2px solid var(--line);
+    }
+
+    .timeline-item::before {
+      content: "";
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--primary);
+      position: absolute;
+      left: -6px;
+      top: 7px;
+    }
+
+    .timeline-item strong {
+      display: block;
+      letter-spacing: -0.02em;
+    }
+
+    .timeline-item span {
+      display: block;
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 2px;
+    }
+
+    /* ==============================
+      08. Portfolio Metrics
+      - 대표 포트폴리오 정량 요약 영역
+    ============================== */
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    .metric {
+      background: #fbfcff;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 16px;
+    }
+
+    .metric strong {
+      display: block;
+      font-size: 28px;
+      line-height: 1;
+      letter-spacing: -0.045em;
+      color: var(--primary-dark);
+      margin-bottom: 8px;
+    }
+
+    .metric span {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .project-head {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 16px;
+      align-items: start;
+      margin-bottom: 18px;
+    }
+
+    .project-head h3 {
+      margin: 0 0 8px;
+      font-size: 24px;
+      letter-spacing: -0.045em;
+    }
+
+    .project-head p { margin: 0; color: var(--muted); }
+
+    /* 대표 포트폴리오 산출물 카드 */
+    .deliverables {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .deliverable {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 14px;
+      background: #fff;
+    }
+
+    .deliverable strong { display: block; margin-bottom: 6px; }
+    .deliverable span { color: var(--muted); font-size: 13px; }
+
+    /* ==============================
+      09. Other Portfolio Cards
+      - 대표 포트폴리오 외 다른 작업물로 이동하는 영역
+    ============================== */
+    .portfolio-more {
+      margin-top: 22px;
+      padding-top: 18px;
+      border-top: 1px dashed var(--line);
+    }
+
+    .portfolio-more-head {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .portfolio-more-head h4 {
+      margin: 0;
+      font-size: 17px;
+      letter-spacing: -0.03em;
+    }
+
+    .portfolio-more-head p {
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .portfolio-card {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 16px;
+      background: linear-gradient(180deg, #ffffff 0%, #fbfcff 100%);
+      transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+    }
+
+    .portfolio-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(233, 79, 100, 0.35);
+      box-shadow: 0 12px 26px rgba(27, 31, 35, 0.07);
+    }
+
+    .portfolio-card strong {
+      display: block;
+      margin: 0 0 6px;
+      letter-spacing: -0.025em;
+    }
+
+    .portfolio-card p {
+      margin: 0 0 12px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .portfolio-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--primary-dark);
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    /* ==============================
+      10. Test Case Filter
+      - 검색창, 필터 select, TC 카드 리스트
+    ============================== */
+    .filter-panel {
+      display: grid;
+      grid-template-columns: 1.3fr repeat(3, 0.8fr);
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    input,
+    select {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 12px 13px;
+      font: inherit;
+      font-size: 14px;
+      background: #fff;
+      outline: none;
+    }
+
+    input:focus,
+    select:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 4px rgba(233, 79, 100, 0.1);
+    }
+
+    .tc-list { display: grid; gap: 10px; }
+
+    .tc-card {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 16px;
+      background: #fff;
+      display: grid;
+      gap: 10px;
+    }
+
+    .tc-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      align-items: flex-start;
+    }
+
+    .tc-id {
+      font-weight: 900;
+      color: var(--primary-dark);
+      font-size: 13px;
+    }
+
+    .tc-title {
+      font-weight: 900;
+      letter-spacing: -0.025em;
+      margin-top: 3px;
+    }
+
+    .tc-desc { color: var(--muted); font-size: 14px; }
+    .tc-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+
+    .tag {
+      font-size: 11px;
+      font-weight: 800;
+      border-radius: 999px;
+      padding: 5px 8px;
+      background: #f2f4f8;
+      color: #5d6673;
+    }
+
+    /* ==============================
+      11. Step / Expected Result Box
+      - TC 작성 방식 예시 영역
+    ============================== */
+    .step-box {
+      background: #fbfcff;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 16px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .step-box h3 { margin: 0; font-size: 16px; }
+    .step-box ol { margin: 0; padding-left: 20px; color: #3f4651; }
+    .step-box li + li { margin-top: 7px; }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    /* QA Fit 증거 카드 */
+    .score-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+
+    .score {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 14px;
+    }
+
+    .score strong { display: block; margin-bottom: 4px; }
+    .score span { color: var(--muted); font-size: 13px; }
+
+    /* 페이지 하단 copyright 문구 */
+    footer {
+      margin-top: 24px;
+      color: var(--muted);
+      font-size: 13px;
+      text-align: center;
+    }
+
+    /* 검색 결과가 없을 때 노출되는 빈 상태 */
+    .empty {
+      display: none;
+      border: 1px dashed var(--line);
+      border-radius: 18px;
+      padding: 22px;
+      text-align: center;
+      color: var(--muted);
+      background: #fff;
+    }
+
+    /* ==============================
+      12. Responsive
+      - 태블릿/모바일 화면에서 1열 또는 2열로 재배치
+    ============================== */
+    @media (max-width: 980px) {
+      .hero,
+      main { grid-template-columns: 1fr; }
+
+      .metric-grid,
+      .deliverables,
+      .filter-panel,
+      .two-col,
+      .portfolio-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 640px) {
+      .page {
+        width: min(100% - 24px, 1180px);
+        padding-top: 18px;
+      }
+
+      .topbar {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .hero {
+        padding: 26px;
+        border-radius: 26px;
+      }
+
+      .metric-grid,
+      .deliverables,
+      .filter-panel,
+      .two-col,
+      .score-grid,
+      .portfolio-grid { grid-template-columns: 1fr; }
+
+      .project-head,
+      .portfolio-more-head { grid-template-columns: 1fr; }
+
+      .info-list li {
+        grid-template-columns: 1fr;
+        gap: 2px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 전체 페이지 wrapper: 최대 너비와 하단 여백 관리 -->
+  <div class="page">
+    <!-- 상단 네비게이션: 주요 섹션으로 앵커 이동 -->
+    <header class="topbar">
+      <a class="brand" href="#top" aria-label="home">
+        <span class="brand-mark"></span>
+        <span>QA Resume · Portfolio</span>
+      </a>
+
+      <nav class="nav" aria-label="page navigation">
+        <a href="#resume">이력</a>
+        <a href="#portfolio">포트폴리오</a>
+        <a href="#testcases">테스트케이스</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <!-- Hero: 자소서형 문단 대신 이력/산출물 중심 메시지 노출 -->
+    <section class="hero" id="top">
+      <div>
+        <div class="eyebrow">Game QA · Test Case · Automation-ready</div>
+        <h1>이력과 결과물로 보여주는<br />QA 포트폴리오</h1>
+        <p class="subtitle">
+          자소서형 서술은 제외하고, 수행 이력·프로젝트 산출물·테스트 설계 역량을 한 화면에서 확인할 수 있도록 구성했습니다.
+        </p>
+
+        <!-- Hero CTA: 포트폴리오, TC, 다운로드 영역으로 이동 -->
+        <div class="hero-actions">
+          <a href="#portfolio">포트폴리오 보기</a>
+          <a class="secondary" href="#testcases">TC 샘플 확인</a>
+          <a class="secondary" href="#contact">PDF 다운로드</a>
+        </div>
+      </div>
+
+      <!-- Candidate Snapshot: 지원 직무와 핵심 산출물 요약 -->
+      <aside class="hero-card" aria-label="candidate summary">
+        <h2>Candidate Snapshot</h2>
+        <div class="hero-facts">
+          <div class="fact"><span>지원 직무</span><span>Game QA / QA Tester</span></div>
+          <div class="fact"><span>주요 도메인</span><span>캐릭터 커스터마이징 UI</span></div>
+          <div class="fact"><span>대표 산출물</span><span>TC · 전략 · 자동화 매핑</span></div>
+          <div class="fact"><span>공개 정보</span><span>이메일 / GitHub / Notion</span></div>
+        </div>
+      </aside>
+    </section>
+
+    <!-- Main: 좌측 이력 영역과 우측 포트폴리오 영역을 2단으로 구성 -->
+    <main>
+      <!-- Resume Sidebar: 기본 이력, 기술 스택, 학력/교육/활동 -->
+      <aside class="stack" id="resume">
+        <!-- 기본 이력 카드 -->
+        <section class="card">
+          <div class="section-title">
+            <h2>기본 이력</h2>
+            <small>Resume</small>
+          </div>
+
+          <ul class="info-list">
+            <li><span class="label">이름</span><span class="value">홍길동</span></li>
+            <li><span class="label">직무</span><span class="value">Game QA Tester</span></li>
+            <li><span class="label">이메일</span><span class="value">email@example.com</span></li>
+            <li><span class="label">포트폴리오</span><span class="value">Notion / GitHub 링크</span></li>
+            <li><span class="label">공개 제외</span><span class="value">주소 · 생년월일 · 전화번호</span></li>
+          </ul>
+        </section>
+
+        <!-- 핵심 역량 카드: QA 관련 키워드를 pill 형태로 정리 -->
+        <section class="card">
+          <div class="section-title">
+            <h2>핵심 역량</h2>
+            <small>Skills</small>
+          </div>
+
+          <div class="pill-row">
+            <span class="pill red">Test Case Design</span>
+            <span class="pill red">Functional QA</span>
+            <span class="pill blue">UI/UX Validation</span>
+            <span class="pill blue">Regression Test</span>
+            <span class="pill green">Bug Report</span>
+            <span class="pill green">Risk-based Test</span>
+            <span class="pill yellow">Airtest Mapping</span>
+            <span class="pill yellow">Excel Documentation</span>
+          </div>
+        </section>
+
+        <!-- 학력/교육/활동 카드: 사실 기반 타임라인 -->
+        <section class="card">
+          <div class="section-title">
+            <h2>학력 / 교육 / 활동</h2>
+            <small>Timeline</small>
+          </div>
+
+          <div class="timeline">
+            <div class="timeline-item">
+              <strong>QA 포트폴리오 프로젝트</strong>
+              <span>inZOI 캐릭터 커스터마이징 테스트 설계</span>
+            </div>
+            <div class="timeline-item">
+              <strong>테스트 자동화 학습</strong>
+              <span>Airtest 이미지 기반 UI 테스트 흐름 설계</span>
+            </div>
+            <div class="timeline-item">
+              <strong>교육 / 자격 / 학력 입력</strong>
+              <span>학교명, 과정명, 기간 등 사실 정보 중심 입력</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Contact 카드: 외부 산출물 링크 placeholder -->
+        <section class="card" id="contact">
+          <div class="section-title">
+            <h2>Contact</h2>
+            <small>Links</small>
+          </div>
+
+          <div class="stack">
+            <a class="btn primary" href="#">PDF 이력서 다운로드</a>
+            <a class="btn" href="#">테스트케이스 엑셀 보기</a>
+            <a class="btn" href="#">GitHub / Script Repository</a>
+            <a class="btn" href="#">Notion Portfolio</a>
+          </div>
+        </section>
+      </aside>
+
+      <!-- Portfolio Content: 대표 포트폴리오, QA Fit, 테스트케이스 샘플 -->
+      <section class="stack">
+        <!-- 대표 포트폴리오 카드 -->
+        <section class="card" id="portfolio">
+          <div class="section-title">
+            <h2>대표 포트폴리오</h2>
+            <small>Project</small>
+          </div>
+
+          <!-- 대표 프로젝트 설명 영역 -->
+          <div class="project-head">
+            <div>
+              <h3>inZOI 캐릭터 커스터마이징 QA 설계</h3>
+              <p>
+                피부톤, 얼굴/체형 편집, 의상·헤어 선택, 저장/불러오기, UI 이동 및 예외 상황을 기준으로 기능 검증 범위와 테스트케이스를 설계한 포트폴리오입니다.
+              </p>
+            </div>
+            <span class="pill red">Portfolio Case</span>
+          </div>
+
+          <!-- 대표 프로젝트 정량 요약 -->
+          <div class="metric-grid" aria-label="portfolio metrics">
+            <div class="metric"><strong>36</strong><span>테스트케이스</span></div>
+            <div class="metric"><strong>9</strong><span>검증 컴포넌트</span></div>
+            <div class="metric"><strong>12</strong><span>High Priority</span></div>
+            <div class="metric"><strong>18</strong><span>자동화 후보</span></div>
+          </div>
+
+          <!-- 대표 프로젝트 산출물 요약 -->
+          <div class="deliverables">
+            <div class="deliverable">
+              <strong>Test Strategy</strong>
+              <span>범위, 우선순위, 리스크, 종료 기준 정리</span>
+            </div>
+            <div class="deliverable">
+              <strong>Test Cases</strong>
+              <span>Steps와 Expected Result를 검증 가능하게 작성</span>
+            </div>
+            <div class="deliverable">
+              <strong>Automation Mapping</strong>
+              <span>Airtest 적용 가능 흐름과 이미지 기준점 분리</span>
+            </div>
+          </div>
+
+          <!-- 추가 포트폴리오 목록: 대표 프로젝트 외 다른 작업물 예시 -->
+          <div class="portfolio-more" aria-label="other portfolios">
+            <div class="portfolio-more-head">
+              <div>
+                <h4>다른 포트폴리오</h4>
+                <p>추가 프로젝트가 있을 경우 아래 예시 항목을 실제 제목과 설명으로 교체할 수 있습니다.</p>
+              </div>
+            </div>
+
+            <div class="portfolio-grid">
+              <a class="portfolio-card" href="#" aria-label="첫 번째 포트폴리오 예시 보기">
+                <strong>포트폴리오 제목 예시 01</strong>
+                <p>프로젝트의 검증 대상, 수행 범위, 작성한 산출물을 1~2문장으로 요약하는 영역입니다.</p>
+                <span class="portfolio-link">자세히 보기 →</span>
+              </a>
+
+              <a class="portfolio-card" href="#" aria-label="두 번째 포트폴리오 예시 보기">
+                <strong>포트폴리오 제목 예시 02</strong>
+                <p>테스트 설계, 체크리스트, 버그 리포트, 자동화 시도 등 강조하고 싶은 QA 활동을 작성합니다.</p>
+                <span class="portfolio-link">자세히 보기 →</span>
+              </a>
+
+              <a class="portfolio-card" href="#" aria-label="세 번째 포트폴리오 예시 보기">
+                <strong>포트폴리오 제목 예시 03</strong>
+                <p>게임 시스템, UI 흐름, 콘텐츠 분석 등 다른 관점의 포트폴리오를 연결하는 예시 카드입니다.</p>
+                <span class="portfolio-link">자세히 보기 →</span>
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <!-- QA Fit 카드: 포트폴리오에서 드러나는 QA 역량 증거 -->
+        <section class="card">
+          <div class="section-title">
+            <h2>QA Fit</h2>
+            <small>Evidence</small>
+          </div>
+
+          <div class="score-grid">
+            <div class="score">
+              <strong>기능 검증 관점</strong>
+              <span>선택값 유지, 저장값 일치, UI 상태 변화, 오류 메시지 노출 여부를 명확히 분리합니다.</span>
+            </div>
+            <div class="score">
+              <strong>시각 검증 관점</strong>
+              <span>텍스처 누락, 메시 변형, 색상 보정값 반영 등 그래픽 품질 이슈를 확인합니다.</span>
+            </div>
+            <div class="score">
+              <strong>문서화 역량</strong>
+              <span>반복 표현을 줄이고 Expected Result를 결과 중심 문장으로 작성합니다.</span>
+            </div>
+            <div class="score">
+              <strong>자동화 확장성</strong>
+              <span>반복 UI 이동과 저장/불러오기 검증을 이미지 기반 자동화 후보로 분류합니다.</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- 테스트케이스 샘플 카드: JS 필터 기능이 적용되는 영역 -->
+        <section class="card" id="testcases">
+          <div class="section-title">
+            <h2>테스트케이스 샘플</h2>
+            <small>Filterable TC</small>
+          </div>
+
+          <!-- TC 검색 및 조건 필터 -->
+          <div class="filter-panel">
+            <input id="searchInput" type="search" placeholder="TC ID, 제목, 설명 검색" aria-label="search test case" />
+
+            <select id="componentFilter" aria-label="component filter">
+              <option value="all">전체 컴포넌트</option>
+              <option value="Skin">Skin</option>
+              <option value="Face">Face</option>
+              <option value="Hair">Hair</option>
+              <option value="Outfit">Outfit</option>
+              <option value="Save">Save</option>
+              <option value="UI">UI</option>
+            </select>
+
+            <select id="priorityFilter" aria-label="priority filter">
+              <option value="all">전체 우선순위</option>
+              <option value="High">High</option>
+              <option value="Medium">Medium</option>
+              <option value="Low">Low</option>
+            </select>
+
+            <select id="automationFilter" aria-label="automation filter">
+              <option value="all">자동화 전체</option>
+              <option value="Yes">자동화 후보</option>
+              <option value="No">수동 검증</option>
+            </select>
+          </div>
+
+          <!-- JS에서 필터링된 TC 카드가 렌더링되는 영역 -->
+          <div class="tc-list" id="tcList"></div>
+
+          <!-- 검색 결과가 없을 때 표시되는 영역 -->
+          <div class="empty" id="emptyState">조건에 맞는 테스트케이스가 없습니다.</div>
+        </section>
+
+        <!-- TC Step / Expected Result 작성 예시 -->
+        <section class="two-col">
+          <div class="card step-box">
+            <h3>대표 Step 작성 방식</h3>
+            <ol>
+              <li>커스터마이징 화면에서 Skin 카테고리로 이동한다.</li>
+              <li>피부톤 프리셋을 선택하고 상세 보정 슬라이더를 조정한다.</li>
+              <li>다른 카테고리로 이동한 뒤 다시 Skin 카테고리로 복귀한다.</li>
+              <li>선택 상태와 미리보기 캐릭터 표현이 저장값과 일치하는지 확인한다.</li>
+            </ol>
+          </div>
+
+          <div class="card step-box">
+            <h3>Expected Result 작성 방식</h3>
+            <ol>
+              <li>선택한 피부톤이 캐릭터 미리보기에 즉시 반영된다.</li>
+              <li>카테고리 이동 후에도 선택 상태가 유지된다.</li>
+              <li>저장 후 재진입 시 저장값과 UI 선택값이 일치한다.</li>
+              <li>텍스처 누락, 메시 변형, 비정상 색상 왜곡이 발생하지 않는다.</li>
+            </ol>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <!-- Footer: 개인정보 공개 범위 안내 -->
+    <footer>
+      © 2026 QA Resume & Portfolio Mockup. 개인정보는 지원 목적에 필요한 범위만 공개합니다.
+    </footer>
+  </div>
+
+  <script>
+    /* ==============================
+      01. Test Case Data
+      - 화면에 표시할 테스트케이스 샘플 데이터
+      - 실제 프로젝트에서는 JSON 파일/API/스프레드시트 데이터로 교체 가능
+    ============================== */
+    const testCases = [
+      {
+        id: "TC-CUS-001",
+        title: "피부톤 프리셋 선택 반영 검증",
+        component: "Skin",
+        priority: "High",
+        automation: "Yes",
+        desc: "피부톤 프리셋 선택 시 캐릭터 미리보기와 선택 UI 상태가 일치하는지 검증"
+      },
+      {
+        id: "TC-CUS-002",
+        title: "피부 상세 보정값 유지 검증",
+        component: "Skin",
+        priority: "High",
+        automation: "Yes",
+        desc: "슬라이더 조정 후 카테고리 이동 및 복귀 시 시스템 정의 보정값이 유지되는지 검증"
+      },
+      {
+        id: "TC-CUS-006",
+        title: "얼굴 파츠 편집값 저장 검증",
+        component: "Face",
+        priority: "High",
+        automation: "No",
+        desc: "눈, 코, 입 등 얼굴 파츠 조정값이 저장 후 재진입 시 동일하게 표시되는지 검증"
+      },
+      {
+        id: "TC-CUS-011",
+        title: "헤어 색상 변경 및 텍스처 검증",
+        component: "Hair",
+        priority: "Medium",
+        automation: "Yes",
+        desc: "헤어 색상 변경 시 텍스처 누락이나 비정상 색상 왜곡 없이 반영되는지 검증"
+      },
+      {
+        id: "TC-CUS-017",
+        title: "의상 선택 상태 유지 검증",
+        component: "Outfit",
+        priority: "Medium",
+        automation: "Yes",
+        desc: "의상 선택 후 다른 카테고리 이동 및 복귀 시 선택 상태가 유지되는지 검증"
+      },
+      {
+        id: "TC-CUS-024",
+        title: "저장 후 캐릭터 재진입 검증",
+        component: "Save",
+        priority: "High",
+        automation: "Yes",
+        desc: "저장된 커스터마이징 값이 재진입 시 UI 선택값과 캐릭터 외형에 동일하게 복원되는지 검증"
+      },
+      {
+        id: "TC-CUS-029",
+        title: "카테고리 탭 이동 안정성 검증",
+        component: "UI",
+        priority: "Medium",
+        automation: "Yes",
+        desc: "카테고리 반복 이동 시 화면 멈춤, 선택값 초기화, UI 깨짐이 발생하지 않는지 검증"
+      },
+      {
+        id: "TC-CUS-033",
+        title: "비정상 입력값 처리 검증",
+        component: "UI",
+        priority: "High",
+        automation: "No",
+        desc: "허용 범위를 벗어난 입력이나 빠른 연속 조작 시 오류 메시지 또는 안전한 기본 동작이 제공되는지 검증"
+      }
+    ];
+
+    /* ==============================
+      02. DOM References
+      - 검색/필터 입력 요소와 결과 렌더링 영역을 변수로 저장
+    ============================== */
+    const list = document.getElementById("tcList");
+    const emptyState = document.getElementById("emptyState");
+    const searchInput = document.getElementById("searchInput");
+    const componentFilter = document.getElementById("componentFilter");
+    const priorityFilter = document.getElementById("priorityFilter");
+    const automationFilter = document.getElementById("automationFilter");
+
+    /* ==============================
+      03. Render Function
+      - 검색어, 컴포넌트, 우선순위, 자동화 여부에 따라 TC 목록 필터링
+      - 필터링 결과를 카드 형태로 화면에 출력
+    ============================== */
+    function renderCases() {
+      // 현재 입력된 검색어와 필터값을 읽음
+      const keyword = searchInput.value.trim().toLowerCase();
+      const component = componentFilter.value;
+      const priority = priorityFilter.value;
+      const automation = automationFilter.value;
+
+      // 각 TC가 검색어와 필터 조건에 모두 부합하는지 확인
+      const filtered = testCases.filter((tc) => {
+        const matchesKeyword = [tc.id, tc.title, tc.desc, tc.component, tc.priority]
+          .join(" ")
+          .toLowerCase()
+          .includes(keyword);
+
+        const matchesComponent = component === "all" || tc.component === component;
+        const matchesPriority = priority === "all" || tc.priority === priority;
+        const matchesAutomation = automation === "all" || tc.automation === automation;
+
+        return matchesKeyword && matchesComponent && matchesPriority && matchesAutomation;
+      });
+
+      // 필터링된 TC 배열을 HTML 카드 문자열로 변환 후 삽입
+      list.innerHTML = filtered.map((tc) => `
+        <article class="tc-card">
+          <div class="tc-top">
+            <div>
+              <div class="tc-id">${tc.id}</div>
+              <div class="tc-title">${tc.title}</div>
+            </div>
+            <span class="pill ${tc.priority === "High" ? "red" : tc.priority === "Medium" ? "blue" : "green"}">${tc.priority}</span>
+          </div>
+          <div class="tc-desc">${tc.desc}</div>
+          <div class="tc-tags">
+            <span class="tag">${tc.component}</span>
+            <span class="tag">Automation: ${tc.automation}</span>
+          </div>
+        </article>
+      `).join("");
+
+      // 검색 결과가 없으면 empty state를 표시
+      emptyState.style.display = filtered.length ? "none" : "block";
+    }
+
+    /* ==============================
+      04. Event Binding
+      - 검색창 입력 또는 select 변경 시 TC 목록을 즉시 갱신
+    ============================== */
+    [searchInput, componentFilter, priorityFilter, automationFilter].forEach((el) => {
+      el.addEventListener("input", renderCases);
+      el.addEventListener("change", renderCases);
+    });
+
+    /* ==============================
+      05. Initial Render
+      - 페이지 최초 로드 시 전체 테스트케이스 목록 출력
+    ============================== */
+    renderCases();
+  </script>
+</body>
+</html>
