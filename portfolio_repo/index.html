@@ -4,7 +4,7 @@
   <!-- 문서 기본 설정: 한글 인코딩, 반응형 viewport, 페이지 제목 -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>QA Resume & Portfolio Mockup</title>
+  <title>Mincheol QA Resume & Portfolio</title>
 
   <style>
     /* ==============================
@@ -189,6 +189,7 @@
       border: 1px solid rgba(255,255,255,0.25);
       border-radius: 26px;
       padding: 22px;
+      -webkit-backdrop-filter: blur(8px);
       backdrop-filter: blur(8px);
     }
 
@@ -281,8 +282,50 @@
 
     /* ==============================
       07. Resume Sidebar
-      - 기본 이력, 역량, 학력/교육/활동 카드
+      - 기본 이력, 프로필 사진, 역량, 학력/교육/활동 카드
     ============================== */
+
+    /* 기본 이력 상단 프로필 사진 영역 */
+    .profile-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 18px;
+      padding-bottom: 18px;
+      border-bottom: 1px dashed var(--line);
+      text-align: center;
+    }
+
+    /* 원형 프로필 이미지 프레임 */
+    .profile-photo {
+      width: 112px;
+      height: 112px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 4px solid var(--primary-soft);
+      background: linear-gradient(135deg, #fff0f3, #eef5ff);
+      box-shadow: 0 10px 24px rgba(27, 31, 35, 0.08);
+    }
+
+    /* 실제 프로필 이미지: assets/profile/mincheol_profile.jpg.jpeg 경로 사용 */
+    .profile-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .profile-name {
+      font-weight: 900;
+      letter-spacing: -0.025em;
+    }
+
+    .profile-role {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+    }
     .info-list {
       display: grid;
       gap: 10px;
@@ -638,8 +681,12 @@
       .score-grid,
       .portfolio-grid { grid-template-columns: 1fr; }
 
-      .project-head,
-      .portfolio-more-head { grid-template-columns: 1fr; }
+      .project-head { grid-template-columns: 1fr; }
+
+      .portfolio-more-head {
+        align-items: flex-start;
+        flex-direction: column;
+      }
 
       .info-list li {
         grid-template-columns: 1fr;
@@ -656,7 +703,7 @@
     <header class="topbar">
       <a class="brand" href="#top" aria-label="home">
         <span class="brand-mark"></span>
-        <span>QA Resume · Portfolio</span>
+        <span>Mincheol QA Portfolio</span>
       </a>
 
       <nav class="nav" aria-label="page navigation">
@@ -680,7 +727,7 @@
         <div class="hero-actions">
           <a href="#portfolio">포트폴리오 보기</a>
           <a class="secondary" href="#testcases">TC 샘플 확인</a>
-          <a class="secondary" href="#contact">PDF 다운로드</a>
+          <a class="secondary" href="./assets/resume/mincheol_resume.pdf" target="_blank" rel="noopener">PDF 이력서 보기</a>
         </div>
       </div>
 
@@ -691,7 +738,7 @@
           <div class="fact"><span>지원 직무</span><span>Game QA / QA Tester</span></div>
           <div class="fact"><span>주요 도메인</span><span>캐릭터 커스터마이징 UI</span></div>
           <div class="fact"><span>대표 산출물</span><span>TC · 전략 · 자동화 매핑</span></div>
-          <div class="fact"><span>공개 정보</span><span>이메일 / GitHub / Notion</span></div>
+          <div class="fact"><span>공개 정보</span><span>Email / GitHub</span></div>
         </div>
       </aside>
     </section>
@@ -707,12 +754,25 @@
             <small>Resume</small>
           </div>
 
+          <!-- 프로필 사진: 실제 이미지는 ./assets/profile/mincheol_profile.jpg.jpeg 경로에 업로드 -->
+          <div class="profile-box">
+            <div class="profile-photo">
+              <img src="./assets/profile/mincheol_profile.jpg.jpeg" alt="Mincheol 프로필 사진" />
+            </div>
+            <div>
+              <div class="profile-name">Mincheol</div>
+              <div class="profile-role">Game QA Tester</div>
+            </div>
+          </div>
+
           <ul class="info-list">
-            <li><span class="label">이름</span><span class="value">홍길동</span></li>
+            <li><span class="label">이름</span><span class="value">Mincheol</span></li>
             <li><span class="label">직무</span><span class="value">Game QA Tester</span></li>
-            <li><span class="label">이메일</span><span class="value">email@example.com</span></li>
-            <li><span class="label">포트폴리오</span><span class="value">Notion / GitHub 링크</span></li>
-            <li><span class="label">공개 제외</span><span class="value">주소 · 생년월일 · 전화번호</span></li>
+            <li><span class="label">생년월일</span><span class="value">YYYY.MM.DD</span></li>
+            <li><span class="label">전화번호</span><span class="value">010-0000-0000</span></li>
+            <li><span class="label">이메일</span><span class="value">jka3200@naver.com</span></li>
+            <li><span class="label">포트폴리오</span><span class="value">GitHub 링크</span></li>
+            <li><span class="label">공개 제외</span><span class="value">주소</span></li>
           </ul>
         </section>
 
@@ -758,7 +818,7 @@
           </div>
         </section>
 
-        <!-- Contact 카드: 외부 산출물 링크 placeholder -->
+        <!-- Contact 카드: GitHub Pages에 함께 업로드한 이력서 PDF, 프로필 이미지, 게임별 TC PDF/Excel 파일과 외부 링크 연결 -->
         <section class="card" id="contact">
           <div class="section-title">
             <h2>Contact</h2>
@@ -766,10 +826,10 @@
           </div>
 
           <div class="stack">
-            <a class="btn primary" href="#">PDF 이력서 다운로드</a>
-            <a class="btn" href="#">테스트케이스 엑셀 보기</a>
-            <a class="btn" href="#">GitHub / Script Repository</a>
-            <a class="btn" href="#">Notion Portfolio</a>
+            <a class="btn primary" href="./assets/resume/mincheol_resume.pdf" target="_blank" rel="noopener">PDF 이력서 보기</a>
+            <a class="btn" href="./assets/tc/inzoi_files/inzoi_files_preview.pdf" target="_blank" rel="noopener">inZOI TC PDF 미리보기</a>
+            <a class="btn" href="./assets/tc/inzoi_files/inzoi_files.xlsx" download>inZOI Excel 다운로드</a>
+            <a class="btn" href="https://github.com/jka3200" target="_blank" rel="noopener">GitHub Portfolio</a>
           </div>
         </section>
       </aside>
@@ -823,27 +883,27 @@
             <div class="portfolio-more-head">
               <div>
                 <h4>다른 포트폴리오</h4>
-                <p>추가 프로젝트가 있을 경우 아래 예시 항목을 실제 제목과 설명으로 교체할 수 있습니다.</p>
+                <p>게임별 TC 폴더 안에 원본 Excel과 미리보기 PDF를 함께 저장하는 구조로 구성했습니다.</p>
               </div>
             </div>
 
             <div class="portfolio-grid">
-              <a class="portfolio-card" href="#" aria-label="첫 번째 포트폴리오 예시 보기">
-                <strong>포트폴리오 제목 예시 01</strong>
-                <p>프로젝트의 검증 대상, 수행 범위, 작성한 산출물을 1~2문장으로 요약하는 영역입니다.</p>
-                <span class="portfolio-link">자세히 보기 →</span>
+              <a class="portfolio-card" href="./assets/tc/inzoi_files/inzoi_files_preview.pdf" target="_blank" rel="noopener" aria-label="inZOI QA 포트폴리오 PDF 보기">
+                <strong>inZOI TC PDF 미리보기</strong>
+                <p>inZOI 테스트케이스 엑셀을 브라우저에서 빠르게 확인할 수 있도록 변환한 미리보기용 PDF입니다.</p>
+                <span class="portfolio-link">PDF 미리보기 →</span>
               </a>
 
-              <a class="portfolio-card" href="#" aria-label="두 번째 포트폴리오 예시 보기">
-                <strong>포트폴리오 제목 예시 02</strong>
-                <p>테스트 설계, 체크리스트, 버그 리포트, 자동화 시도 등 강조하고 싶은 QA 활동을 작성합니다.</p>
-                <span class="portfolio-link">자세히 보기 →</span>
+              <a class="portfolio-card" href="./assets/tc/inzoi_files/inzoi_files_preview.pdf" target="_blank" rel="noopener" aria-label="inZOI TC PDF 미리보기">
+                <strong>게임 TC 폴더 구조 예시</strong>
+                <p>게임별 TC 폴더 안에 원본 Excel과 미리보기 PDF를 함께 보관하는 구조로 확장할 수 있습니다.</p>
+                <span class="portfolio-link">구조 확인 →</span>
               </a>
 
-              <a class="portfolio-card" href="#" aria-label="세 번째 포트폴리오 예시 보기">
-                <strong>포트폴리오 제목 예시 03</strong>
-                <p>게임 시스템, UI 흐름, 콘텐츠 분석 등 다른 관점의 포트폴리오를 연결하는 예시 카드입니다.</p>
-                <span class="portfolio-link">자세히 보기 →</span>
+              <a class="portfolio-card" href="./assets/tc/inzoi_files/inzoi_files.xlsx" download aria-label="inZOI inZOI Excel 다운로드">
+                <strong>inZOI TC Excel 원본</strong>
+                <p>TC ID, Component, Priority, Steps, Expected Result를 포함한 inZOI QA 원본 관리용 엑셀 문서입니다.</p>
+                <span class="portfolio-link">Excel 다운로드 →</span>
               </a>
             </div>
           </div>
