@@ -1,0 +1,182 @@
+[
+  {
+    "game": "inZOI",
+    "id": "TC-SAMPLE-001",
+    "title": "게임 실행 및 메인 화면 진입 검증",
+    "component": "Start",
+    "priority": "Highest",
+    "automation": "Yes",
+    "desc": "게임 실행 후 메인 화면이 정상적으로 노출되고 주요 UI가 표시되는지 검증"
+  },
+  {
+    "game": "inZOI",
+    "id": "TC-SAMPLE-002",
+    "title": "로그인 성공 및 실패 처리 검증",
+    "component": "Login",
+    "priority": "High",
+    "automation": "Yes",
+    "desc": "정상 계정과 비정상 입력값에 따라 로그인 결과와 안내 메시지가 올바르게 표시되는지 검증"
+  },
+  {
+    "game": "inZOI",
+    "id": "TC-SAMPLE-003",
+    "title": "주요 UI 버튼 선택 상태 검증",
+    "component": "UI",
+    "priority": "Medium",
+    "automation": "Yes",
+    "desc": "버튼 선택 시 포커스, 활성화 상태, 화면 전환이 정상적으로 동작하는지 검증"
+  },
+  {
+    "game": "inZOI",
+    "id": "TC-SAMPLE-004",
+    "title": "메뉴 이동 및 뒤로가기 동작 검증",
+    "component": "Navigation",
+    "priority": "Medium",
+    "automation": "Yes",
+    "desc": "주요 메뉴 간 이동과 뒤로가기 동작 시 화면 흐름이 끊기지 않는지 검증"
+  },
+  {
+    "game": "inZOI",
+    "id": "TC-SAMPLE-005",
+    "title": "옵션 설정값 저장 및 재진입 검증",
+    "component": "Option",
+    "priority": "High",
+    "automation": "Yes",
+    "desc": "옵션 변경 후 저장하고 재진입했을 때 설정값이 유지되는지 검증"
+  },
+  {
+    "game": "inZOI",
+    "id": "TC-SAMPLE-006",
+    "title": "저장 데이터 불러오기 검증",
+    "component": "Save",
+    "priority": "Highest",
+    "automation": "No",
+    "desc": "저장된 데이터가 재실행 후에도 손실 없이 정상적으로 복원되는지 검증"
+  },
+  {
+    "game": "inZOI",
+    "id": "TC-SAMPLE-007",
+    "title": "보상 획득 및 수량 반영 검증",
+    "component": "Reward",
+    "priority": "Medium",
+    "automation": "No",
+    "desc": "보상 수령 후 재화, 아이템 수량, 알림 상태가 정상적으로 반영되는지 검증"
+  },
+  {
+    "game": "inZOI",
+    "id": "TC-SAMPLE-008",
+    "title": "인벤토리 아이템 표시 검증",
+    "component": "Inventory",
+    "priority": "Medium",
+    "automation": "Yes",
+    "desc": "획득한 아이템이 인벤토리에 표시되고 수량 및 상태값이 일치하는지 검증"
+  },
+  {
+    "game": "inZOI",
+    "id": "TC-SAMPLE-009",
+    "title": "상점 구매 및 재화 차감 검증",
+    "component": "Shop",
+    "priority": "High",
+    "automation": "No",
+    "desc": "상품 구매 시 아이템 지급과 재화 차감이 정확히 처리되는지 검증"
+  },
+  {
+    "game": "inZOI",
+    "id": "TC-SAMPLE-010",
+    "title": "퀘스트 수락 및 완료 상태 검증",
+    "component": "Quest",
+    "priority": "Medium",
+    "automation": "Yes",
+    "desc": "퀘스트 수락, 진행, 완료 상태가 UI와 보상 처리에 정상 반영되는지 검증"
+  },
+  {
+    "game": "inZOI",
+    "id": "TC-SAMPLE-011",
+    "title": "전투 진입 및 결과 화면 검증",
+    "component": "Battle",
+    "priority": "High",
+    "automation": "No",
+    "desc": "전투 진입 후 승패 결과, 보상, 경험치 반영이 정상적으로 처리되는지 검증"
+  },
+  {
+    "game": "inZOI",
+    "id": "TC-SAMPLE-012",
+    "title": "스킬 사용 및 쿨타임 표시 검증",
+    "component": "Skill",
+    "priority": "Medium",
+    "automation": "Yes",
+    "desc": "스킬 사용 후 효과 적용과 쿨타임 표시가 정의된 규칙과 일치하는지 검증"
+  },
+  {
+    "game": "inZOI",
+    "id": "TC-SAMPLE-013",
+    "title": "캐릭터 성장 수치 반영 검증",
+    "component": "Growth",
+    "priority": "High",
+    "automation": "No",
+    "desc": "레벨업 또는 강화 후 능력치와 화면 표시값이 정상적으로 갱신되는지 검증"
+  },
+  {
+    "game": "inZOI",
+    "id": "TC-SAMPLE-014",
+    "title": "네트워크 재접속 처리 검증",
+    "component": "Network",
+    "priority": "Highest",
+    "automation": "No",
+    "desc": "네트워크 끊김 후 재접속 시 데이터 손실 없이 안전하게 복구되는지 검증"
+  },
+  {
+    "game": "inZOI",
+    "id": "TC-SAMPLE-015",
+    "title": "비정상 입력값 처리 검증",
+    "component": "Exception",
+    "priority": "Lowest",
+    "automation": "No",
+    "desc": "허용되지 않은 입력 또는 빠른 연속 조작 시 오류 없이 안전한 기본 동작이 제공되는지 검증"
+  },
+  {
+    "game": "inZOI",
+    "id": "TC-SAMPLE-016",
+    "title": "튜토리얼 진행 단계 검증",
+    "component": "Tutorial",
+    "priority": "Low",
+    "automation": "Yes",
+    "desc": "튜토리얼 단계 진행, 스킵, 완료 상태가 정상적으로 처리되는지 검증"
+  },
+  {
+    "game": "inZOI",
+    "id": "TC-SAMPLE-017",
+    "title": "다국어 텍스트 표시 검증",
+    "component": "Localization",
+    "priority": "Low",
+    "automation": "No",
+    "desc": "언어 설정 변경 시 주요 텍스트가 잘림 없이 정상 표시되는지 검증"
+  },
+  {
+    "game": "inZOI",
+    "id": "TC-SAMPLE-018",
+    "title": "사운드 옵션 적용 검증",
+    "component": "Audio",
+    "priority": "Medium",
+    "automation": "Yes",
+    "desc": "배경음, 효과음, 음소거 설정이 즉시 반영되고 저장되는지 검증"
+  },
+  {
+    "game": "inZOI",
+    "id": "TC-SAMPLE-019",
+    "title": "그래픽 옵션 변경 검증",
+    "component": "Graphics",
+    "priority": "Medium",
+    "automation": "No",
+    "desc": "해상도와 품질 옵션 변경 시 화면 깨짐 없이 설정이 적용되는지 검증"
+  },
+  {
+    "game": "inZOI",
+    "id": "TC-SAMPLE-020",
+    "title": "반복 조작 시 성능 저하 검증",
+    "component": "Performance",
+    "priority": "High",
+    "automation": "No",
+    "desc": "반복 이동, 전투, 메뉴 조작 중 프레임 저하나 멈춤 현상이 발생하지 않는지 검증"
+  }
+]

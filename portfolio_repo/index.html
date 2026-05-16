@@ -12,14 +12,14 @@
       - 전체 페이지에서 재사용할 색상, 그림자, radius 변수 정의
     ============================== */
     :root {
-      --bg: #f7f8fb;
+      --bg: #ffffff;
       --surface: #ffffff;
       --text: #202124;
       --muted: #686f7a;
       --line: #e7eaf0;
-      --primary: #e94f64;
-      --primary-dark: #c93e52;
-      --primary-soft: #fff0f3;
+      --primary: #1f4e8c;
+      --primary-dark: #173a66;
+      --primary-soft: #edf4ff;
       --blue-soft: #eef5ff;
       --green-soft: #effaf4;
       --yellow-soft: #fff7df;
@@ -38,7 +38,7 @@
       margin: 0;
       font-family: Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       color: var(--text);
-      background: radial-gradient(circle at top left, #ffe9ee 0, transparent 32%), var(--bg);
+      background: radial-gradient(circle at top left, #eaf2ff 0, transparent 32%), var(--bg);
       line-height: 1.55;
     }
 
@@ -75,8 +75,8 @@
       width: 38px;
       height: 38px;
       border-radius: 14px;
-      background: linear-gradient(135deg, var(--primary), #ff9a77);
-      box-shadow: 0 10px 24px rgba(233, 79, 100, 0.3);
+      background: linear-gradient(135deg, var(--primary), #6aa6de);
+      box-shadow: 0 10px 24px rgba(31, 78, 140, 0.28);
     }
 
     .nav {
@@ -107,7 +107,7 @@
       - 첫 화면에서 직무/포트폴리오 성격을 빠르게 전달
     ============================== */
     .hero {
-      background: linear-gradient(135deg, #e94f64 0%, #ff7d69 52%, #ffb36b 100%);
+      background: linear-gradient(135deg, #1f4e8c 0%, #3478b8 52%, #78b7e8 100%);
       color: #fff;
       border-radius: 34px;
       padding: 38px;
@@ -257,6 +257,13 @@
       font-weight: 700;
     }
 
+    /* 섹션 하단 보조 설명 문구 */
+    .section-note {
+      margin: -6px 0 16px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
     /* ==============================
       06. Pills / Tags
       - 역량, 우선순위, 상태값 표시용 뱃지
@@ -280,9 +287,16 @@
     .pill.green { background: var(--green-soft); color: #248a52; }
     .pill.yellow { background: var(--yellow-soft); color: #9a6b00; }
 
+    /* Jira Priority 색상 기준: TC 샘플의 우선순위 뱃지 전용 */
+    .priority-highest { background: #ffebe6; color: #bf2600; }
+    .priority-high { background: #ffebe6; color: #de350b; }
+    .priority-medium { background: #fff4e5; color: #974f0c; }
+    .priority-low { background: #e3fcef; color: #006644; }
+    .priority-lowest { background: #e3fcef; color: #00875a; }
+
     /* ==============================
       07. Resume Sidebar
-      - 기본 이력, 프로필 사진, 역량, 학력/교육/활동 카드
+      - 기본 이력, 프로필 사진, 역량, 경력, 교육/활동 카드
     ============================== */
 
     /* 기본 이력 상단 프로필 사진 영역 */
@@ -304,7 +318,7 @@
       border-radius: 50%;
       overflow: hidden;
       border: 4px solid var(--primary-soft);
-      background: linear-gradient(135deg, #fff0f3, #eef5ff);
+      background: linear-gradient(135deg, #edf4ff, #eef7ff);
       box-shadow: 0 10px 24px rgba(27, 31, 35, 0.08);
     }
 
@@ -445,7 +459,8 @@
 
     /* ==============================
       09. Other Portfolio Cards
-      - 대표 포트폴리오 외 다른 작업물로 이동하는 영역
+      - Overview PDF 첫 페이지를 이미지로 내보내어 카드 안에 바로 표시
+      - 새 TC를 추가할 때는 portfolio-card를 복사하고 프로젝트명.preview.png 경로만 변경
     ============================== */
     .portfolio-more {
       margin-top: 22px;
@@ -475,43 +490,72 @@
 
     .portfolio-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 12px;
     }
 
     .portfolio-card {
+      display: block;
       border: 1px solid var(--line);
       border-radius: 18px;
-      padding: 16px;
       background: linear-gradient(180deg, #ffffff 0%, #fbfcff 100%);
+      overflow: hidden;
+      box-shadow: 0 12px 26px rgba(27, 31, 35, 0.04);
       transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
     }
 
     .portfolio-card:hover {
       transform: translateY(-3px);
-      border-color: rgba(233, 79, 100, 0.35);
+      border-color: rgba(31, 78, 140, 0.35);
       box-shadow: 0 12px 26px rgba(27, 31, 35, 0.07);
     }
 
-    .portfolio-card strong {
+    .portfolio-preview {
+      width: 100%;
+      height: 190px;
+      background: #f7f8fb;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .portfolio-preview img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+      background: #fff;
+    }
+
+    /* 프로젝트명.preview.png가 아직 없을 때 표시되는 준비 중 문구 */
+    .preview-placeholder {
+      display: none;
+      width: 100%;
+      height: 100%;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 800;
+      background: #fbfcff;
+    }
+
+    .portfolio-body {
+      padding: 16px;
+    }
+
+    .portfolio-body strong {
       display: block;
       margin: 0 0 6px;
       letter-spacing: -0.025em;
     }
 
-    .portfolio-card p {
-      margin: 0 0 12px;
+    .portfolio-body p {
+      margin: 0;
       color: var(--muted);
       font-size: 13px;
-    }
-
-    .portfolio-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      color: var(--primary-dark);
-      font-size: 13px;
-      font-weight: 900;
+      line-height: 1.5;
     }
 
     /* ==============================
@@ -520,7 +564,7 @@
     ============================== */
     .filter-panel {
       display: grid;
-      grid-template-columns: 1.3fr repeat(3, 0.8fr);
+      grid-template-columns: 1.35fr repeat(4, 0.75fr);
       gap: 10px;
       margin-bottom: 14px;
     }
@@ -540,7 +584,7 @@
     input:focus,
     select:focus {
       border-color: var(--primary);
-      box-shadow: 0 0 0 4px rgba(233, 79, 100, 0.1);
+      box-shadow: 0 0 0 4px rgba(31, 78, 140, 0.12);
     }
 
     .tc-list { display: grid; gap: 10px; }
@@ -585,45 +629,6 @@
       color: #5d6673;
     }
 
-    /* ==============================
-      11. Step / Expected Result Box
-      - TC 작성 방식 예시 영역
-    ============================== */
-    .step-box {
-      background: #fbfcff;
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      padding: 16px;
-      display: grid;
-      gap: 12px;
-    }
-
-    .step-box h3 { margin: 0; font-size: 16px; }
-    .step-box ol { margin: 0; padding-left: 20px; color: #3f4651; }
-    .step-box li + li { margin-top: 7px; }
-
-    .two-col {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-    }
-
-    /* QA Fit 증거 카드 */
-    .score-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 10px;
-    }
-
-    .score {
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      padding: 14px;
-    }
-
-    .score strong { display: block; margin-bottom: 4px; }
-    .score span { color: var(--muted); font-size: 13px; }
-
     /* 페이지 하단 copyright 문구 */
     footer {
       margin-top: 24px;
@@ -650,11 +655,9 @@
     @media (max-width: 980px) {
       .hero,
       main { grid-template-columns: 1fr; }
-
       .metric-grid,
       .deliverables,
       .filter-panel,
-      .two-col,
       .portfolio-grid { grid-template-columns: 1fr 1fr; }
     }
 
@@ -673,12 +676,9 @@
         padding: 26px;
         border-radius: 26px;
       }
-
       .metric-grid,
       .deliverables,
       .filter-panel,
-      .two-col,
-      .score-grid,
       .portfolio-grid { grid-template-columns: 1fr; }
 
       .project-head { grid-template-columns: 1fr; }
@@ -699,7 +699,7 @@
 <body>
   <!-- 전체 페이지 wrapper: 최대 너비와 하단 여백 관리 -->
   <div class="page">
-    <!-- 상단 네비게이션: 주요 섹션으로 앵커 이동 -->
+    <!-- [섹션 제목: 상단 네비게이션] 주요 섹션으로 앵커 이동 -->
     <header class="topbar">
       <a class="brand" href="#top" aria-label="home">
         <span class="brand-mark"></span>
@@ -710,11 +710,10 @@
         <a href="#resume">이력</a>
         <a href="#portfolio">포트폴리오</a>
         <a href="#testcases">테스트케이스</a>
-        <a href="#contact">Contact</a>
       </nav>
     </header>
 
-    <!-- Hero: 자소서형 문단 대신 이력/산출물 중심 메시지 노출 -->
+    <!-- [섹션 제목: Hero] 자소서형 문단 대신 이력/산출물 중심 메시지 노출 -->
     <section class="hero" id="top">
       <div>
         <div class="eyebrow">Game QA · Test Case · Automation-ready</div>
@@ -723,7 +722,7 @@
           자소서형 서술은 제외하고, 수행 이력·프로젝트 산출물·테스트 설계 역량을 한 화면에서 확인할 수 있도록 구성했습니다.
         </p>
 
-        <!-- Hero CTA: 포트폴리오, TC, 다운로드 영역으로 이동 -->
+        <!-- [항목 제목: Hero CTA 버튼] 포트폴리오, TC, 다운로드 영역으로 이동 -->
         <div class="hero-actions">
           <a href="#portfolio">포트폴리오 보기</a>
           <a class="secondary" href="#testcases">TC 샘플 확인</a>
@@ -731,7 +730,7 @@
         </div>
       </div>
 
-      <!-- Candidate Snapshot: 지원 직무와 핵심 산출물 요약 -->
+      <!-- [섹션 제목: Candidate Snapshot] 지원 직무와 핵심 산출물 요약 -->
       <aside class="hero-card" aria-label="candidate summary">
         <h2>Candidate Snapshot</h2>
         <div class="hero-facts">
@@ -745,16 +744,16 @@
 
     <!-- Main: 좌측 이력 영역과 우측 포트폴리오 영역을 2단으로 구성 -->
     <main>
-      <!-- Resume Sidebar: 기본 이력, 기술 스택, 학력/교육/활동 -->
+      <!-- [영역 제목: Resume Sidebar] 기본 이력, 핵심 역량, 경력, 교육 및 활동 -->
       <aside class="stack" id="resume">
-        <!-- 기본 이력 카드 -->
+        <!-- [섹션 제목: 프로필] 프로필 사진과 개인정보 항목 관리 -->
         <section class="card">
           <div class="section-title">
-            <h2>기본 이력</h2>
-            <small>Resume</small>
+            <h2>프로필</h2>
+            <small>Profile</small>
           </div>
 
-          <!-- 프로필 사진: 실제 이미지는 ./assets/profile/mincheol_profile.jpg.jpeg 경로에 업로드 -->
+          <!-- [항목 제목: 프로필 사진] 실제 이미지는 ./assets/profile/mincheol_profile.jpg.jpeg 경로에 업로드 -->
           <div class="profile-box">
             <div class="profile-photo">
               <img src="./assets/profile/mincheol_profile.jpg.jpeg" alt="Mincheol 프로필 사진" />
@@ -766,17 +765,30 @@
           </div>
 
           <ul class="info-list">
+            <!-- [항목 제목: 이름] 표시 이름 수정 영역 -->
             <li><span class="label">이름</span><span class="value">Mincheol</span></li>
+
+            <!-- [항목 제목: 직무] 지원 직무 수정 영역 -->
             <li><span class="label">직무</span><span class="value">Game QA Tester</span></li>
+
+            <!-- [항목 제목: 생년월일] 필요 시 실제 생년월일로 변경 -->
             <li><span class="label">생년월일</span><span class="value">YYYY.MM.DD</span></li>
+
+            <!-- [항목 제목: 전화번호] 필요 시 실제 연락처로 변경 -->
             <li><span class="label">전화번호</span><span class="value">010-0000-0000</span></li>
+
+            <!-- [항목 제목: 이메일] 연락 가능한 이메일 주소 -->
             <li><span class="label">이메일</span><span class="value">jka3200@naver.com</span></li>
+
+            <!-- [항목 제목: 포트폴리오] GitHub 링크 또는 배포 URL 입력 -->
             <li><span class="label">포트폴리오</span><span class="value">GitHub 링크</span></li>
-            <li><span class="label">공개 제외</span><span class="value">주소</span></li>
+
+            <!-- [항목 제목: 공개 제외] 포트폴리오에 노출하지 않을 개인정보
+            <li><span class="label">공개 제외</span><span class="value">주소</span></li> -->
           </ul>
         </section>
 
-        <!-- 핵심 역량 카드: QA 관련 키워드를 pill 형태로 정리 -->
+        <!-- [섹션 제목: 핵심 역량] QA 관련 키워드를 pill 형태로 정리 -->
         <section class="card">
           <div class="section-title">
             <h2>핵심 역량</h2>
@@ -784,6 +796,7 @@
           </div>
 
           <div class="pill-row">
+            <!-- [항목 제목: 역량 태그] span 태그를 복사해 역량 키워드 추가 -->
             <span class="pill red">Test Case Design</span>
             <span class="pill red">Functional QA</span>
             <span class="pill blue">UI/UX Validation</span>
@@ -795,55 +808,61 @@
           </div>
         </section>
 
-        <!-- 학력/교육/활동 카드: 사실 기반 타임라인 -->
+        <!-- [섹션 제목: 경력] 짧은 경력/프로젝트 경험 요약 -->
         <section class="card">
           <div class="section-title">
-            <h2>학력 / 교육 / 활동</h2>
-            <small>Timeline</small>
+            <h2>경력</h2>
+            <small>Experience</small>
           </div>
 
           <div class="timeline">
+            <!-- [항목 제목: 경력 항목] timeline-item을 복사해 경력 또는 프로젝트 경험 추가 -->
             <div class="timeline-item">
               <strong>QA 포트폴리오 프로젝트</strong>
-              <span>inZOI 캐릭터 커스터마이징 테스트 설계</span>
+              <span>inZOI 캐릭터 커스터마이징 기능 검증, TC 작성, Excel 산출물 정리</span>
+            </div>
+            <div class="timeline-item">
+              <strong>테스트 문서화 및 자동화 학습</strong>
+              <span>테스트 전략, 우선순위 분류, Airtest 자동화 매핑 흐름 구성</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- [섹션 제목: 교육 및 활동] 사실 기반 교육/활동 타임라인 -->
+        <section class="card">
+          <div class="section-title">
+            <h2>교육 및 활동</h2>
+            <small>Activities</small>
+          </div>
+
+          <div class="timeline">
+            <!-- [항목 제목: 교육/활동 항목] timeline-item을 복사해 교육 또는 활동 이력 추가 -->
+            <div class="timeline-item">
+              <strong>Game QA 포트폴리오 제작</strong>
+              <span>캐릭터 커스터마이징 기능 검증 기준 수립 및 TC 설계</span>
             </div>
             <div class="timeline-item">
               <strong>테스트 자동화 학습</strong>
               <span>Airtest 이미지 기반 UI 테스트 흐름 설계</span>
             </div>
             <div class="timeline-item">
-              <strong>교육 / 자격 / 학력 입력</strong>
-              <span>학교명, 과정명, 기간 등 사실 정보 중심 입력</span>
+              <strong>QA 학습 / 활동 입력</strong>
+              <span>교육 과정명, 수료 기간, 관련 활동 등 사실 정보 중심 입력</span>
             </div>
-          </div>
-        </section>
-
-        <!-- Contact 카드: GitHub Pages에 함께 업로드한 이력서 PDF, 프로필 이미지, 게임별 TC PDF/Excel 파일과 외부 링크 연결 -->
-        <section class="card" id="contact">
-          <div class="section-title">
-            <h2>Contact</h2>
-            <small>Links</small>
-          </div>
-
-          <div class="stack">
-            <a class="btn primary" href="./assets/resume/mincheol_resume.pdf" target="_blank" rel="noopener">PDF 이력서 보기</a>
-            <a class="btn" href="./assets/tc/inzoi_files/inzoi_files_preview.pdf" target="_blank" rel="noopener">inZOI TC PDF 미리보기</a>
-            <a class="btn" href="./assets/tc/inzoi_files/inzoi_files.xlsx" download>inZOI Excel 다운로드</a>
-            <a class="btn" href="https://github.com/jka3200" target="_blank" rel="noopener">GitHub Portfolio</a>
           </div>
         </section>
       </aside>
 
-      <!-- Portfolio Content: 대표 포트폴리오, QA Fit, 테스트케이스 샘플 -->
+      <!-- [영역 제목: Portfolio Content] 대표 포트폴리오, 테스트케이스 샘플 -->
       <section class="stack">
-        <!-- 대표 포트폴리오 카드 -->
+        <!-- [섹션 제목: 대표 포트폴리오] 메인 프로젝트 소개 카드 -->
         <section class="card" id="portfolio">
           <div class="section-title">
             <h2>대표 포트폴리오</h2>
             <small>Project</small>
           </div>
 
-          <!-- 대표 프로젝트 설명 영역 -->
+          <!-- [항목 제목: 대표 프로젝트 설명] 프로젝트명과 검증 범위 요약 -->
           <div class="project-head">
             <div>
               <h3>inZOI 캐릭터 커스터마이징 QA 설계</h3>
@@ -854,7 +873,7 @@
             <span class="pill red">Portfolio Case</span>
           </div>
 
-          <!-- 대표 프로젝트 정량 요약 -->
+          <!-- [항목 제목: 대표 프로젝트 정량 요약] TC 수, 컴포넌트, 우선순위, 자동화 후보 수 수정 영역 -->
           <div class="metric-grid" aria-label="portfolio metrics">
             <div class="metric"><strong>36</strong><span>테스트케이스</span></div>
             <div class="metric"><strong>9</strong><span>검증 컴포넌트</span></div>
@@ -862,7 +881,7 @@
             <div class="metric"><strong>18</strong><span>자동화 후보</span></div>
           </div>
 
-          <!-- 대표 프로젝트 산출물 요약 -->
+          <!-- [항목 제목: 대표 프로젝트 산출물] Strategy, Test Cases, Automation Mapping 카드 수정 영역 -->
           <div class="deliverables">
             <div class="deliverable">
               <strong>Test Strategy</strong>
@@ -878,90 +897,132 @@
             </div>
           </div>
 
-          <!-- 추가 포트폴리오 목록: 대표 프로젝트 외 다른 작업물 예시 -->
+          <!-- [섹션 제목: 다른 포트폴리오] 대표 프로젝트 외 추가 TC Overview 이미지 미리보기 카드 목록 -->
           <div class="portfolio-more" aria-label="other portfolios">
             <div class="portfolio-more-head">
               <div>
                 <h4>다른 포트폴리오</h4>
-                <p>게임별 TC 폴더 안에 원본 Excel과 미리보기 PDF를 함께 저장하는 구조로 구성했습니다.</p>
+                <p>각 테스트케이스의 Overview 이미지는 카드 안에서 바로 확인할 수 있고, 카드를 클릭하면 해당 Excel 원본이 다운로드됩니다. 항목 추가 시 portfolio-card를 복사해 이미지 경로, Excel 경로, 제목, 설명만 변경하면 됩니다.</p>
               </div>
             </div>
 
             <div class="portfolio-grid">
-              <a class="portfolio-card" href="./assets/tc/inzoi_files/inzoi_files_preview.pdf" target="_blank" rel="noopener" aria-label="inZOI QA 포트폴리오 PDF 보기">
-                <strong>inZOI TC PDF 미리보기</strong>
-                <p>inZOI 테스트케이스 엑셀을 브라우저에서 빠르게 확인할 수 있도록 변환한 미리보기용 PDF입니다.</p>
-                <span class="portfolio-link">PDF 미리보기 →</span>
+              <!-- [항목 제목: inZOI 미리보기/다운로드 카드]
+                추가 방법:
+                1. a.portfolio-card 전체 복사
+                2. href를 Excel 파일 경로로 변경
+                3. img src를 프로젝트명.preview.png 경로로 변경
+                4. 제목/설명 문구 변경
+              -->
+              <a class="portfolio-card" id="preview-inzoi" href="./assets/tc/inzoi_files/inzoi_files.xlsx" download aria-label="inZOI TC Excel 다운로드">
+                <div class="portfolio-preview">
+                  <img src="./assets/tc/inzoi_files/inzoi.preview.png" alt="inZOI Overview 미리보기" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                  <span class="preview-placeholder">Preview 준비 중</span>
+                </div>
+                <div class="portfolio-body">
+                  <strong>inZOI Overview</strong>
+                  <p>inZOI 캐릭터 커스터마이징 테스트케이스 Overview 이미지입니다. 클릭 시 Excel 원본이 다운로드됩니다.</p>
+                </div>
               </a>
 
-              <a class="portfolio-card" href="./assets/tc/inzoi_files/inzoi_files_preview.pdf" target="_blank" rel="noopener" aria-label="inZOI TC PDF 미리보기">
-                <strong>게임 TC 폴더 구조 예시</strong>
-                <p>게임별 TC 폴더 안에 원본 Excel과 미리보기 PDF를 함께 보관하는 구조로 확장할 수 있습니다.</p>
-                <span class="portfolio-link">구조 확인 →</span>
+              <!-- [항목 제목: mapleIdle 미리보기/다운로드 카드] -->
+              <a class="portfolio-card" id="preview-maple-idle" href="./assets/tc/mapleIdle_tc/mapleIdle.tc.xlsx" download aria-label="mapleIdle TC Excel 다운로드">
+                <div class="portfolio-preview">
+                  <img
+                    src="./assets/tc/mapleIdle_tc/mapleIdle.preview.png?v=20260516"
+                    data-fallbacks="./assets/tc/mapleIdle_tc/mapleIdle.preview.png|/portfolio_repo/assets/tc/mapleIdle_tc/mapleIdle.preview.png|assets/tc/mapleIdle_tc/mapleIdle.preview.png"
+                    alt="mapleIdle Overview 미리보기"
+                    onerror="loadPreviewFallback(this)"
+                  />
+                  <span class="preview-placeholder">Preview 준비 중</span>
+                </div>
+                <div class="portfolio-body">
+                  <strong>mapleIdle Overview</strong>
+                  <p>메이플키우기 테스트케이스 Overview 이미지입니다. 클릭 시 Excel 원본이 다운로드됩니다.</p>
+                </div>
               </a>
 
-              <a class="portfolio-card" href="./assets/tc/inzoi_files/inzoi_files.xlsx" download aria-label="inZOI inZOI Excel 다운로드">
-                <strong>inZOI TC Excel 원본</strong>
-                <p>TC ID, Component, Priority, Steps, Expected Result를 포함한 inZOI QA 원본 관리용 엑셀 문서입니다.</p>
-                <span class="portfolio-link">Excel 다운로드 →</span>
+              <!-- [항목 제목: TC.test 미리보기/다운로드 카드] -->
+              <a class="portfolio-card" id="preview-tc-test" href="./assets/tc/tc_test/tc_test.xlsx" download aria-label="TC.test Excel 다운로드">
+                <div class="portfolio-preview">
+                  <img src="./assets/tc/tc_test/tc_test.preview.png" alt="TC.test Overview 미리보기" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                  <span class="preview-placeholder">Preview 준비 중</span>
+                </div>
+                <div class="portfolio-body">
+                  <strong>TC.test Overview</strong>
+                  <p>추가 테스트케이스의 Overview 이미지 미리보기 예시입니다. 클릭 시 Excel 원본이 다운로드됩니다.</p>
+                </div>
+              </a>
+
+              <!-- [항목 제목: TC.tese 미리보기/다운로드 카드] -->
+              <a class="portfolio-card" id="preview-tc-tese" href="./assets/tc/tc_tese/tc_tese.xlsx" download aria-label="TC.tese Excel 다운로드">
+                <div class="portfolio-preview">
+                  <img src="./assets/tc/tc_tese/tc_tese.preview.png" alt="TC.tese Overview 미리보기" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                  <span class="preview-placeholder">Preview 준비 중</span>
+                </div>
+                <div class="portfolio-body">
+                  <strong>TC.tese Overview</strong>
+                  <p>새로운 게임 TC를 추가할 때 복사해서 사용할 수 있는 예시 카드입니다. 클릭 시 Excel 원본이 다운로드됩니다.</p>
+                </div>
               </a>
             </div>
           </div>
         </section>
 
-        <!-- QA Fit 카드: 포트폴리오에서 드러나는 QA 역량 증거 -->
-        <section class="card">
-          <div class="section-title">
-            <h2>QA Fit</h2>
-            <small>Evidence</small>
-          </div>
-
-          <div class="score-grid">
-            <div class="score">
-              <strong>기능 검증 관점</strong>
-              <span>선택값 유지, 저장값 일치, UI 상태 변화, 오류 메시지 노출 여부를 명확히 분리합니다.</span>
-            </div>
-            <div class="score">
-              <strong>시각 검증 관점</strong>
-              <span>텍스처 누락, 메시 변형, 색상 보정값 반영 등 그래픽 품질 이슈를 확인합니다.</span>
-            </div>
-            <div class="score">
-              <strong>문서화 역량</strong>
-              <span>반복 표현을 줄이고 Expected Result를 결과 중심 문장으로 작성합니다.</span>
-            </div>
-            <div class="score">
-              <strong>자동화 확장성</strong>
-              <span>반복 UI 이동과 저장/불러오기 검증을 이미지 기반 자동화 후보로 분류합니다.</span>
-            </div>
-          </div>
-        </section>
-
-        <!-- 테스트케이스 샘플 카드: JS 필터 기능이 적용되는 영역 -->
+        <!-- [섹션 제목: 테스트케이스 샘플] JSON 데이터 기반으로 대표 TC를 카드 형태로 표시 -->
         <section class="card" id="testcases">
           <div class="section-title">
             <h2>테스트케이스 샘플</h2>
-            <small>Filterable TC</small>
+            <small>JSON Preview</small>
           </div>
 
-          <!-- TC 검색 및 조건 필터 -->
+          <p class="section-note">
+            대표 TC 샘플은 ./assets/data/tc_preview.json 파일에서 불러옵니다. 샘플 추가/수정은 HTML이 아니라 JSON 파일에서 관리합니다.
+          </p>
+
+          <!-- [항목 제목: TC 검색 및 조건 필터] 검색어, 게임, 컴포넌트, 우선순위, 자동화 여부 필터 -->
           <div class="filter-panel">
             <input id="searchInput" type="search" placeholder="TC ID, 제목, 설명 검색" aria-label="search test case" />
 
+            <select id="gameFilter" aria-label="game filter">
+              <option value="all">전체 게임</option>
+            </select>
+
             <select id="componentFilter" aria-label="component filter">
               <option value="all">전체 컴포넌트</option>
+              <option value="Start">Start</option>
+              <option value="Login">Login</option>
+              <option value="UI">UI</option>
+              <option value="Navigation">Navigation</option>
+              <option value="Option">Option</option>
+              <option value="Save">Save</option>
+              <option value="Reward">Reward</option>
+              <option value="Inventory">Inventory</option>
+              <option value="Shop">Shop</option>
+              <option value="Quest">Quest</option>
+              <option value="Battle">Battle</option>
+              <option value="Skill">Skill</option>
+              <option value="Growth">Growth</option>
+              <option value="Network">Network</option>
+              <option value="Exception">Exception</option>
+              <option value="Tutorial">Tutorial</option>
+              <option value="Localization">Localization</option>
+              <option value="Audio">Audio</option>
+              <option value="Graphics">Graphics</option>
+              <option value="Performance">Performance</option>
               <option value="Skin">Skin</option>
               <option value="Face">Face</option>
               <option value="Hair">Hair</option>
               <option value="Outfit">Outfit</option>
-              <option value="Save">Save</option>
-              <option value="UI">UI</option>
             </select>
 
             <select id="priorityFilter" aria-label="priority filter">
               <option value="all">전체 우선순위</option>
+              <option value="Highest">Highest</option>
               <option value="High">High</option>
               <option value="Medium">Medium</option>
               <option value="Low">Low</option>
+              <option value="Lowest">Lowest</option>
             </select>
 
             <select id="automationFilter" aria-label="automation filter">
@@ -971,39 +1032,16 @@
             </select>
           </div>
 
-          <!-- JS에서 필터링된 TC 카드가 렌더링되는 영역 -->
+          <!-- [항목 제목: TC 카드 렌더링 영역] JS에서 필터링된 TC 카드가 표시되는 위치 -->
           <div class="tc-list" id="tcList"></div>
 
           <!-- 검색 결과가 없을 때 표시되는 영역 -->
           <div class="empty" id="emptyState">조건에 맞는 테스트케이스가 없습니다.</div>
         </section>
-
-        <!-- TC Step / Expected Result 작성 예시 -->
-        <section class="two-col">
-          <div class="card step-box">
-            <h3>대표 Step 작성 방식</h3>
-            <ol>
-              <li>커스터마이징 화면에서 Skin 카테고리로 이동한다.</li>
-              <li>피부톤 프리셋을 선택하고 상세 보정 슬라이더를 조정한다.</li>
-              <li>다른 카테고리로 이동한 뒤 다시 Skin 카테고리로 복귀한다.</li>
-              <li>선택 상태와 미리보기 캐릭터 표현이 저장값과 일치하는지 확인한다.</li>
-            </ol>
-          </div>
-
-          <div class="card step-box">
-            <h3>Expected Result 작성 방식</h3>
-            <ol>
-              <li>선택한 피부톤이 캐릭터 미리보기에 즉시 반영된다.</li>
-              <li>카테고리 이동 후에도 선택 상태가 유지된다.</li>
-              <li>저장 후 재진입 시 저장값과 UI 선택값이 일치한다.</li>
-              <li>텍스처 누락, 메시 변형, 비정상 색상 왜곡이 발생하지 않는다.</li>
-            </ol>
-          </div>
-        </section>
       </section>
     </main>
 
-    <!-- Footer: 개인정보 공개 범위 안내 -->
+    <!-- [섹션 제목: Footer] 개인정보 공개 범위 안내 -->
     <footer>
       © 2026 QA Resume & Portfolio Mockup. 개인정보는 지원 목적에 필요한 범위만 공개합니다.
     </footer>
@@ -1011,76 +1049,42 @@
 
   <script>
     /* ==============================
-      01. Test Case Data
-      - 화면에 표시할 테스트케이스 샘플 데이터
-      - 실제 프로젝트에서는 JSON 파일/API/스프레드시트 데이터로 교체 가능
+      00. Preview Image Fallback
+      - preview 이미지가 캐시/상대경로 문제로 실패할 때 대체 경로를 순차 시도
+      - 모든 경로 실패 시 Preview 준비 중 문구 표시
     ============================== */
-    const testCases = [
-      {
-        id: "TC-CUS-001",
-        title: "피부톤 프리셋 선택 반영 검증",
-        component: "Skin",
-        priority: "High",
-        automation: "Yes",
-        desc: "피부톤 프리셋 선택 시 캐릭터 미리보기와 선택 UI 상태가 일치하는지 검증"
-      },
-      {
-        id: "TC-CUS-002",
-        title: "피부 상세 보정값 유지 검증",
-        component: "Skin",
-        priority: "High",
-        automation: "Yes",
-        desc: "슬라이더 조정 후 카테고리 이동 및 복귀 시 시스템 정의 보정값이 유지되는지 검증"
-      },
-      {
-        id: "TC-CUS-006",
-        title: "얼굴 파츠 편집값 저장 검증",
-        component: "Face",
-        priority: "High",
-        automation: "No",
-        desc: "눈, 코, 입 등 얼굴 파츠 조정값이 저장 후 재진입 시 동일하게 표시되는지 검증"
-      },
-      {
-        id: "TC-CUS-011",
-        title: "헤어 색상 변경 및 텍스처 검증",
-        component: "Hair",
-        priority: "Medium",
-        automation: "Yes",
-        desc: "헤어 색상 변경 시 텍스처 누락이나 비정상 색상 왜곡 없이 반영되는지 검증"
-      },
-      {
-        id: "TC-CUS-017",
-        title: "의상 선택 상태 유지 검증",
-        component: "Outfit",
-        priority: "Medium",
-        automation: "Yes",
-        desc: "의상 선택 후 다른 카테고리 이동 및 복귀 시 선택 상태가 유지되는지 검증"
-      },
-      {
-        id: "TC-CUS-024",
-        title: "저장 후 캐릭터 재진입 검증",
-        component: "Save",
-        priority: "High",
-        automation: "Yes",
-        desc: "저장된 커스터마이징 값이 재진입 시 UI 선택값과 캐릭터 외형에 동일하게 복원되는지 검증"
-      },
-      {
-        id: "TC-CUS-029",
-        title: "카테고리 탭 이동 안정성 검증",
-        component: "UI",
-        priority: "Medium",
-        automation: "Yes",
-        desc: "카테고리 반복 이동 시 화면 멈춤, 선택값 초기화, UI 깨짐이 발생하지 않는지 검증"
-      },
-      {
-        id: "TC-CUS-033",
-        title: "비정상 입력값 처리 검증",
-        component: "UI",
-        priority: "High",
-        automation: "No",
-        desc: "허용 범위를 벗어난 입력이나 빠른 연속 조작 시 오류 메시지 또는 안전한 기본 동작이 제공되는지 검증"
+    function loadPreviewFallback(img) {
+      const tried = Number(img.dataset.tried || 0);
+      const fallbacks = (img.dataset.fallbacks || "").split("|").filter(Boolean);
+
+      if (tried < fallbacks.length) {
+        img.dataset.tried = String(tried + 1);
+        img.src = `${fallbacks[tried]}?v=20260516-${tried}`;
+        return;
       }
-    ];
+
+      img.style.display = "none";
+      if (img.nextElementSibling) {
+        img.nextElementSibling.style.display = "flex";
+      }
+    }
+
+    /* ==============================
+      01. Test Case Data Source
+      - 대표 TC 샘플은 ./assets/data/tc_preview.json 파일에서 불러옴
+      - JSON 파일이 없거나 로드 실패 시 fallbackTestCases 데이터를 사용
+      - 전체 TC 원본은 Excel로 보관하고, 포트폴리오 화면에서는 Overview 이미지를 카드 안에 표시
+    ============================== */
+    const TC_DATA_PATH = "./assets/data/tc_preview.json";
+
+    /* [항목 제목: TC JSON 데이터]
+      - 테스트케이스 샘플 데이터는 HTML 내부에 작성하지 않음
+      - assets/data/tc_preview.json 파일에서만 관리
+      - JSON 파일이 없거나 로드 실패 시 빈 목록을 표시
+    */
+
+    // JSON 또는 fallback 데이터가 최종 저장되는 배열
+    let testCases = [];
 
     /* ==============================
       02. DOM References
@@ -1089,34 +1093,120 @@
     const list = document.getElementById("tcList");
     const emptyState = document.getElementById("emptyState");
     const searchInput = document.getElementById("searchInput");
+    const gameFilter = document.getElementById("gameFilter");
     const componentFilter = document.getElementById("componentFilter");
     const priorityFilter = document.getElementById("priorityFilter");
     const automationFilter = document.getElementById("automationFilter");
 
     /* ==============================
-      03. Render Function
-      - 검색어, 컴포넌트, 우선순위, 자동화 여부에 따라 TC 목록 필터링
+      03. Data Normalize
+      - JSON 데이터에 일부 값이 빠져도 카드 렌더링이 가능하도록 기본값 부여
+      - TC 추가 시 권장 필드: game, id, title, component, priority, automation, desc
+      - priority는 Jira 기본 우선순위 기준: Highest, High, Medium, Low, Lowest
+    ============================== */
+    function normalizeCase(tc) {
+      return {
+        game: tc.game || "General",
+        id: tc.id || "TC-UNKNOWN",
+        title: tc.title || "테스트케이스 제목 미입력",
+        component: tc.component || "Common",
+        priority: tc.priority || "Medium",
+        automation: tc.automation || "No",
+        desc: tc.desc || "테스트케이스 설명이 입력되지 않았습니다."
+      };
+    }
+
+    /* ==============================
+      04. Load Test Cases
+      - assets/data/tc_preview.json 파일을 불러와 TC 카드 데이터로 사용
+      - Live Server 또는 GitHub Pages 환경에서 정상 동작
+      - JSON 로드 실패 시 fallbackTestCases 사용
+    ============================== */
+    async function loadTestCases() {
+      try {
+        const response = await fetch(TC_DATA_PATH, { cache: "no-store" });
+
+        if (!response.ok) {
+          throw new Error(`TC JSON load failed: ${response.status}`);
+        }
+
+        const data = await response.json();
+
+        if (!Array.isArray(data)) {
+          throw new Error("TC JSON must be an array.");
+        }
+
+        testCases = data.map(normalizeCase);
+      } catch (error) {
+        console.warn("TC preview JSON을 불러오지 못했습니다. assets/data/tc_preview.json 경로와 JSON 문법을 확인하세요.", error);
+        testCases = [];
+      }
+
+      populateGameFilter();
+      renderCases();
+    }
+
+    /* ==============================
+      05. Game Filter Options
+      - JSON 데이터의 game 값을 기준으로 게임 필터 option 자동 생성
+      - 새로운 게임 TC를 추가해도 HTML select를 직접 수정할 필요 없음
+    ============================== */
+    function populateGameFilter() {
+      const selectedGame = gameFilter.value;
+      const games = [...new Set(testCases.map((tc) => tc.game).filter(Boolean))].sort();
+
+      gameFilter.innerHTML = `
+        <option value="all">전체 게임</option>
+        ${games.map((game) => `<option value="${game}">${game}</option>`).join("")}
+      `;
+
+      if (games.includes(selectedGame)) {
+        gameFilter.value = selectedGame;
+      }
+    }
+
+    /* ==============================
+      06. Priority Style
+      - Jira Priority 기준으로 우선순위별 폰트/배경 색상을 분리
+    ============================== */
+    function getPriorityClass(priority) {
+      const priorityMap = {
+        Highest: "priority-highest",
+        High: "priority-high",
+        Medium: "priority-medium",
+        Low: "priority-low",
+        Lowest: "priority-lowest"
+      };
+
+      return priorityMap[priority] || "priority-medium";
+    }
+
+    /* ==============================
+      06. Render Function
+      - 검색어, 게임, 컴포넌트, 우선순위, 자동화 여부에 따라 TC 목록 필터링
       - 필터링 결과를 카드 형태로 화면에 출력
     ============================== */
     function renderCases() {
       // 현재 입력된 검색어와 필터값을 읽음
       const keyword = searchInput.value.trim().toLowerCase();
+      const game = gameFilter.value;
       const component = componentFilter.value;
       const priority = priorityFilter.value;
       const automation = automationFilter.value;
 
       // 각 TC가 검색어와 필터 조건에 모두 부합하는지 확인
       const filtered = testCases.filter((tc) => {
-        const matchesKeyword = [tc.id, tc.title, tc.desc, tc.component, tc.priority]
+        const matchesKeyword = [tc.game, tc.id, tc.title, tc.desc, tc.component, tc.priority]
           .join(" ")
           .toLowerCase()
           .includes(keyword);
 
+        const matchesGame = game === "all" || tc.game === game;
         const matchesComponent = component === "all" || tc.component === component;
         const matchesPriority = priority === "all" || tc.priority === priority;
         const matchesAutomation = automation === "all" || tc.automation === automation;
 
-        return matchesKeyword && matchesComponent && matchesPriority && matchesAutomation;
+        return matchesKeyword && matchesGame && matchesComponent && matchesPriority && matchesAutomation;
       });
 
       // 필터링된 TC 배열을 HTML 카드 문자열로 변환 후 삽입
@@ -1127,10 +1217,11 @@
               <div class="tc-id">${tc.id}</div>
               <div class="tc-title">${tc.title}</div>
             </div>
-            <span class="pill ${tc.priority === "High" ? "red" : tc.priority === "Medium" ? "blue" : "green"}">${tc.priority}</span>
+            <span class="pill ${getPriorityClass(tc.priority)}">${tc.priority}</span>
           </div>
           <div class="tc-desc">${tc.desc}</div>
           <div class="tc-tags">
+            <span class="tag">${tc.game}</span>
             <span class="tag">${tc.component}</span>
             <span class="tag">Automation: ${tc.automation}</span>
           </div>
@@ -1142,19 +1233,19 @@
     }
 
     /* ==============================
-      04. Event Binding
+      07. Event Binding
       - 검색창 입력 또는 select 변경 시 TC 목록을 즉시 갱신
     ============================== */
-    [searchInput, componentFilter, priorityFilter, automationFilter].forEach((el) => {
+    [searchInput, gameFilter, componentFilter, priorityFilter, automationFilter].forEach((el) => {
       el.addEventListener("input", renderCases);
       el.addEventListener("change", renderCases);
     });
 
     /* ==============================
-      05. Initial Render
-      - 페이지 최초 로드 시 전체 테스트케이스 목록 출력
+      08. Initial Render
+      - 페이지 최초 로드 시 JSON 데이터를 불러온 뒤 TC 목록 출력
     ============================== */
-    renderCases();
+    loadTestCases();
   </script>
 </body>
 </html>
