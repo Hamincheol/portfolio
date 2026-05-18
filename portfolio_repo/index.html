@@ -1,16 +1,13 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <!-- 문서 기본 설정: 한글 인코딩, 반응형 viewport, 페이지 제목 -->
+  <!-- 기본 문서 설정: 한글 인코딩, 화면 크기, 페이지 제목 -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mincheol QA Resume & Portfolio</title>
 
   <style>
-    /* ==============================
-      01. Design Tokens
-      - 전체 페이지에서 재사용할 색상, 그림자, radius 변수 정의
-    ============================== */
+    /* 전체 디자인 설정: 색상, 그림자, 둥근 모서리 값 */
     :root {
       --bg: #ffffff;
       --surface: #ffffff;
@@ -27,13 +24,10 @@
       --radius: 22px;
     }
 
-    /* 모든 요소의 박스 모델을 border-box로 통일 */
+    /* 전체 요소 크기 계산 방식 설정 */
     * { box-sizing: border-box; }
 
-    /* ==============================
-      02. Base Layout
-      - 페이지 배경, 기본 폰트, 링크 스타일 정의
-    ============================== */
+    /* 기본 화면 설정: 배경, 글꼴, 링크 스타일 */
     body {
       margin: 0;
       font-family: Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -44,17 +38,14 @@
 
     a { color: inherit; text-decoration: none; }
 
-    /* 전체 페이지 최대 너비와 좌우 여백 */
+    /* 전체 페이지 영역: 최대 너비와 좌우 여백 */
     .page {
       width: min(1180px, calc(100% - 40px));
       margin: 0 auto;
       padding: 34px 0 64px;
     }
 
-    /* ==============================
-      03. Top Navigation
-      - 상단 로고와 섹션 이동 버튼
-    ============================== */
+    /* 상단 메뉴: 로고와 섹션 이동 버튼 */
     .topbar {
       display: flex;
       justify-content: space-between;
@@ -93,6 +84,13 @@
       border-radius: 999px;
       font-size: 13px;
       color: var(--muted);
+      transition: background 0.16s ease, color 0.16s ease, border-color 0.16s ease;
+    }
+
+    .nav a:hover {
+      background: var(--primary-soft);
+      color: var(--primary-dark);
+      border-color: rgba(31, 78, 140, 0.22);
     }
 
     .btn.primary {
@@ -107,10 +105,7 @@
       font: inherit;
     }
 
-    /* ==============================
-      04. Hero Section
-      - 첫 화면에서 직무/포트폴리오 성격을 빠르게 전달
-    ============================== */
+    /* 메인 소개 영역: 지원 직무와 포트폴리오 요약 */
     .hero {
       background: linear-gradient(135deg, #1f4e8c 0%, #3478b8 52%, #78b7e8 100%);
       color: #fff;
@@ -124,7 +119,7 @@
       position: relative;
     }
 
-    /* Hero 우측 상단 장식용 원형 배경 */
+    /* 메인 소개 영역: 우측 상단 장식 배경 */
     .hero::after {
       content: "";
       position: absolute;
@@ -186,7 +181,7 @@
       border: 1px solid rgba(255,255,255,0.32);
     }
 
-    /* Hero 우측 요약 카드 */
+    /* 지원자 요약 카드 */
     .hero-card {
       position: relative;
       z-index: 1;
@@ -220,10 +215,7 @@
       text-align: right;
     }
 
-    /* ==============================
-      05. Main Grid
-      - 좌측 이력, 우측 포트폴리오 2단 구성
-    ============================== */
+    /* 본문 배치: 왼쪽 이력, 오른쪽 포트폴리오 */
     main {
       display: grid;
       grid-template-columns: 0.92fr 1.58fr;
@@ -234,7 +226,7 @@
 
     .stack { display: grid; gap: 18px; }
 
-    /* 공통 카드 스타일 */
+    /* 공통 카드 디자인 */
     .card {
       background: var(--surface);
       border: 1px solid var(--line);
@@ -262,23 +254,20 @@
       font-weight: 700;
     }
 
-    /* 섹션 하단 보조 설명 문구 */
+    /* 섹션 설명 문구 */
     .section-note {
       margin: -6px 0 16px;
       color: var(--muted);
       font-size: 13px;
     }
 
-    /* 테스트케이스 샘플 섹션을 위 포트폴리오 영역과 시각적으로 분리 */
+    /* 테스트케이스 샘플 영역 간격 */
     #testcases {
       margin-top: 28px;
       scroll-margin-top: 24px;
     }
 
-    /* ==============================
-      06. Pills / Tags
-      - 역량, 우선순위, 상태값 표시용 뱃지
-    ============================== */
+    /* 태그 디자인: 역량, 우선순위, 자동화 상태 표시 */
     .pill-row { display: flex; flex-wrap: wrap; gap: 8px; }
 
     .pill {
@@ -298,19 +287,16 @@
     .pill.green { background: var(--green-soft); color: #248a52; }
     .pill.yellow { background: var(--yellow-soft); color: #9a6b00; }
 
-    /* Jira Priority 색상 기준: TC 샘플의 우선순위 뱃지 전용 */
+    /* 테스트케이스 우선순위 태그 색상 */
     .priority-highest { background: #ffebe6; color: #bf2600; }
     .priority-high { background: #ffebe6; color: #de350b; }
     .priority-medium { background: #fff4e5; color: #974f0c; }
     .priority-low { background: #e3fcef; color: #006644; }
     .priority-lowest { background: #e3fcef; color: #00875a; }
 
-    /* ==============================
-      07. Resume Sidebar
-      - 기본 이력, 프로필 사진, 역량, 경력, 교육/활동 카드
-    ============================== */
+    /* 이력 영역: 프로필, 핵심 역량, 경력, 교육 및 활동 */
 
-    /* 기본 이력 상단 프로필 사진 영역 */
+    /* 프로필 사진 영역 */
     .profile-box {
       display: flex;
       flex-direction: column;
@@ -322,7 +308,7 @@
       text-align: center;
     }
 
-    /* 원형 프로필 이미지 프레임 */
+    /* 프로필 사진 원형 프레임 */
     .profile-photo {
       width: 128px;
       height: 128px;
@@ -333,12 +319,12 @@
       box-shadow: 0 10px 24px rgba(27, 31, 35, 0.08);
     }
 
-    /* 실제 프로필 이미지: assets/profile/mincheol_profile.jpg.jpeg 경로 사용 */
+    /* 프로필 이미지 파일 경로 */
     .profile-photo img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: center 36%; /* 머리 잘림 방지: 값을 낮추면 이미지가 조금 더 아래로 내려가 보임 */
+      object-position: center 36%; /* 프로필 사진 위치 조정 */
       display: block;
     }
 
@@ -422,6 +408,34 @@
       pointer-events: none;
     }
 
+
+    /* 사용 툴 영역: 핵심 역량 태그처럼 툴 이름 자체에 배경색 적용 */
+    .tool-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tool-item {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      padding: 8px 12px;
+      color: #fff;
+      font-size: 12px;
+      font-weight: 900;
+      line-height: 1;
+      white-space: nowrap;
+      box-shadow: 0 8px 18px rgba(27, 31, 35, 0.08);
+    }
+
+    .tool-item.vscode { background: #007ACC; }
+    .tool-item.unity { background: #6B46C1; }
+    .tool-item.blackspace { background: #111827; }
+    .tool-item.confluence { background: #172B4D; }
+    .tool-item.jira { background: #0052CC; }
+
     .timeline { display: grid; gap: 14px; }
 
     .timeline-item {
@@ -446,6 +460,18 @@
       letter-spacing: -0.02em;
     }
 
+    .timeline-link {
+      color: inherit;
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: color 0.16s ease, border-color 0.16s ease;
+    }
+
+    .timeline-link:hover {
+      color: var(--primary-dark);
+      border-color: var(--primary-dark);
+    }
+
     .timeline-period {
       display: block;
       color: var(--primary-dark);
@@ -461,10 +487,7 @@
       margin-top: 2px;
     }
 
-    /* ==============================
-      08. Portfolio Metrics
-      - 대표 포트폴리오 정량 요약 영역
-    ============================== */
+    /* 대표 포트폴리오 요약 수치 영역 */
     .metric-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -527,11 +550,7 @@
     .deliverable strong { display: block; margin-bottom: 6px; }
     .deliverable span { color: var(--muted); font-size: 13px; }
 
-    /* ==============================
-      09. Other Portfolio Cards
-      - Overview PDF 첫 페이지를 이미지로 내보내어 카드 안에 바로 표시
-      - 새 TC를 추가할 때는 portfolio-card를 복사하고 프로젝트명.preview.png 경로만 변경
-    ============================== */
+    /* 포트폴리오 카드 영역 */
     .portfolio-more {
       margin-top: 22px;
       padding-top: 18px;
@@ -598,7 +617,7 @@
       background: #fff;
     }
 
-    /* 프로젝트명.preview.png가 아직 없을 때 표시되는 준비 중 문구 */
+    /* 포트폴리오 미리보기 이미지가 없을 때 표시 문구 */
     .preview-placeholder {
       display: none;
       width: 100%;
@@ -615,9 +634,18 @@
       padding: 16px;
     }
 
-    .portfolio-body strong {
+    /* 포트폴리오 카드 제목 줄: 제목 오른쪽에 파일 형식 배지 표시 */
+    .portfolio-title-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+
+    .portfolio-title-row strong {
       display: block;
-      margin: 0 0 6px;
+      min-width: 0;
       letter-spacing: -0.025em;
     }
 
@@ -626,13 +654,6 @@
       color: var(--muted);
       font-size: 13px;
       line-height: 1.5;
-    }
-
-    .file-meta {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      margin-bottom: 8px;
     }
 
     .file-badge {
@@ -648,25 +669,23 @@
       letter-spacing: -0.01em;
     }
 
-    /* 파일 형식 구분 배지: Excel은 초록색, Word는 파란색, PowerPoint는 주황색 */
+    /* 파일 형식 배지 색상 */
     .file-badge.excel { background: #217346; }
     .file-badge.word { background: #2b579a; }
     .file-badge.powerpoint { background: #d24726; }
 
-    /* ==============================
-      10. Test Case Filter
-      - 검색창, 필터 select, TC 카드 리스트
-    ============================== */
+    /* 테스트케이스 검색 및 필터 영역 */
     .filter-panel {
       display: grid;
-      grid-template-columns: 1.35fr repeat(4, 0.75fr);
-      gap: 10px;
+      grid-template-columns: minmax(175px, 1.15fr) minmax(95px, 0.65fr) minmax(122px, 0.8fr) minmax(96px, 0.65fr) minmax(145px, 0.9fr);
+      gap: 8px;
       margin-bottom: 14px;
     }
 
     input,
     select {
       width: 100%;
+      min-width: 0;
       border: 1px solid var(--line);
       border-radius: 14px;
       padding: 12px 13px;
@@ -674,6 +693,13 @@
       font-size: 14px;
       background: #fff;
       outline: none;
+    }
+
+    select {
+      padding-left: 10px;
+      padding-right: 28px;
+      white-space: nowrap;
+      font-size: 13px;
     }
 
     input:focus,
@@ -724,7 +750,7 @@
       color: #5d6673;
     }
 
-    /* 페이지 하단 copyright 문구 */
+    /* 하단 저작권 문구 */
     footer {
       margin-top: 24px;
       color: var(--muted);
@@ -732,7 +758,7 @@
       text-align: center;
     }
 
-    /* 검색 결과가 없을 때 노출되는 빈 상태 */
+    /* 테스트케이스 검색 결과 없음 표시 */
     .empty {
       display: none;
       border: 1px dashed var(--line);
@@ -741,12 +767,6 @@
       text-align: center;
       color: var(--muted);
       background: #fff;
-    }
-
-    .tc-actions {
-      display: flex;
-      justify-content: center;
-      margin-top: 14px;
     }
 
     .tc-pagination {
@@ -781,10 +801,7 @@
       font-weight: 700;
     }
 
-    /* ==============================
-      12. Responsive
-      - 태블릿/모바일 화면에서 1열 또는 2열로 재배치
-    ============================== */
+    /* 반응형 화면 설정: 태블릿과 모바일 배치 */
     @media (max-width: 980px) {
       .hero,
       main { grid-template-columns: 1fr; }
@@ -830,9 +847,9 @@
 </head>
 
 <body>
-  <!-- 전체 페이지 wrapper: 최대 너비와 하단 여백 관리 -->
+  <!-- 전체 페이지 영역 -->
   <div class="page">
-    <!-- [섹션 제목: 상단 네비게이션] 주요 섹션으로 앵커 이동 -->
+    <!-- 상단 메뉴 영역 -->
     <header class="topbar">
       <a class="brand" href="#top" aria-label="home">
         <span class="brand-mark"></span>
@@ -840,13 +857,13 @@
       </a>
 
       <nav class="nav" aria-label="page navigation">
-        <a href="#resume">이력</a>
-        <a href="#portfolio">포트폴리오</a>
-        <a href="#testcases">테스트케이스</a>
+        <a href="#resume">프로필</a>
+        <a href="#portfolio">작업물</a>
+        <a href="#testcases">TC 샘플</a>
       </nav>
     </header>
 
-    <!-- [섹션 제목: Hero] 자소서형 문단 대신 이력/산출물 중심 메시지 노출 -->
+    <!-- 메인 소개 영역 -->
     <section class="hero" id="top">
       <div>
         <div class="eyebrow">Game QA · Test Case · Automation-ready</div>
@@ -855,7 +872,7 @@
           자소서형 서술은 제외하고, 수행 이력·프로젝트 산출물·테스트 설계 역량을 한 화면에서 확인할 수 있도록 구성했습니다.
         </p>
 
-        <!-- [항목 제목: Hero CTA 버튼] 포트폴리오, TC, 다운로드 영역으로 이동 -->
+        <!-- 메인 소개 버튼: 포트폴리오, TC 샘플, PDF 이력서 -->
         <div class="hero-actions">
           <a href="#portfolio">포트폴리오 보기</a>
           <a class="secondary" href="#testcases">TC 샘플 확인</a>
@@ -863,7 +880,7 @@
         </div>
       </div>
 
-      <!-- [섹션 제목: Candidate Snapshot] 지원 직무와 핵심 산출물 요약 -->
+      <!-- 지원자 요약 카드 -->
       <aside class="hero-card" aria-label="candidate summary">
         <h2>Candidate Snapshot</h2>
         <div class="hero-facts">
@@ -875,18 +892,18 @@
       </aside>
     </section>
 
-    <!-- Main: 좌측 이력 영역과 우측 포트폴리오 영역을 2단으로 구성 -->
+    <!-- 본문 영역: 왼쪽 이력, 오른쪽 포트폴리오 -->
     <main>
-      <!-- [영역 제목: Resume Sidebar] 기본 이력, 핵심 역량, 경력, 교육 및 활동 -->
+      <!-- 이력 영역: 프로필, 핵심 역량, 경력, 교육 및 활동 -->
       <aside class="stack" id="resume">
-        <!-- [섹션 제목: 프로필] 프로필 사진과 개인정보 항목 관리 -->
+        <!-- 프로필 영역 -->
         <section class="card">
           <div class="section-title">
             <h2>프로필</h2>
             <small>Profile</small>
           </div>
 
-          <!-- [항목 제목: 프로필 사진] 실제 이미지는 ./assets/profile/mincheol_profile.jpg.jpeg 경로에 업로드 -->
+          <!-- 프로필 사진 항목 -->
           <div class="profile-box">
             <div class="profile-photo">
               <img id="profileImage" src="./assets/profile/mincheol_profile.jpg.jpeg" alt="Mincheol 프로필 사진" />
@@ -898,22 +915,22 @@
           </div>
 
           <ul class="info-list">
-            <!-- [항목 제목: 이름] 표시 이름 수정 영역 -->
+            <!-- 프로필 항목: 이름 -->
             <li><span class="label">이름</span><span class="value" data-profile="name">Mincheol</span></li>
 
-            <!-- [항목 제목: 직무] 지원 직무 수정 영역 -->
+            <!-- 프로필 항목: 직무 -->
             <li><span class="label">직무</span><span class="value" data-profile="role">Game QA Tester</span></li>
 
-            <!-- [항목 제목: 생년월일] 필요 시 실제 생년월일로 변경 -->
+            <!-- 프로필 항목: 생년월일 -->
             <li><span class="label">생년월일</span><span class="value" data-profile="birthDate">YYYY.MM.DD</span></li>
 
-            <!-- [항목 제목: 전화번호] 필요 시 실제 연락처로 변경 -->
+            <!-- 프로필 항목: 전화번호 -->
             <li><span class="label">전화번호</span><span class="value" data-profile="phone">010-0000-0000</span></li>
 
-            <!-- [항목 제목: 이메일] 연락 가능한 이메일 주소 -->
+            <!-- 프로필 항목: 이메일 -->
             <li><span class="label">이메일</span><span class="value" data-profile="email">jka3200@naver.com</span></li>
 
-            <!-- [항목 제목: 포트폴리오] GitHub 링크 또는 배포 URL 입력 -->
+            <!-- 프로필 항목: GitHub 링크 -->
             <li>
               <span class="label">GitHub</span>
               <span class="github-link-wrap">
@@ -926,12 +943,30 @@
               </span>
             </li>
 
-            <!-- [항목 제목: 공개 제외] 포트폴리오에 노출하지 않을 개인정보
+            <!-- 프로필 항목: 공개하지 않을 개인정보
             <li><span class="label">공개 제외</span><span class="value">주소</span></li> -->
           </ul>
         </section>
 
-        <!-- [섹션 제목: 핵심 역량] QA 관련 키워드를 pill 형태로 정리 -->
+        <!-- 사용 툴 영역 -->
+        <section class="card">
+          <div class="section-title">
+            <h2>사용 툴</h2>
+            <small>Tools</small>
+          </div>
+
+          <!-- 사용 툴 항목: 핵심 역량 태그처럼 툴 이름에 대표 배경색 적용 -->
+          <div class="tool-grid" aria-label="사용 툴 목록">
+            <span class="tool-item vscode">VS Code</span>
+            <span class="tool-item unity">Unity</span>
+            <span class="tool-item blackspace">Black Space</span>
+            <span class="tool-item jira">Jira</span>
+            <span class="tool-item confluence">Confluence Wiki</span>
+          </div>
+        </section>
+
+
+        <!-- 핵심 역량 영역 -->
         <section class="card">
           <div class="section-title">
             <h2>핵심 역량</h2>
@@ -939,7 +974,7 @@
           </div>
 
           <div class="pill-row">
-            <!-- [항목 제목: 역량 태그] span 태그를 복사해 역량 키워드 추가 -->
+            <!-- 핵심 역량 항목: 역량 태그 -->
             <span class="pill red">Test Case Design</span>
             <span class="pill red">Functional QA</span>
             <span class="pill blue">UI/UX Validation</span>
@@ -951,39 +986,39 @@
           </div>
         </section>
 
-        <!-- [섹션 제목: 경력] assets/data/experience.json에서 항목 로드 -->
+        <!-- 경력 영역 -->
         <section class="card">
           <div class="section-title">
             <h2>경력</h2>
             <small>Experience</small>
           </div>
 
-          <!-- [항목 제목: 경력 목록] experience.json에서 title, desc 값을 불러와 렌더링 -->
+          <!-- 경력 항목: 경력 목록 -->
           <div class="timeline" id="experienceTimeline"></div>
         </section>
 
-        <!-- [섹션 제목: 교육 및 활동] assets/data/activities.json에서 항목 로드 -->
+        <!-- 교육 및 활동 영역 -->
         <section class="card">
           <div class="section-title">
             <h2>교육 및 활동</h2>
             <small>Activities</small>
           </div>
 
-          <!-- [항목 제목: 교육/활동 목록] activities.json에서 title, desc 값을 불러와 렌더링 -->
+          <!-- 교육 및 활동 항목: 학원명/지점명 링크 목록 -->
           <div class="timeline" id="activitiesTimeline"></div>
         </section>
       </aside>
 
-      <!-- [영역 제목: Portfolio Content] 대표 포트폴리오, 테스트케이스 샘플 -->
+      <!-- 포트폴리오 영역: 대표 포트폴리오와 테스트케이스 샘플 -->
       <section class="stack">
-        <!-- [섹션 제목: 대표 포트폴리오] 메인 프로젝트 소개 카드 -->
+        <!-- 대표 포트폴리오 영역 -->
         <section class="card" id="portfolio">
           <div class="section-title">
             <h2>대표 포트폴리오</h2>
             <small>Project</small>
           </div>
 
-          <!-- [항목 제목: 대표 프로젝트 설명] 프로젝트명과 검증 범위 요약 -->
+          <!-- 대표 포트폴리오 항목: 프로젝트 설명 -->
           <div class="project-head">
             <div>
               <h3>inZOI 캐릭터 커스터마이징 QA 설계</h3>
@@ -994,7 +1029,7 @@
             <span class="pill red">Portfolio Case</span>
           </div>
 
-          <!-- [항목 제목: 대표 프로젝트 정량 요약] TC 수, 컴포넌트, 우선순위, 자동화 후보 수 수정 영역 -->
+          <!-- 대표 포트폴리오 항목: 정량 요약 -->
           <div class="metric-grid" aria-label="portfolio metrics">
             <div class="metric"><strong>36</strong><span>테스트케이스</span></div>
             <div class="metric"><strong>9</strong><span>검증 컴포넌트</span></div>
@@ -1002,7 +1037,7 @@
             <div class="metric"><strong>18</strong><span>자동화 후보</span></div>
           </div>
 
-          <!-- [항목 제목: 대표 프로젝트 산출물] Strategy, Test Cases, Automation Mapping 카드 수정 영역 -->
+          <!-- 대표 포트폴리오 항목: 산출물 카드 -->
           <div class="deliverables">
             <div class="deliverable">
               <strong>Test Strategy</strong>
@@ -1018,22 +1053,17 @@
             </div>
           </div>
 
-          <!-- [섹션 제목: 다른 포트폴리오] 대표 프로젝트 외 추가 TC Overview 이미지 미리보기 카드 목록 -->
-          <div class="portfolio-more" aria-label="other portfolios">
+          <!-- 포트폴리오 영역 -->
+          <div class="portfolio-more" aria-label="portfolio">
             <div class="portfolio-more-head">
               <div>
-                <h4>다른 포트폴리오</h4>
+                <h4>포트폴리오</h4>
                 <p>각 포트폴리오의 미리보기 이미지는 카드 안에서 바로 확인할 수 있고, 카드를 클릭하면 해당 원본 파일이 다운로드됩니다. TC는 Excel 또는 Word, 분석서는 PowerPoint로 연결합니다. 항목 추가 시 portfolio-card를 복사해 이미지 경로, 원본 파일 경로, 제목, 설명만 변경하면 됩니다.</p>
               </div>
             </div>
 
             <div class="portfolio-grid">
-              <!-- [항목 제목: inZOI 미리보기/다운로드 카드]
-                추가 방법:
-                1. a.portfolio-card 전체 복사
-                2. href를 Excel 파일 경로로 변경
-                3. img src를 프로젝트명.preview.png 경로로 변경
-                4. 제목/설명 문구 변경
+              <!-- 포트폴리오 항목: inZOI 미리보기 및 Excel 다운로드
               -->
               <a class="portfolio-card" id="preview-inzoi" href="./assets/tc/inzoi_files/inzoi_files.xlsx" download aria-label="inZOI TC Excel 다운로드">
                 <div class="portfolio-preview">
@@ -1041,13 +1071,15 @@
                   <span class="preview-placeholder">Preview 준비 중</span>
                 </div>
                 <div class="portfolio-body">
-                  <div class="file-meta"><span class="file-badge excel">Excel</span></div>
-                  <strong>inZOI Overview</strong>
+                  <div class="portfolio-title-row">
+                    <strong>inZOI Overview</strong>
+                    <span class="file-badge excel">Excel</span>
+                  </div>
                   <p>inZOI 캐릭터 커스터마이징 테스트케이스 Overview 이미지입니다. 클릭 시 Excel 원본이 다운로드됩니다.</p>
                 </div>
               </a>
 
-              <!-- [항목 제목: mapleIdle 미리보기/다운로드 카드] -->
+              <!-- 포트폴리오 항목: mapleIdle 미리보기 및 Excel 다운로드 -->
               <a class="portfolio-card" id="preview-maple-idle" href="./assets/tc/mapleIdle_tc/mapleIdle.tc.xlsx" download aria-label="mapleIdle TC Excel 다운로드">
                 <div class="portfolio-preview">
                   <img
@@ -1059,13 +1091,15 @@
                   <span class="preview-placeholder">Preview 준비 중</span>
                 </div>
                 <div class="portfolio-body">
-                  <div class="file-meta"><span class="file-badge excel">Excel</span></div>
-                  <strong>mapleIdle Overview</strong>
+                  <div class="portfolio-title-row">
+                    <strong>mapleIdle Overview</strong>
+                    <span class="file-badge excel">Excel</span>
+                  </div>
                   <p>메이플키우기 테스트케이스 Overview 이미지입니다. 클릭 시 Excel 원본이 다운로드됩니다.</p>
                 </div>
               </a>
 
-              <!-- [항목 제목: Seven Knights Rebirth 분석서 카드] PowerPoint 분석서 다운로드 -->
+              <!-- 포트폴리오 항목: Seven Knights Rebirth 분석서 다운로드 -->
               <a class="portfolio-card" id="preview-seven-knights-rebirth" href="./assets/analysis/seven_knights_rebirth/Seven%20Knights%20Rebirth(%EA%B2%8C%EC%9E%84%EB%B6%84%EC%84%9D%EC%84%9C).pptx" download aria-label="Seven Knights Rebirth 게임분석서 PowerPoint 다운로드">
                 <div class="portfolio-preview">
                   <img
@@ -1077,26 +1111,30 @@
                   <span class="preview-placeholder">Preview 준비 중</span>
                 </div>
                 <div class="portfolio-body">
-                  <div class="file-meta"><span class="file-badge powerpoint">PowerPoint</span></div>
-                  <strong>Seven Knights Rebirth 분석서</strong>
+                  <div class="portfolio-title-row">
+                    <strong>Seven Knights Rebirth 분석서</strong>
+                    <span class="file-badge powerpoint">PowerPoint</span>
+                  </div>
                   <p>Seven Knights Rebirth 게임 분석 내용을 정리한 PowerPoint 문서입니다. 클릭 시 PPTX 원본이 다운로드됩니다.</p>
                 </div>
-              </a><!-- [항목 제목: TC.test 미리보기/다운로드 카드] Word 문서만 유지 -->
+              </a><!-- 포트폴리오 항목: TC.test 미리보기 및 Word 다운로드 -->
               <a class="portfolio-card" id="preview-tc-test" href="./assets/tc/tc_test/tc_test.docx" download aria-label="TC.test Word 다운로드">
                 <div class="portfolio-preview">
                   <img src="./assets/tc/tc_test/tc_test.preview.png" alt="TC.test Overview 미리보기" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
                   <span class="preview-placeholder">Preview 준비 중</span>
                 </div>
                 <div class="portfolio-body">
-                  <div class="file-meta"><span class="file-badge word">Word</span></div>
-                  <strong>TC.test Overview</strong>
+                  <div class="portfolio-title-row">
+                    <strong>TC.test Overview</strong>
+                    <span class="file-badge word">Word</span>
+                  </div>
                   <p>TC.test Overview 문서를 정리한 Word 파일입니다. 클릭 시 DOCX 원본이 다운로드됩니다.</p>
                 </div>
               </a>
             </div>
           </div>
 
-        <!-- [섹션 제목: 테스트케이스 샘플] JSON 데이터 기반으로 대표 TC를 카드 형태로 표시 -->
+        <!-- 테스트케이스 샘플 영역 -->
         <section class="card" id="testcases">
           <div class="section-title">
             <h2>테스트케이스 샘플</h2>
@@ -1107,7 +1145,7 @@
             대표 TC 샘플은 ./assets/data/tc_preview.json 파일에서 불러옵니다. 샘플 추가/수정은 HTML이 아니라 JSON 파일에서 관리합니다.
           </p>
 
-          <!-- [항목 제목: TC 검색 및 조건 필터] 검색어, 게임, 컴포넌트, 우선순위, 자동화 여부 필터 -->
+          <!-- 테스트케이스 샘플 항목: 검색 및 필터 -->
           <div class="filter-panel">
             <input id="searchInput" type="search" placeholder="TC ID, 제목, 설명 검색" aria-label="search test case" />
 
@@ -1144,7 +1182,7 @@
             </select>
 
             <select id="priorityFilter" aria-label="priority filter">
-              <option value="all">전체 우선순위</option>
+              <option value="all">우선순위</option>
               <option value="Highest">Highest</option>
               <option value="High">High</option>
               <option value="Medium">Medium</option>
@@ -1159,35 +1197,26 @@
             </select>
           </div>
 
-          <!-- [항목 제목: TC 카드 렌더링 영역] JS에서 필터링된 TC 카드가 표시되는 위치 -->
+          <!-- 테스트케이스 샘플 항목: 카드 목록 -->
           <div class="tc-list" id="tcList"></div>
 
-          <!-- 검색 결과가 없을 때 표시되는 영역 -->
+          <!-- 테스트케이스 샘플 항목: 검색 결과 없음 -->
           <div class="empty" id="emptyState">조건에 맞는 테스트케이스가 없습니다.</div>
 
-          <!-- [항목 제목: 전체 TC 보기 버튼] 기본 화면에는 최대 5개만 표시하고, 버튼으로 전체보기/접기 전환 -->
-          <div class="tc-actions">
-            <button class="btn primary" id="openAllCasesBtn" type="button" style="display: none;">전체보기</button>
-          </div>
-
-          <!-- [항목 제목: TC 페이지네이션] 전체보기 상태에서 15개 초과 시 1 | 2 | 3 형태로 페이지 표시 -->
+          <!-- 테스트케이스 샘플 항목: 페이지 번호 -->
           <div class="tc-pagination" id="tcPagination" aria-label="테스트케이스 페이지"></div>
         </section>
       </section>
     </main>
 
-    <!-- [섹션 제목: Footer] 개인정보 공개 범위 안내 -->
+    <!-- 하단 안내 문구 -->
     <footer>
       © 2026 QA Resume & Portfolio Mockup. 개인정보는 지원 목적에 필요한 범위만 공개합니다.
     </footer>
   </div>
 
   <script>
-    /* ==============================
-      00. Preview Image Fallback
-      - preview 이미지가 캐시/상대경로 문제로 실패할 때 대체 경로를 순차 시도
-      - 모든 경로 실패 시 Preview 준비 중 문구 표시
-    ============================== */
+    /* 미리보기 이미지 대체 경로 처리 */
     function loadPreviewFallback(img) {
       const tried = Number(img.dataset.tried || 0);
       const fallbacks = (img.dataset.fallbacks || "").split("|").filter(Boolean);
@@ -1204,30 +1233,72 @@
       }
     }
 
-    /* ==============================
-      01. Test Case Data Source
-      - 테스트케이스 샘플 데이터는 assets/data/tc_preview.json 파일에서만 관리
-      - JSON 파일이 없거나 문법 오류가 있으면 빈 목록을 표시
-    ============================== */
-    /* ==============================
-      01-1. Profile Data Source
-      - 민감하거나 자주 바뀌는 프로필 정보는 assets/data/profile.json에서 불러옴
-      - 단, GitHub Pages에 업로드한 JSON은 누구나 볼 수 있으므로 공개 가능한 정보만 배포
-    ============================== */
+    /* JSON 데이터 경로: 프로필, 경력, 교육 및 활동, 테스트케이스 */
     const PROFILE_DATA_PATH = "./assets/data/profile.json";
     const EXPERIENCE_DATA_PATH = "./assets/data/experience.json";
     const ACTIVITIES_DATA_PATH = "./assets/data/activities.json";
+    const TC_DATA_PATH = "./assets/data/tc_preview.json";
+    const TC_PAGE_SIZE = 5;
+
+    let testCases = [];
+    let currentPage = 1;
+
+    /* 공통 함수: 특수문자 처리, URL 정리, 우선순위 색상 */
+    function escapeHTML(value) {
+      return String(value ?? "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
 
     function normalizeExternalUrl(value) {
       const url = String(value || "").trim();
+      const lowerUrl = url.toLowerCase();
 
       if (!url) return "";
-      if (/^https?:\/\//i.test(url)) return url;
-      if (/^(github\.com|www\.github\.com)\//i.test(url)) return `https://${url}`;
+      if (lowerUrl.startsWith("http://") || lowerUrl.startsWith("https://")) return url;
+      if (/^[A-Za-z0-9_.-]+[.][A-Za-z]{2,}([/:?#].*)?$/i.test(url)) return `https://${url}`;
 
       return "";
     }
 
+    function getPriorityClass(priority) {
+      const priorityMap = {
+        Highest: "priority-highest",
+        High: "priority-high",
+        Medium: "priority-medium",
+        Low: "priority-low",
+        Lowest: "priority-lowest"
+      };
+
+      return priorityMap[priority] || "priority-medium";
+    }
+
+    function normalizeCase(tc) {
+      return {
+        game: tc.game || "General",
+        id: tc.id || "TC-UNKNOWN",
+        title: tc.title || "테스트케이스 제목 미입력",
+        component: tc.component || "Common",
+        priority: tc.priority || "Medium",
+        automation: tc.automation || "No",
+        desc: tc.desc || "테스트케이스 설명이 입력되지 않았습니다."
+      };
+    }
+
+    /* 화면 요소 연결: 검색창, 필터, 카드 목록, 페이지 번호 */
+    const list = document.getElementById("tcList");
+    const emptyState = document.getElementById("emptyState");
+    const searchInput = document.getElementById("searchInput");
+    const gameFilter = document.getElementById("gameFilter");
+    const componentFilter = document.getElementById("componentFilter");
+    const priorityFilter = document.getElementById("priorityFilter");
+    const automationFilter = document.getElementById("automationFilter");
+    const tcPagination = document.getElementById("tcPagination");
+
+    /* 프로필, 경력, 교육 및 활동 데이터 불러오기 */
     async function loadProfileData() {
       try {
         const response = await fetch(PROFILE_DATA_PATH, { cache: "no-store" });
@@ -1277,17 +1348,31 @@
       }
     }
 
-    function createTimelineItem(item) {
+    function createTimelineItem(item, options = {}) {
       const title = item.title || item.name || "항목 제목";
       const period = item.period || item.date || "";
       const desc = item.desc || item.description || item.detail || "설명 내용을 입력하세요.";
+      const url = normalizeExternalUrl(item.url || item.link || item.homepage || "");
+      const isActivity = options.type === "activity";
       const periodHTML = period ? `<em class="timeline-period">${escapeHTML(period)}</em>` : "";
+
+      /*
+        교육 및 활동 링크 처리: 교육명은 일반 텍스트, 학원명/지점명만 홈페이지 링크 적용
+      */
+      const titleHTML = !isActivity && url
+        ? `<a class="timeline-link" href="${escapeHTML(url)}" target="_blank" rel="noopener" title="홈페이지 바로가기">${escapeHTML(title)}</a>`
+        : escapeHTML(title);
+
+      const academyName = item.academy || item.academyName || item.institute || item.school || item.branch || item.campus || "";
+      const descHTML = isActivity && url
+        ? `<a class="timeline-link" href="${escapeHTML(url)}" target="_blank" rel="noopener" title="홈페이지 바로가기">${escapeHTML(academyName || desc)}</a>`
+        : escapeHTML(desc);
 
       return `
         <div class="timeline-item">
-          <strong>${escapeHTML(title)}</strong>
+          <strong>${titleHTML}</strong>
           ${periodHTML}
-          <span>${escapeHTML(desc)}</span>
+          <span>${descHTML}</span>
         </div>
       `;
     }
@@ -1309,82 +1394,22 @@
           throw new Error(`${label} JSON must be an array.`);
         }
 
+        const timelineType = containerId === "activitiesTimeline" ? "activity" : "experience";
+
         container.innerHTML = data.length
-          ? data.map(createTimelineItem).join("")
-          : createTimelineItem({ title: `${label} 준비 중`, desc: "JSON 파일에 항목을 추가하면 이 영역에 표시됩니다." });
+          ? data.map((item) => createTimelineItem(item, { type: timelineType })).join("")
+          : createTimelineItem({ title: `${label} 준비 중`, desc: "JSON 파일에 항목을 추가하면 이 영역에 표시됩니다." }, { type: timelineType });
       } catch (error) {
         console.warn(`${label} JSON을 불러오지 못했습니다.`, error);
+        const timelineType = containerId === "activitiesTimeline" ? "activity" : "experience";
         container.innerHTML = createTimelineItem({
           title: `${label} 준비 중`,
           desc: `assets/data/${containerId === "experienceTimeline" ? "experience" : "activities"}.json 파일을 추가하면 이 영역에 표시됩니다.`
-        });
+        }, { type: timelineType });
       }
     }
 
-    const TC_DATA_PATH = "./assets/data/tc_preview.json";
-    const TC_PREVIEW_LIMIT = 5;
-    const TC_PAGE_SIZE = 15;
-
-    let testCases = [];
-    let currentFilteredCases = [];
-    let isAllCasesExpanded = false;
-    let currentPage = 1;
-
-    /* ==============================
-      02. DOM References
-      - 요소가 없을 경우를 대비해 null-safe 방식으로 처리
-    ============================== */
-    const list = document.getElementById("tcList");
-    const emptyState = document.getElementById("emptyState");
-    const searchInput = document.getElementById("searchInput");
-    const gameFilter = document.getElementById("gameFilter");
-    const componentFilter = document.getElementById("componentFilter");
-    const priorityFilter = document.getElementById("priorityFilter");
-    const automationFilter = document.getElementById("automationFilter");
-    const openAllCasesBtn = document.getElementById("openAllCasesBtn");
-    const tcPagination = document.getElementById("tcPagination");
-
-    /* ==============================
-      03. Utility
-      - JSON 데이터 누락/특수문자 표시 문제 방지
-    ============================== */
-    function escapeHTML(value) {
-      return String(value ?? "")
-        .replaceAll("&", "&amp;")
-        .replaceAll("<", "&lt;")
-        .replaceAll(">", "&gt;")
-        .replaceAll('"', "&quot;")
-        .replaceAll("'", "&#039;");
-    }
-
-    function normalizeCase(tc) {
-      return {
-        game: tc.game || "General",
-        id: tc.id || "TC-UNKNOWN",
-        title: tc.title || "테스트케이스 제목 미입력",
-        component: tc.component || "Common",
-        priority: tc.priority || "Medium",
-        automation: tc.automation || "No",
-        desc: tc.desc || "테스트케이스 설명이 입력되지 않았습니다."
-      };
-    }
-
-    function getPriorityClass(priority) {
-      const priorityMap = {
-        Highest: "priority-highest",
-        High: "priority-high",
-        Medium: "priority-medium",
-        Low: "priority-low",
-        Lowest: "priority-lowest"
-      };
-
-      return priorityMap[priority] || "priority-medium";
-    }
-
-    /* ==============================
-      04. Data Load
-      - tc_preview.json 파일을 불러와 카드 데이터로 사용
-    ============================== */
+    /* 테스트케이스 샘플 불러오기와 카드 표시 */
     async function loadTestCases() {
       try {
         const response = await fetch(TC_DATA_PATH, { cache: "no-store" });
@@ -1425,11 +1450,6 @@
       }
     }
 
-    /* ==============================
-      05. Render
-      - 기본 5개 표시
-      - 전체보기 상태에서는 15개 단위 페이지네이션 표시
-    ============================== */
     function createCaseCard(tc) {
       return `
         <article class="tc-card">
@@ -1475,7 +1495,7 @@
     function renderPagination(totalCount) {
       if (!tcPagination) return;
 
-      if (!isAllCasesExpanded || totalCount <= TC_PAGE_SIZE) {
+      if (totalCount <= TC_PAGE_SIZE) {
         tcPagination.style.display = "none";
         tcPagination.innerHTML = "";
         return;
@@ -1494,66 +1514,35 @@
     }
 
     function renderCases() {
-      if (!list || !emptyState || !openAllCasesBtn) return;
+      if (!list || !emptyState) return;
 
       const filtered = getFilteredCases();
-      currentFilteredCases = filtered;
+      const totalPages = Math.max(1, Math.ceil(filtered.length / TC_PAGE_SIZE));
+      currentPage = Math.min(Math.max(currentPage, 1), totalPages);
 
-      let visibleCases;
-      if (isAllCasesExpanded) {
-        const totalPages = Math.max(1, Math.ceil(filtered.length / TC_PAGE_SIZE));
-        currentPage = Math.min(Math.max(currentPage, 1), totalPages);
-        const startIndex = (currentPage - 1) * TC_PAGE_SIZE;
-        visibleCases = filtered.slice(startIndex, startIndex + TC_PAGE_SIZE);
-      } else {
-        currentPage = 1;
-        visibleCases = filtered.slice(0, TC_PREVIEW_LIMIT);
-      }
+      const startIndex = (currentPage - 1) * TC_PAGE_SIZE;
+      const visibleCases = filtered.slice(startIndex, startIndex + TC_PAGE_SIZE);
 
       list.innerHTML = visibleCases.map(createCaseCard).join("");
       emptyState.style.display = filtered.length ? "none" : "block";
 
-      if (filtered.length > TC_PREVIEW_LIMIT) {
-        openAllCasesBtn.style.display = "inline-flex";
-        openAllCasesBtn.textContent = isAllCasesExpanded ? "접기" : "전체보기";
-      } else {
-        openAllCasesBtn.style.display = "none";
-        isAllCasesExpanded = false;
-      }
-
       renderPagination(filtered.length);
     }
 
-    function toggleAllCases() {
-      isAllCasesExpanded = !isAllCasesExpanded;
-      currentPage = 1;
-      renderCases();
-
-      if (!isAllCasesExpanded) {
-        document.getElementById("testcases")?.scrollIntoView({ behavior: "smooth", block: "start" });
-      }
-    }
-
-    /* ==============================
-      06. Event Binding
-    ============================== */
+    /* 검색, 필터, 페이지 번호 클릭 이벤트 연결 */
     [searchInput, gameFilter, componentFilter, priorityFilter, automationFilter]
       .filter(Boolean)
       .forEach((el) => {
         el.addEventListener("input", () => {
-          isAllCasesExpanded = false;
           currentPage = 1;
           renderCases();
         });
 
         el.addEventListener("change", () => {
-          isAllCasesExpanded = false;
           currentPage = 1;
           renderCases();
         });
       });
-
-    openAllCasesBtn?.addEventListener("click", toggleAllCases);
 
     tcPagination?.addEventListener("click", (event) => {
       const pageButton = event.target.closest("[data-page]");
