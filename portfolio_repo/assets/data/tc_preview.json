@@ -1,182 +1,317 @@
 [
   {
-    "game": "inZOI",
-    "id": "TC-SAMPLE-001",
-    "title": "게임 실행 및 메인 화면 진입 검증",
-    "component": "Start",
-    "priority": "Highest",
-    "automation": "Yes",
-    "desc": "게임 실행 후 메인 화면이 정상적으로 노출되고 주요 UI가 표시되는지 검증"
-  },
-  {
-    "game": "inZOI",
-    "id": "TC-SAMPLE-002",
-    "title": "로그인 성공 및 실패 처리 검증",
-    "component": "Login",
-    "priority": "High",
-    "automation": "Yes",
-    "desc": "정상 계정과 비정상 입력값에 따라 로그인 결과와 안내 메시지가 올바르게 표시되는지 검증"
-  },
-  {
-    "game": "inZOI",
-    "id": "TC-SAMPLE-003",
-    "title": "주요 UI 버튼 선택 상태 검증",
-    "component": "UI",
-    "priority": "Medium",
-    "automation": "Yes",
-    "desc": "버튼 선택 시 포커스, 활성화 상태, 화면 전환이 정상적으로 동작하는지 검증"
-  },
-  {
-    "game": "inZOI",
-    "id": "TC-SAMPLE-004",
-    "title": "메뉴 이동 및 뒤로가기 동작 검증",
-    "component": "Navigation",
-    "priority": "Medium",
-    "automation": "Yes",
-    "desc": "주요 메뉴 간 이동과 뒤로가기 동작 시 화면 흐름이 끊기지 않는지 검증"
-  },
-  {
-    "game": "inZOI",
-    "id": "TC-SAMPLE-005",
-    "title": "옵션 설정값 저장 및 재진입 검증",
-    "component": "Option",
-    "priority": "High",
-    "automation": "Yes",
-    "desc": "옵션 변경 후 저장하고 재진입했을 때 설정값이 유지되는지 검증"
-  },
-  {
-    "game": "inZOI",
-    "id": "TC-SAMPLE-006",
-    "title": "저장 데이터 불러오기 검증",
-    "component": "Save",
+    "game": "메이플 키우기",
+    "id": "TC-MAPLE-001",
+    "title": "자동사냥 몬스터 리젠 후 공격 검증",
+    "component": "자동사냥",
     "priority": "Highest",
     "automation": "No",
-    "desc": "저장된 데이터가 재실행 후에도 손실 없이 정상적으로 복원되는지 검증"
+    "desc": "몬스터 리젠 후 캐릭터가 지연 없이 자동으로 공격을 시작하는지 검증"
   },
   {
-    "game": "inZOI",
-    "id": "TC-SAMPLE-007",
-    "title": "보상 획득 및 수량 반영 검증",
-    "component": "Reward",
-    "priority": "Medium",
-    "automation": "No",
-    "desc": "보상 수령 후 재화, 아이템 수량, 알림 상태가 정상적으로 반영되는지 검증"
-  },
-  {
-    "game": "inZOI",
-    "id": "TC-SAMPLE-008",
-    "title": "인벤토리 아이템 표시 검증",
-    "component": "Inventory",
-    "priority": "Medium",
-    "automation": "Yes",
-    "desc": "획득한 아이템이 인벤토리에 표시되고 수량 및 상태값이 일치하는지 검증"
-  },
-  {
-    "game": "inZOI",
-    "id": "TC-SAMPLE-009",
-    "title": "상점 구매 및 재화 차감 검증",
-    "component": "Shop",
+    "game": "메이플 키우기",
+    "id": "TC-MAPLE-002",
+    "title": "자동사냥 타겟 상실 방지 검증",
+    "component": "자동사냥",
     "priority": "High",
     "automation": "No",
-    "desc": "상품 구매 시 아이템 지급과 재화 차감이 정확히 처리되는지 검증"
+    "desc": "다수 몬스터 처치 중 캐릭터가 Idle 상태로 멈추지 않고 다음 타겟을 정상 탐색하는지 검증"
   },
   {
-    "game": "inZOI",
-    "id": "TC-SAMPLE-010",
-    "title": "퀘스트 수락 및 완료 상태 검증",
-    "component": "Quest",
-    "priority": "Medium",
-    "automation": "Yes",
-    "desc": "퀘스트 수락, 진행, 완료 상태가 UI와 보상 처리에 정상 반영되는지 검증"
-  },
-  {
-    "game": "inZOI",
-    "id": "TC-SAMPLE-011",
-    "title": "전투 진입 및 결과 화면 검증",
-    "component": "Battle",
+    "game": "메이플 키우기",
+    "id": "TC-MAPLE-003",
+    "title": "원거리 캐릭터 사거리 판정 검증",
+    "component": "자동사냥",
     "priority": "High",
     "automation": "No",
-    "desc": "전투 진입 후 승패 결과, 보상, 경험치 반영이 정상적으로 처리되는지 검증"
+    "desc": "원거리 캐릭터가 사거리 끝부분의 몬스터를 정상적으로 인식하고 공격하는지 검증"
   },
   {
-    "game": "inZOI",
-    "id": "TC-SAMPLE-012",
-    "title": "스킬 사용 및 쿨타임 표시 검증",
-    "component": "Skill",
+    "game": "메이플 키우기",
+    "id": "TC-MAPLE-004",
+    "title": "버프 사용 후 자동공격 전환 검증",
+    "component": "자동사냥",
     "priority": "Medium",
-    "automation": "Yes",
-    "desc": "스킬 사용 후 효과 적용과 쿨타임 표시가 정의된 규칙과 일치하는지 검증"
-  },
-  {
-    "game": "inZOI",
-    "id": "TC-SAMPLE-013",
-    "title": "캐릭터 성장 수치 반영 검증",
-    "component": "Growth",
-    "priority": "High",
     "automation": "No",
-    "desc": "레벨업 또는 강화 후 능력치와 화면 표시값이 정상적으로 갱신되는지 검증"
+    "desc": "버프 스킬 사용 후 캐릭터가 정지하지 않고 공격 상태로 정상 전환되는지 검증"
   },
   {
-    "game": "inZOI",
-    "id": "TC-SAMPLE-014",
-    "title": "네트워크 재접속 처리 검증",
-    "component": "Network",
+    "game": "메이플 키우기",
+    "id": "TC-MAPLE-005",
+    "title": "지형 경계 몬스터 타겟팅 검증",
+    "component": "자동사냥",
+    "priority": "Medium",
+    "automation": "No",
+    "desc": "사다리, 계단 등 경계 지형 주변의 몬스터를 정상적으로 타겟팅하는지 검증"
+  },
+  {
+    "game": "메이플 키우기",
+    "id": "TC-MAPLE-006",
+    "title": "앱 재접속 후 자동사냥 상태 검증",
+    "component": "자동사냥",
     "priority": "Highest",
     "automation": "No",
-    "desc": "네트워크 끊김 후 재접속 시 데이터 손실 없이 안전하게 복구되는지 검증"
+    "desc": "앱 재부팅 또는 재접속 후 자동사냥이 즉시 재활성화되고 Idle 상태로 남지 않는지 검증"
   },
   {
-    "game": "inZOI",
-    "id": "TC-SAMPLE-015",
-    "title": "비정상 입력값 처리 검증",
-    "component": "Exception",
-    "priority": "Lowest",
-    "automation": "No",
-    "desc": "허용되지 않은 입력 또는 빠른 연속 조작 시 오류 없이 안전한 기본 동작이 제공되는지 검증"
-  },
-  {
-    "game": "inZOI",
-    "id": "TC-SAMPLE-016",
-    "title": "튜토리얼 진행 단계 검증",
-    "component": "Tutorial",
-    "priority": "Low",
-    "automation": "Yes",
-    "desc": "튜토리얼 단계 진행, 스킵, 완료 상태가 정상적으로 처리되는지 검증"
-  },
-  {
-    "game": "inZOI",
-    "id": "TC-SAMPLE-017",
-    "title": "다국어 텍스트 표시 검증",
-    "component": "Localization",
-    "priority": "Low",
-    "automation": "No",
-    "desc": "언어 설정 변경 시 주요 텍스트가 잘림 없이 정상 표시되는지 검증"
-  },
-  {
-    "game": "inZOI",
-    "id": "TC-SAMPLE-018",
-    "title": "사운드 옵션 적용 검증",
-    "component": "Audio",
-    "priority": "Medium",
-    "automation": "Yes",
-    "desc": "배경음, 효과음, 음소거 설정이 즉시 반영되고 저장되는지 검증"
-  },
-  {
-    "game": "inZOI",
-    "id": "TC-SAMPLE-019",
-    "title": "그래픽 옵션 변경 검증",
-    "component": "Graphics",
-    "priority": "Medium",
-    "automation": "No",
-    "desc": "해상도와 품질 옵션 변경 시 화면 깨짐 없이 설정이 적용되는지 검증"
-  },
-  {
-    "game": "inZOI",
-    "id": "TC-SAMPLE-020",
-    "title": "반복 조작 시 성능 저하 검증",
-    "component": "Performance",
+    "game": "메이플 키우기",
+    "id": "TC-MAPLE-007",
+    "title": "스킬 쿨타임 표시 및 발동 검증",
+    "component": "스킬",
     "priority": "High",
     "automation": "No",
-    "desc": "반복 이동, 전투, 메뉴 조작 중 프레임 저하나 멈춤 현상이 발생하지 않는지 검증"
+    "desc": "스킬 사용 후 쿨타임 UI가 정상 표시되고 쿨타임 종료 시 스킬이 정상 발동되는지 검증"
+  },
+  {
+    "game": "메이플 키우기",
+    "id": "TC-MAPLE-008",
+    "title": "자원 부족 시 스킬 사용 차단 검증",
+    "component": "스킬",
+    "priority": "High",
+    "automation": "No",
+    "desc": "MP 또는 스킬 자원이 부족한 상태에서 스킬이 발동되지 않고 안내 메시지가 표시되는지 검증"
+  },
+  {
+    "game": "메이플 키우기",
+    "id": "TC-MAPLE-009",
+    "title": "스킬 연타 입력 처리 검증",
+    "component": "스킬",
+    "priority": "High",
+    "automation": "No",
+    "desc": "스킬 버튼을 빠르게 연속 입력했을 때 조건에 맞는 횟수만 발동되고 중복 데미지 계산이 발생하지 않는지 검증"
+  },
+  {
+    "game": "메이플 키우기",
+    "id": "TC-MAPLE-010",
+    "title": "스킬 레벨 변경 후 데미지 반영 검증",
+    "component": "스킬",
+    "priority": "High",
+    "automation": "No",
+    "desc": "스킬 레벨업 직후 변경된 데미지 값이 전투에 즉시 반영되는지 검증"
+  },
+  {
+    "game": "메이플 키우기",
+    "id": "TC-MAPLE-011",
+    "title": "네트워크 지연 환경 스킬 입력 검증",
+    "component": "스킬",
+    "priority": "High",
+    "automation": "No",
+    "desc": "네트워크 전환 또는 지연 상황에서도 스킬 입력이 무시되지 않고 정상 처리되는지 검증"
+  },
+  {
+    "game": "메이플 키우기",
+    "id": "TC-MAPLE-012",
+    "title": "오프라인 보상 수식 정합성 검증",
+    "component": "오프라인 보상",
+    "priority": "Highest",
+    "automation": "No",
+    "desc": "오프라인 유지 시간과 몬스터 경험치 기준으로 계산된 보상 수량이 기대 수식과 일치하는지 검증"
+  },
+  {
+    "game": "메이플 키우기",
+    "id": "TC-MAPLE-013",
+    "title": "오프라인 보상 최대 시간 제한 검증",
+    "component": "오프라인 보상",
+    "priority": "High",
+    "automation": "No",
+    "desc": "기본 등급에서 최대 보상 시간이 초과되었을 때 초과분이 지급되지 않는지 검증"
+  },
+  {
+    "game": "메이플 키우기",
+    "id": "TC-MAPLE-014",
+    "title": "스페셜 등급 오프라인 시간 확장 검증",
+    "component": "오프라인 보상",
+    "priority": "High",
+    "automation": "No",
+    "desc": "스페셜 등급에서 확장된 오프라인 보상 시간이 정상 적용되는지 검증"
+  },
+  {
+    "game": "메이플 키우기",
+    "id": "TC-MAPLE-015",
+    "title": "블루다이아 오프라인 보상 배율 검증",
+    "component": "오프라인 보상",
+    "priority": "High",
+    "automation": "No",
+    "desc": "블루다이아를 사용해 오프라인 보상을 수령할 때 배율 보상이 정확히 적용되는지 검증"
+  },
+  {
+    "game": "메이플 키우기",
+    "id": "TC-MAPLE-016",
+    "title": "장시간 자동사냥 안정성 검증",
+    "component": "안정성",
+    "priority": "Highest",
+    "automation": "No",
+    "desc": "자동사냥 상태로 장시간 방치했을 때 앱 강제 종료, 프리징, 심각한 발열이 발생하지 않는지 검증"
+  },
+  {
+    "game": "메이플 키우기",
+    "id": "TC-MAPLE-017",
+    "title": "백그라운드 전환 후 복귀 검증",
+    "component": "안정성",
+    "priority": "High",
+    "automation": "No",
+    "desc": "다른 앱으로 전환 후 게임에 복귀했을 때 화면과 전투 상태가 정상 유지되는지 검증"
+  },
+  {
+    "game": "메이플 키우기",
+    "id": "TC-MAPLE-018",
+    "title": "절전 모드 해제 후 화면 복구 검증",
+    "component": "안정성",
+    "priority": "Highest",
+    "automation": "No",
+    "desc": "절전 모드 해제 시 캐릭터와 UI가 정상 렌더링되고 Black Screen 상태가 지속되지 않는지 검증"
+  },
+  {
+    "game": "메이플 키우기",
+    "id": "TC-MAPLE-019",
+    "title": "캐릭터 투명화 및 리소스 오류 검증",
+    "component": "렌더링",
+    "priority": "High",
+    "automation": "No",
+    "desc": "코디 아이템 또는 스킨 변경 후 캐릭터가 투명하게 보이거나 핑크 박스로 출력되지 않는지 검증"
+  },
+  {
+    "game": "메이플 키우기",
+    "id": "TC-MAPLE-020",
+    "title": "UI 해상도 및 노치 대응 검증",
+    "component": "UI/UX",
+    "priority": "Medium",
+    "automation": "No",
+    "desc": "노치, 카메라 홀, UI 스케일 변경 환경에서 주요 UI가 가려지거나 깨지지 않는지 검증"
+  },
+  {
+    "game": "inZOI",
+    "id": "TC-INZOI-001",
+    "title": "커스터마이징 진입 및 기본 화면 확인",
+    "component": "Entry",
+    "priority": "Highest",
+    "automation": "Yes",
+    "desc": "캐릭터 커스터마이징 화면 진입 시 기본 모델, 주요 탭, 완료 버튼이 누락 없이 표시되고 조작 가능한지 검증"
+  },
+  {
+    "game": "inZOI",
+    "id": "TC-INZOI-002",
+    "title": "얼굴 프리셋 커스터마이징 검증",
+    "component": "FacePreset",
+    "priority": "High",
+    "automation": "Yes",
+    "desc": "얼굴 프리셋 목록과 썸네일이 표시되고 선택한 프리셋이 캐릭터 얼굴 외형에 반영되는지 검증"
+  },
+  {
+    "game": "inZOI",
+    "id": "TC-INZOI-003",
+    "title": "얼굴 프리셋 상태 유지 검증",
+    "component": "FacePreset",
+    "priority": "High",
+    "automation": "Yes",
+    "desc": "얼굴 프리셋 변경 후 탭 이동, 복귀, 저장, 재로드 시 선택 상태와 저장값이 유지되는지 검증"
+  },
+  {
+    "game": "inZOI",
+    "id": "TC-INZOI-004",
+    "title": "헤어 커스터마이징 검증",
+    "component": "Hair",
+    "priority": "High",
+    "automation": "Yes",
+    "desc": "헤어 카테고리별 항목 선택 시 선택한 헤어가 캐릭터 모델에 정상 반영되는지 검증"
+  },
+  {
+    "game": "inZOI",
+    "id": "TC-INZOI-005",
+    "title": "헤어 표시 품질 검증",
+    "component": "Hair",
+    "priority": "High",
+    "automation": "No",
+    "desc": "헤어 적용 후 텍스처 누락, 메시 파손, 비정상 투명화, 얼굴·목·어깨 주변 메시 교차가 발생하지 않는지 검증"
+  },
+  {
+    "game": "inZOI",
+    "id": "TC-INZOI-006",
+    "title": "피부 커스터마이징 검증",
+    "component": "Skin",
+    "priority": "High",
+    "automation": "Yes",
+    "desc": "피부톤 선택 시 캐릭터 얼굴과 전신 피부톤에 변경값이 반영되고 UI 선택 상태가 유지되는지 검증"
+  },
+  {
+    "game": "inZOI",
+    "id": "TC-INZOI-007",
+    "title": "피부 표시 품질 검증",
+    "component": "Skin",
+    "priority": "High",
+    "automation": "No",
+    "desc": "피부톤 변경 후 얼굴, 목, 손, 팔, 다리 노출 부위에서 텍스처 누락, 메시 파손, 경계선 오류가 발생하지 않는지 검증"
+  },
+  {
+    "game": "inZOI",
+    "id": "TC-INZOI-008",
+    "title": "얼굴 특징 커스터마이징 검증",
+    "component": "FaceFeature",
+    "priority": "High",
+    "automation": "Yes",
+    "desc": "얼굴 특징, 점, 주근깨, 흉터 옵션 선택 시 선택 상태가 UI에 반영되고 캐릭터 얼굴에 적용되는지 검증"
+  },
+  {
+    "game": "inZOI",
+    "id": "TC-INZOI-009",
+    "title": "얼굴 특징 표시 품질 검증",
+    "component": "FaceFeature",
+    "priority": "Medium",
+    "automation": "No",
+    "desc": "얼굴 특징, 점, 주근깨, 흉터가 피부톤 변경 후에도 초기화되지 않고 얼굴 위치에서 어긋나지 않는지 검증"
+  },
+  {
+    "game": "inZOI",
+    "id": "TC-INZOI-010",
+    "title": "눈 커스터마이징 검증",
+    "component": "Eye",
+    "priority": "High",
+    "automation": "Yes",
+    "desc": "렌즈, 눈썹, 속눈썹 옵션 선택 시 선택 항목이 눈 주변 외형에 반영되고 선택 상태가 유지되는지 검증"
+  },
+  {
+    "game": "inZOI",
+    "id": "TC-INZOI-011",
+    "title": "눈 표시 품질 검증",
+    "component": "Eye",
+    "priority": "Medium",
+    "automation": "No",
+    "desc": "렌즈, 눈썹, 속눈썹 적용 후 눈 주변 메시 교차, 텍스처 누락, 위치 어긋남이 발생하지 않는지 검증"
+  },
+  {
+    "game": "inZOI",
+    "id": "TC-INZOI-012",
+    "title": "메이크업 커스터마이징 검증",
+    "component": "Makeup",
+    "priority": "High",
+    "automation": "Yes",
+    "desc": "메이크업 프리셋, 하이라이트, 블러셔, 아이쉐도우, 아이라인, 립스틱, 페이스 아트 선택값이 얼굴 영역에 반영되는지 검증"
+  },
+  {
+    "game": "inZOI",
+    "id": "TC-INZOI-013",
+    "title": "메이크업 표시 품질 검증",
+    "component": "Makeup",
+    "priority": "Medium",
+    "automation": "No",
+    "desc": "메이크업 적용 후 피부톤 변경 시 옵션이 초기화되지 않고 위치 어긋남, 번짐, 텍스처 누락이 발생하지 않는지 검증"
+  },
+  {
+    "game": "inZOI",
+    "id": "TC-INZOI-014",
+    "title": "커스터마이징 저장 및 재로드 검증",
+    "component": "SaveLoad",
+    "priority": "Highest",
+    "automation": "Yes",
+    "desc": "얼굴 프리셋, 헤어, 피부, 얼굴 특징, 눈, 메이크업 변경값이 저장 후 재로드 시 저장값과 일치하는지 검증"
+  },
+  {
+    "game": "inZOI",
+    "id": "TC-INZOI-015",
+    "title": "Win/Mac 커스터마이징 호환성 검증",
+    "component": "Compatibility",
+    "priority": "High",
+    "automation": "No",
+    "desc": "Windows와 macOS에서 동일 캐릭터 저장 데이터를 로드했을 때 커스터마이징 값이 초기화되거나 누락되지 않는지 검증"
   }
 ]
