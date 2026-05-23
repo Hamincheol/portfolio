@@ -76,8 +76,7 @@
       gap: 8px;
     }
 
-    .nav a,
-    .btn {
+    .nav a {
       border: 1px solid var(--line);
       background: rgba(255, 255, 255, 0.74);
       padding: 9px 14px;
@@ -91,18 +90,6 @@
       background: var(--primary-soft);
       color: var(--primary-dark);
       border-color: rgba(31, 78, 140, 0.22);
-    }
-
-    .btn.primary {
-      border-color: transparent;
-      background: var(--primary);
-      color: #fff;
-      font-weight: 700;
-    }
-
-    button.btn {
-      cursor: pointer;
-      font: inherit;
     }
 
     /* 메인 소개 영역: 지원 직무와 포트폴리오 요약 */
@@ -252,13 +239,6 @@
     .section-title small {
       color: var(--muted);
       font-weight: 700;
-    }
-
-    /* 섹션 설명 문구 */
-    .section-note {
-      margin: -6px 0 16px;
-      color: var(--muted);
-      font-size: 13px;
     }
 
     /* 테스트케이스 샘플 영역 간격 */
@@ -673,11 +653,6 @@
         linear-gradient(135deg, rgba(33, 115, 70, 0.085) 0%, rgba(33, 115, 70, 0.035) 38%, rgba(255, 255, 255, 0.96) 78%, #ffffff 100%);
     }
 
-    .portfolio-group.word-group {
-      border-color: rgba(43, 87, 154, 0.12);
-      background:
-        linear-gradient(135deg, rgba(43, 87, 154, 0.075) 0%, rgba(43, 87, 154, 0.03) 38%, rgba(255, 255, 255, 0.96) 78%, #ffffff 100%);
-    }
 
     .portfolio-group.ppt-group {
       border-color: rgba(210, 71, 38, 0.12);
@@ -816,11 +791,6 @@
       border-color: rgba(33, 115, 70, 0.18);
     }
 
-    .file-badge.word {
-      background: rgba(255, 255, 255, 0.72);
-      color: #2b579a;
-      border-color: rgba(43, 87, 154, 0.18);
-    }
 
     .file-badge.powerpoint {
       background: rgba(255, 255, 255, 0.72);
@@ -842,12 +812,6 @@
       border-color: rgba(31, 78, 140, 0.34);
     }
 
-    .portfolio-download-btn.is-disabled {
-      pointer-events: none;
-      background: #f2f4f8;
-      color: var(--muted);
-      border-color: var(--line);
-    }
 
     /* 테스트케이스 검색 및 필터 영역 */
     .filter-panel {
@@ -1292,34 +1256,6 @@
                 </div>
               </div>
 
-              <!--
-              Word 문서 그룹은 현재 다운로드 가능한 파일이 없어서 숨김 처리했습니다.
-              추후 Word 파일을 추가할 때 아래 주석을 해제하고 href에 실제 docx 경로를 입력하면 화면에 표시됩니다.
-
-              <div class="portfolio-group word-group" data-portfolio-group>
-                <div class="portfolio-group-title">
-                  <strong>Word 문서</strong>
-                  <span class="file-badge word">Word</span>
-                </div>
-
-                <div class="portfolio-file-list">
-                  <div class="portfolio-card">
-                    <span class="portfolio-thumb">
-                      <img src="./assets/images/games/tc_test.jpg" alt="TC.test 관련 게임 이미지" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-                      <span class="portfolio-thumb-placeholder">Project<br />Game Image</span>
-                    </span>
-                    <span class="portfolio-body">
-                      <strong>TC.test 문서</strong>
-                      <p>Word 기반 테스트 문서 샘플</p>
-                      <span class="portfolio-meta">
-                        <span class="game-badge">TC Sample</span>
-                        <a class="portfolio-download-btn" href="./assets/tc/tc_test/tc_test.docx" download data-file-required aria-label="TC.test Word 다운로드">다운로드</a>
-                      </span>
-                    </span>
-                  </div>
-                </div>
-              </div>
-              -->
 
               <div class="portfolio-group ppt-group" data-portfolio-group>
                 <div class="portfolio-group-title">
@@ -1353,7 +1289,7 @@
         <section class="card" id="testcases">
           <div class="section-title">
             <h2>테스트케이스 샘플</h2>
-            <small>JSON Preview</small>
+            <small class="portfolio-count" id="tcSampleCount">0 Cases</small>
           </div>
 
           <!-- 테스트케이스 샘플 항목: 검색 및 필터 -->
@@ -1499,6 +1435,13 @@
       };
     }
 
+    function updateTCSampleCount() {
+      const tcSampleCount = document.getElementById("tcSampleCount");
+      if (tcSampleCount) {
+        tcSampleCount.textContent = `${testCases.length} Cases`;
+      }
+    }
+
     /* 화면 요소 연결: 검색창, 필터, 카드 목록, 페이지 번호 */
     const list = document.getElementById("tcList");
     const emptyState = document.getElementById("emptyState");
@@ -1636,9 +1579,11 @@
         }
 
         testCases = data.map(normalizeCase);
+        updateTCSampleCount();
       } catch (error) {
         console.warn("TC preview JSON을 불러오지 못했습니다. assets/data/tc_preview.json 경로와 JSON 문법을 확인하세요.", error);
         testCases = [];
+        updateTCSampleCount();
       }
 
       populateGameFilter();
