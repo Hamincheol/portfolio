@@ -100,7 +100,7 @@
       padding: 38px;
       box-shadow: var(--shadow);
       display: grid;
-      grid-template-columns: 1.45fr 0.95fr;
+      grid-template-columns: 1fr;
       gap: 28px;
       overflow: hidden;
       position: relative;
@@ -138,10 +138,13 @@
     }
 
     .hero .subtitle {
-      max-width: 700px;
-      font-size: 18px;
-      color: rgba(255,255,255,0.88);
-      margin: 0 0 24px;
+      max-width: 560px;
+      font-size: clamp(22px, 2.7vw, 34px);
+      font-weight: 500;
+      letter-spacing: -0.03em;
+      line-height: 1.28;
+      color: rgba(255,255,255,0.94);
+      margin: 0 0 26px;
     }
 
     .hero-actions {
@@ -167,42 +170,7 @@
       background: rgba(255,255,255,0.17);
       border: 1px solid rgba(255,255,255,0.32);
     }
-
-    /* 지원자 요약 카드 */
-    .hero-card {
-      position: relative;
-      z-index: 1;
-      background: rgba(255,255,255,0.15);
-      border: 1px solid rgba(255,255,255,0.25);
-      border-radius: 26px;
-      padding: 22px;
-      -webkit-backdrop-filter: blur(8px);
-      backdrop-filter: blur(8px);
-    }
-
-    .hero-card h2 { margin: 0 0 14px; font-size: 18px; }
-    .hero-facts { display: grid; gap: 12px; }
-
-    .fact {
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      padding: 12px;
-      border-radius: 16px;
-      background: rgba(255,255,255,0.13);
-    }
-
-    .fact span:first-child {
-      color: rgba(255,255,255,0.72);
-      font-size: 13px;
-    }
-
-    .fact span:last-child {
-      font-weight: 800;
-      text-align: right;
-    }
-
-    /* 본문 배치: 왼쪽 이력, 오른쪽 포트폴리오 */
+/* 본문 배치: 왼쪽 이력, 오른쪽 포트폴리오 */
     main {
       display: grid;
       grid-template-columns: 0.92fr 1.58fr;
@@ -966,6 +934,11 @@
         padding: 26px;
         border-radius: 26px;
       }
+
+      .hero .subtitle {
+        max-width: 100%;
+        font-size: 24px;
+      }
       .metric-grid,
       .deliverables,
       .filter-panel,
@@ -1007,10 +980,10 @@
     <!-- 메인 소개 영역 -->
     <section class="hero" id="top">
       <div>
-        <div class="eyebrow">Game QA · Test Case · Automation-ready</div>
-        <h1>이력과 결과물로 보여주는<br />QA 포트폴리오</h1>
         <p class="subtitle">
-          자소서형 서술은 제외하고, 수행 이력·프로젝트 산출물·테스트 설계 역량을 한 화면에서 확인할 수 있도록 구성했습니다.
+          유저의 시선으로 플레이하고,<br />
+          회사의 기준으로 검증 결과를 정리하는<br />
+          Game QA를 지향합니다.
         </p>
 
         <!-- 메인 소개 버튼: 포트폴리오, TC 샘플, PDF 이력서 -->
@@ -1020,17 +993,6 @@
           <a class="secondary" href="./assets/resume/mincheol_resume.pdf" target="_blank" rel="noopener">PDF 이력서 보기</a>
         </div>
       </div>
-
-      <!-- 지원자 요약 카드 -->
-      <aside class="hero-card" aria-label="candidate summary">
-        <h2>Candidate Snapshot</h2>
-        <div class="hero-facts">
-          <div class="fact"><span>지원 직무</span><span>Game QA / QA Tester</span></div>
-          <div class="fact"><span>주요 도메인</span><span>캐릭터 커스터마이징 UI</span></div>
-          <div class="fact"><span>대표 산출물</span><span>TC · 전략 · 자동화 매핑</span></div>
-          <div class="fact"><span>공개 정보</span><span>Email / GitHub</span></div>
-        </div>
-      </aside>
     </section>
 
     <!-- 본문 영역: 왼쪽 이력, 오른쪽 포트폴리오 -->
