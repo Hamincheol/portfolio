@@ -94,6 +94,7 @@
 
     /* 메인 소개 영역: 지원 직무와 포트폴리오 요약 */
     .hero {
+      --hero-media-height: 400px;
       background: linear-gradient(135deg, #1f4e8c 0%, #3478b8 52%, #78b7e8 100%);
       color: #fff;
       border-radius: 34px;
@@ -104,7 +105,7 @@
       gap: 28px;
       overflow: hidden;
       position: relative;
-      align-items: center;
+      align-items: stretch;
     }
 
     /* 메인 소개 영역: 우측 상단 장식 배경 */
@@ -119,17 +120,44 @@
       border-radius: 50%;
     }
 
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 7px 12px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.18);
-      font-size: 13px;
-      font-weight: 700;
-      margin-bottom: 18px;
+    .hero-copy {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: var(--hero-media-height);
+      padding: 8px 0;
+      transition: min-height 0.35s ease;
     }
+
+    .hero-copy::before {
+      content: "";
+      position: absolute;
+      width: 220px;
+      height: 220px;
+      left: -70px;
+      top: 20px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.10);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .hero-copy::after {
+      content: "";
+      position: absolute;
+      width: 140px;
+      height: 140px;
+      right: 40px;
+      bottom: 10px;
+      border-radius: 36px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      transform: rotate(12deg);
+      pointer-events: none;
+      z-index: -1;
+    }
+
 
     .hero h1 {
       margin: 0 0 14px;
@@ -591,12 +619,6 @@
       white-space: nowrap;
     }
 
-    .portfolio-more-head p {
-      max-width: 640px;
-      margin: 5px 0 0;
-      color: var(--muted);
-      font-size: 13px;
-    }
 
     .portfolio-count {
       flex: 0 0 auto;
@@ -923,6 +945,16 @@
     @media (max-width: 980px) {
       .hero,
       main { grid-template-columns: 1fr; }
+
+      .hero {
+        align-items: start;
+      }
+
+      .hero-copy {
+        min-height: auto;
+        padding: 0;
+      }
+
       .filter-panel { grid-template-columns: 1fr 1fr; }
       .portfolio-file-list { grid-template-columns: 1fr; }
     }
@@ -991,11 +1023,11 @@
 
     <!-- 메인 소개 영역 -->
     <section class="hero" id="top">
-      <div>
+      <div class="hero-copy">
         <p class="subtitle">
-          유저의 시선으로 플레이하고,<br />
-          회사의 기준으로 검증 결과를 정리하는<br />
-          Game QA를 지향합니다.
+          유저의 시선으로 게임을 바라보고<br />
+          회사의 기준으로 완성도를 높이는<br />
+          QA를 지향합니다.
         </p>
 
         <!-- 메인 소개 버튼: 포트폴리오, TC 샘플, PDF 이력서 -->
@@ -1009,7 +1041,7 @@
       <aside class="hero-media" aria-label="메인 배너 슬라이드">
         <div class="hero-slider" id="heroSlider">
           <div class="hero-slide is-active">
-            <img src="./assets/mainbanner/portfolio_1.jpg" data-fallbacks="./assets/mainbanner/portfolio_1.png|./assets/mainbanner/portfolio_1.jpeg|./assets/mainbanner/portfolio_1.webp|./assets/mainbanner/portfolio_1.jpg" alt="PlayX4 행사 사진" onerror="loadHeroImageFallback(this)" />
+            <img src="./assets/mainbanner/portfolio_1.jpg" data-fallbacks="./assets/mainbanner/portfolio_1.png|./assets/mainbanner/portfolio_1.jpeg|./assets/mainbanner/portfolio_1.webp" alt="PlayX4 행사 사진" onerror="loadHeroImageFallback(this)" />
             <div class="hero-slide-placeholder">PlayX4 행사 사진 영역</div>
             <div class="hero-slide-caption" data-hero-caption-index="0">
               <strong data-hero-slide-title>첫 번째 사진 제목</strong>
@@ -1018,7 +1050,7 @@
           </div>
 
           <div class="hero-slide">
-            <img src="./assets/mainbanner/portfolio_2.jpg" data-fallbacks="./assets/mainbanner/portfolio_2.png|./assets/mainbanner/portfolio_2.jpeg|./assets/mainbanner/portfolio_2.webp|./assets/mainbanner/portfolio_2.jpg" alt="Unity Conference 행사 사진" onerror="loadHeroImageFallback(this)" />
+            <img src="./assets/mainbanner/portfolio_2.jpg" data-fallbacks="./assets/mainbanner/portfolio_2.png|./assets/mainbanner/portfolio_2.jpeg|./assets/mainbanner/portfolio_2.webp" alt="Unity Conference 행사 사진" onerror="loadHeroImageFallback(this)" />
             <div class="hero-slide-placeholder">Unity Conference 행사 사진 영역</div>
             <div class="hero-slide-caption" data-hero-caption-index="1">
               <strong data-hero-slide-title>두 번째 사진 제목</strong>
@@ -1027,7 +1059,7 @@
           </div>
 
           <div class="hero-slide">
-            <img src="./assets/mainbanner/portfolio_3.jpg" data-fallbacks="./assets/mainbanner/portfolio_3.png|./assets/mainbanner/portfolio_3.jpeg|./assets/mainbanner/portfolio_3.webp|./assets/mainbanner/portfolio_3.jpg" alt="추가 활동 사진" onerror="loadHeroImageFallback(this)" />
+            <img src="./assets/mainbanner/portfolio_3.jpg" data-fallbacks="./assets/mainbanner/portfolio_3.png|./assets/mainbanner/portfolio_3.jpeg|./assets/mainbanner/portfolio_3.webp" alt="추가 활동 사진" onerror="loadHeroImageFallback(this)" />
             <div class="hero-slide-placeholder">추가 활동 사진 영역</div>
             <div class="hero-slide-caption" data-hero-caption-index="2">
               <strong data-hero-slide-title>세 번째 사진 제목</strong>
@@ -1679,16 +1711,23 @@
     function updateHeroMediaHeight(index = 0) {
       const slider = document.getElementById("heroSlider");
       const media = slider?.closest(".hero-media");
+      const hero = media?.closest(".hero");
       const slides = slider ? Array.from(slider.querySelectorAll(".hero-slide")) : [];
       const activeSlide = slides[index];
 
       if (!media || !activeSlide) return;
 
+      function setHeroMediaHeight(height) {
+        media.style.height = height;
+        hero?.style.setProperty("--hero-media-height", height);
+      }
+
       const img = activeSlide.querySelector("img");
       const fit = img?.dataset.fit || "cover";
 
       if (fit !== "contain" || !img || !img.naturalWidth || !img.naturalHeight) {
-        media.style.height = window.innerWidth <= 640 ? "300px" : "400px";
+        const defaultHeight = window.innerWidth <= 640 ? "300px" : "400px";
+        setHeroMediaHeight(defaultHeight);
         return;
       }
 
@@ -1698,7 +1737,7 @@
       const maxHeight = window.innerWidth <= 640 ? 420 : 540;
       const nextHeight = Math.min(Math.max(ratioHeight, minHeight), maxHeight);
 
-      media.style.height = `${nextHeight}px`;
+      setHeroMediaHeight(`${nextHeight}px`);
     }
 
     function applyHeroImageFit() {
@@ -1753,13 +1792,17 @@
     function initHeroSlider() {
       const slider = document.getElementById("heroSlider");
       const dotsWrap = document.getElementById("heroSliderDots");
-      if (!slider || !dotsWrap) return;
+      const hero = slider?.closest(".hero");
+      if (!slider || !dotsWrap || !hero) return;
 
       const slides = Array.from(slider.querySelectorAll(".hero-slide"));
       if (!slides.length) return;
 
       let currentIndex = 0;
       let autoSlide = null;
+      let isSliderVisible = true;
+      let isPointerHovering = false;
+      const HERO_VISIBLE_RATIO_TO_PLAY = 0.6; // 메인 배너가 3/5 이상 보일 때만 자동 슬라이드 작동
 
       function renderDots() {
         dotsWrap.innerHTML = slides.map((_, index) => {
@@ -1790,10 +1833,17 @@
       }
 
       function startAutoSlide() {
-        stopAutoSlide();
+        if (!isSliderVisible || isPointerHovering || document.hidden) return;
+        if (autoSlide) return;
+
         autoSlide = window.setInterval(() => {
           showSlide(currentIndex + 1);
         }, 3500);
+      }
+
+      function refreshAutoSlide() {
+        stopAutoSlide();
+        startAutoSlide();
       }
 
       slides.forEach((slide, index) => {
@@ -1820,11 +1870,42 @@
         if (!button) return;
 
         showSlide(Number(button.dataset.slideIndex));
+        refreshAutoSlide();
+      });
+
+      slider.addEventListener("mouseenter", () => {
+        isPointerHovering = true;
+        stopAutoSlide();
+      });
+
+      slider.addEventListener("mouseleave", () => {
+        isPointerHovering = false;
         startAutoSlide();
       });
 
-      slider.addEventListener("mouseenter", stopAutoSlide);
-      slider.addEventListener("mouseleave", startAutoSlide);
+      document.addEventListener("visibilitychange", () => {
+        if (document.hidden) {
+          stopAutoSlide();
+          return;
+        }
+
+        startAutoSlide();
+      });
+
+      if ("IntersectionObserver" in window) {
+        const heroObserver = new IntersectionObserver((entries) => {
+          const entry = entries[0];
+          isSliderVisible = entry.isIntersecting && entry.intersectionRatio >= HERO_VISIBLE_RATIO_TO_PLAY;
+
+          if (isSliderVisible) {
+            startAutoSlide();
+          } else {
+            stopAutoSlide();
+          }
+        }, { threshold: [0, HERO_VISIBLE_RATIO_TO_PLAY, 1] });
+
+        heroObserver.observe(hero);
+      }
     }
 
     function initPortfolioVisibility() {
@@ -1855,14 +1936,18 @@
       }
     }
 
-    applyHeroImageFit();
-    loadHeroBannerText();
-    initHeroSlider();
-    initPortfolioVisibility();
-    loadProfileData();
-    loadTimelineData(EXPERIENCE_DATA_PATH, "experienceTimeline", "경력");
-    loadTimelineData(ACTIVITIES_DATA_PATH, "activitiesTimeline", "교육 및 활동");
-    loadTestCases();
+    async function initPage() {
+      await loadHeroBannerText();
+      applyHeroImageFit();
+      initHeroSlider();
+      initPortfolioVisibility();
+      loadProfileData();
+      loadTimelineData(EXPERIENCE_DATA_PATH, "experienceTimeline", "경력");
+      loadTimelineData(ACTIVITIES_DATA_PATH, "activitiesTimeline", "교육 및 활동");
+      loadTestCases();
+    }
+
+    initPage();
   </script>
 </body>
 </html>
