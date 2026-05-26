@@ -100,10 +100,11 @@
       padding: 38px;
       box-shadow: var(--shadow);
       display: grid;
-      grid-template-columns: 1fr;
+      grid-template-columns: minmax(0, 1fr) minmax(400px, 540px);
       gap: 28px;
       overflow: hidden;
       position: relative;
+      align-items: center;
     }
 
     /* 메인 소개 영역: 우측 상단 장식 배경 */
@@ -169,6 +170,140 @@
       color: #fff;
       background: rgba(255,255,255,0.17);
       border: 1px solid rgba(255,255,255,0.32);
+    }
+
+    .hero-media {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      height: 400px;
+      min-height: 300px;
+      max-height: 540px;
+      border-radius: 26px;
+      overflow: hidden;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.24);
+      box-shadow: 0 18px 36px rgba(10, 26, 48, 0.18);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      transition: height 0.35s ease;
+    }
+
+    .hero-slider {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    .hero-slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      visibility: hidden;
+      transform: scale(1.02);
+      transition: opacity 0.55s ease, visibility 0.55s ease, transform 0.8s ease;
+      background: linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
+    }
+
+    .hero-slide.is-active {
+      opacity: 1;
+      visibility: visible;
+      transform: scale(1);
+    }
+
+    .hero-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      background: rgba(255,255,255,0.08);
+    }
+
+    .hero-slide img.is-contain {
+      object-fit: contain;
+      background: rgba(255,255,255,0.10);
+    }
+
+    .hero-slide-placeholder {
+      position: absolute;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      text-align: center;
+      font-size: 16px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.82);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.04)),
+        radial-gradient(circle at top left, rgba(255,255,255,0.18) 0, transparent 48%);
+    }
+
+    .hero-slide::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0 0;
+      height: 46%;
+      background: linear-gradient(180deg, rgba(14,32,58,0) 0%, rgba(14,32,58,0.72) 100%);
+      pointer-events: none;
+    }
+
+    .hero-slide-caption {
+      position: absolute;
+      left: 18px;
+      right: 18px;
+      bottom: 18px;
+      z-index: 1;
+      display: grid;
+      gap: 5px;
+    }
+
+    .hero-slide-caption strong {
+      font-size: 17px;
+      letter-spacing: -0.02em;
+      color: #fff;
+    }
+
+    .hero-slide-caption span {
+      font-size: 12px;
+      line-height: 1.45;
+      color: rgba(255,255,255,0.84);
+    }
+
+
+
+
+
+
+    .hero-slider-dots {
+      position: absolute;
+      right: 16px;
+      bottom: 16px;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .hero-slider-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      border: 0;
+      padding: 0;
+      cursor: pointer;
+      background: rgba(255,255,255,0.36);
+      transition: transform 0.16s ease, background 0.16s ease;
+    }
+
+    .hero-slider-dot.is-active {
+      background: #fff;
+      transform: scale(1.18);
+    }
+
+    .hero-slider-dot:hover {
+      background: rgba(255,255,255,0.9);
     }
 /* 본문 배치: 왼쪽 이력, 오른쪽 포트폴리오 */
     main {
@@ -812,6 +947,12 @@
         max-width: 100%;
         font-size: 24px;
       }
+
+      .hero-media {
+        height: 300px;
+        min-height: 260px;
+        max-height: 420px;
+      }
       .filter-panel,
       .portfolio-file-list { grid-template-columns: 1fr; }
 
@@ -864,6 +1005,39 @@
           <a class="secondary" href="./assets/resume/mincheol_resume.pdf" target="_blank" rel="noopener">PDF 이력서 보기</a>
         </div>
       </div>
+
+      <aside class="hero-media" aria-label="메인 배너 슬라이드">
+        <div class="hero-slider" id="heroSlider">
+          <div class="hero-slide is-active">
+            <img src="./assets/mainbanner/portfolio_1.jpg" data-fallbacks="./assets/mainbanner/portfolio_1.png|./assets/mainbanner/portfolio_1.jpeg|./assets/mainbanner/portfolio_1.webp|./assets/mainbanner/portfolio_1.jpg" alt="PlayX4 행사 사진" onerror="loadHeroImageFallback(this)" />
+            <div class="hero-slide-placeholder">PlayX4 행사 사진 영역</div>
+            <div class="hero-slide-caption" data-hero-caption-index="0">
+              <strong data-hero-slide-title>첫 번째 사진 제목</strong>
+              <span data-hero-slide-content>첫 번째 사진 설명을 입력하세요.</span>
+            </div>
+          </div>
+
+          <div class="hero-slide">
+            <img src="./assets/mainbanner/portfolio_2.jpg" data-fallbacks="./assets/mainbanner/portfolio_2.png|./assets/mainbanner/portfolio_2.jpeg|./assets/mainbanner/portfolio_2.webp|./assets/mainbanner/portfolio_2.jpg" alt="Unity Conference 행사 사진" onerror="loadHeroImageFallback(this)" />
+            <div class="hero-slide-placeholder">Unity Conference 행사 사진 영역</div>
+            <div class="hero-slide-caption" data-hero-caption-index="1">
+              <strong data-hero-slide-title>두 번째 사진 제목</strong>
+              <span data-hero-slide-content>두 번째 사진 설명을 입력하세요.</span>
+            </div>
+          </div>
+
+          <div class="hero-slide">
+            <img src="./assets/mainbanner/portfolio_3.jpg" data-fallbacks="./assets/mainbanner/portfolio_3.png|./assets/mainbanner/portfolio_3.jpeg|./assets/mainbanner/portfolio_3.webp|./assets/mainbanner/portfolio_3.jpg" alt="추가 활동 사진" onerror="loadHeroImageFallback(this)" />
+            <div class="hero-slide-placeholder">추가 활동 사진 영역</div>
+            <div class="hero-slide-caption" data-hero-caption-index="2">
+              <strong data-hero-slide-title>세 번째 사진 제목</strong>
+              <span data-hero-slide-content>세 번째 사진 설명을 입력하세요.</span>
+            </div>
+          </div>
+
+          <div class="hero-slider-dots" id="heroSliderDots" aria-label="메인 배너 슬라이드 페이지"></div>
+        </div>
+      </aside>
     </section>
 
     <!-- 본문 영역: 왼쪽 이력, 오른쪽 포트폴리오 -->
@@ -1148,11 +1322,29 @@
 
   <script>
 
+
+    function loadHeroImageFallback(img) {
+      const tried = Number(img.dataset.tried || 0);
+      const fallbacks = (img.dataset.fallbacks || "").split("|").filter(Boolean);
+
+      if (tried < fallbacks.length) {
+        img.dataset.tried = String(tried + 1);
+        img.src = fallbacks[tried];
+        return;
+      }
+
+      img.style.display = "none";
+      if (img.nextElementSibling) {
+        img.nextElementSibling.style.display = "flex";
+      }
+    }
+
     /* JSON 데이터 경로: 프로필, 경력, 교육 및 활동, 테스트케이스 */
     const PROFILE_DATA_PATH = "./assets/data/profile.json";
     const EXPERIENCE_DATA_PATH = "./assets/data/experience.json";
     const ACTIVITIES_DATA_PATH = "./assets/data/activities.json";
     const TC_DATA_PATH = "./assets/data/tc_preview.json";
+    const HERO_BANNER_TEXT_PATH = "./assets/data/mainbanner.json";
     const TC_PAGE_SIZE = 5;
 
     let testCases = [];
@@ -1479,6 +1671,162 @@
 
 
     /* 다른 포트폴리오 표시 규칙: 다운로드 파일 경로가 비어 있거나 #이면 해당 항목 숨김 */
+
+
+
+
+
+    function updateHeroMediaHeight(index = 0) {
+      const slider = document.getElementById("heroSlider");
+      const media = slider?.closest(".hero-media");
+      const slides = slider ? Array.from(slider.querySelectorAll(".hero-slide")) : [];
+      const activeSlide = slides[index];
+
+      if (!media || !activeSlide) return;
+
+      const img = activeSlide.querySelector("img");
+      const fit = img?.dataset.fit || "cover";
+
+      if (fit !== "contain" || !img || !img.naturalWidth || !img.naturalHeight) {
+        media.style.height = window.innerWidth <= 640 ? "300px" : "400px";
+        return;
+      }
+
+      const mediaWidth = media.clientWidth || 400;
+      const ratioHeight = Math.round(mediaWidth * (img.naturalHeight / img.naturalWidth));
+      const minHeight = window.innerWidth <= 640 ? 260 : 300;
+      const maxHeight = window.innerWidth <= 640 ? 420 : 540;
+      const nextHeight = Math.min(Math.max(ratioHeight, minHeight), maxHeight);
+
+      media.style.height = `${nextHeight}px`;
+    }
+
+    function applyHeroImageFit() {
+      const slides = document.querySelectorAll(".hero-slide");
+      slides.forEach((slide, index) => {
+        const img = slide.querySelector("img");
+        if (!img) return;
+
+        const fit = img.dataset.fit || "cover";
+        img.classList.toggle("is-contain", fit === "contain");
+      });
+    }
+
+    async function loadHeroBannerText() {
+      try {
+        const response = await fetch(HERO_BANNER_TEXT_PATH, { cache: "no-store" });
+
+        if (!response.ok) {
+          throw new Error(`Main banner JSON load failed: ${response.status}`);
+        }
+
+        const data = await response.json();
+
+        if (!Array.isArray(data)) {
+          throw new Error("Main banner JSON must be an array.");
+        }
+
+        document.querySelectorAll("[data-hero-caption-index]").forEach((caption) => {
+          const index = Number(caption.dataset.heroCaptionIndex);
+          const item = data[index];
+
+          if (!item) return;
+
+          const titleEl = caption.querySelector("[data-hero-slide-title]");
+          const contentEl = caption.querySelector("[data-hero-slide-content]");
+
+          if (titleEl) titleEl.textContent = item.title || "";
+          if (contentEl) contentEl.textContent = item.content || "";
+
+          const slide = caption.closest(".hero-slide");
+          const img = slide?.querySelector("img");
+          if (img) {
+            img.dataset.fit = item.fit || "cover";
+            img.classList.toggle("is-contain", item.fit === "contain");
+          }
+        });
+      } catch (error) {
+        console.warn("mainbanner.json을 불러오지 못했습니다. 기본 슬라이드 문구를 사용합니다.", error);
+      }
+    }
+
+    function initHeroSlider() {
+      const slider = document.getElementById("heroSlider");
+      const dotsWrap = document.getElementById("heroSliderDots");
+      if (!slider || !dotsWrap) return;
+
+      const slides = Array.from(slider.querySelectorAll(".hero-slide"));
+      if (!slides.length) return;
+
+      let currentIndex = 0;
+      let autoSlide = null;
+
+      function renderDots() {
+        dotsWrap.innerHTML = slides.map((_, index) => {
+          const activeClass = index === currentIndex ? " is-active" : "";
+          return `<button class="hero-slider-dot${activeClass}" type="button" data-slide-index="${index}" aria-label="슬라이드 ${index + 1}"></button>`;
+        }).join("");
+      }
+
+      function showSlide(index) {
+        currentIndex = (index + slides.length) % slides.length;
+
+        slides.forEach((slide, slideIndex) => {
+          slide.classList.toggle("is-active", slideIndex === currentIndex);
+        });
+
+        Array.from(dotsWrap.querySelectorAll(".hero-slider-dot")).forEach((dot, dotIndex) => {
+          dot.classList.toggle("is-active", dotIndex === currentIndex);
+        });
+
+        updateHeroMediaHeight(currentIndex);
+      }
+
+      function stopAutoSlide() {
+        if (autoSlide) {
+          window.clearInterval(autoSlide);
+          autoSlide = null;
+        }
+      }
+
+      function startAutoSlide() {
+        stopAutoSlide();
+        autoSlide = window.setInterval(() => {
+          showSlide(currentIndex + 1);
+        }, 3500);
+      }
+
+      slides.forEach((slide, index) => {
+        const img = slide.querySelector("img");
+        if (!img) return;
+
+        img.addEventListener("load", () => {
+          if (index === currentIndex) {
+            updateHeroMediaHeight(currentIndex);
+          }
+        });
+      });
+
+      window.addEventListener("resize", () => {
+        updateHeroMediaHeight(currentIndex);
+      });
+
+      renderDots();
+      showSlide(0);
+      startAutoSlide();
+
+      dotsWrap.addEventListener("click", (event) => {
+        const button = event.target.closest("[data-slide-index]");
+        if (!button) return;
+
+        showSlide(Number(button.dataset.slideIndex));
+        startAutoSlide();
+      });
+
+      slider.addEventListener("mouseenter", stopAutoSlide);
+      slider.addEventListener("mouseleave", startAutoSlide);
+    }
+
     function initPortfolioVisibility() {
       document.querySelectorAll("[data-file-required]").forEach((button) => {
         const href = (button.getAttribute("href") || "").trim();
@@ -1507,6 +1855,9 @@
       }
     }
 
+    applyHeroImageFit();
+    loadHeroBannerText();
+    initHeroSlider();
     initPortfolioVisibility();
     loadProfileData();
     loadTimelineData(EXPERIENCE_DATA_PATH, "experienceTimeline", "경력");
