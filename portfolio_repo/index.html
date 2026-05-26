@@ -434,135 +434,11 @@
       font-size: 13px;
       margin-top: 2px;
     }
-
-    /* 대표 포트폴리오 요약 수치 영역 */
-    .metric-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
-    }
-
-    .metric {
-      background: #fbfcff;
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      padding: 16px;
-    }
-
-    .metric strong {
-      display: block;
-      font-size: 28px;
-      line-height: 1;
-      letter-spacing: -0.045em;
-      color: var(--primary-dark);
-      margin-bottom: 8px;
-    }
-
-    .metric span {
-      color: var(--muted);
-      font-size: 13px;
-      font-weight: 700;
-    }
-
-    /* 대표 포트폴리오 강조 카드 */
-    .featured-project {
-      display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 18px;
-      align-items: stretch;
-      border: 1px solid rgba(31, 78, 140, 0.16);
-      border-radius: 24px;
-      padding: 18px;
-      background: linear-gradient(135deg, #f6f9ff 0%, #ffffff 58%, #eef6ff 100%);
-    }
-
-    .featured-main h3 {
-      margin: 0 0 8px;
-      font-size: 26px;
-      letter-spacing: -0.045em;
-    }
-
-    .featured-main p {
-      margin: 0 0 14px;
-      color: var(--muted);
-    }
-
-    .featured-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 16px;
-    }
-
-    .featured-points {
-      display: grid;
-      gap: 8px;
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
-
-    .featured-points li {
-      position: relative;
-      padding-left: 16px;
-      color: #3f4752;
-      font-size: 13px;
-      font-weight: 700;
-    }
-
-    .featured-points li::before {
-      content: "";
-      position: absolute;
-      width: 6px;
-      height: 6px;
-      left: 0;
-      top: 8px;
-      border-radius: 50%;
-      background: var(--primary);
-    }
-
-    .featured-side {
-      display: grid;
-      gap: 12px;
-    }
-
-    .featured-side .metric-grid {
-      grid-template-columns: repeat(2, 1fr);
-      gap: 10px;
-    }
-
-    .featured-side .metric {
-      background: #fff;
-      padding: 14px;
-    }
-
-    .featured-side .metric strong {
-      font-size: 26px;
-    }
-
-    /* 대표 포트폴리오 산출물 카드 */
-    .deliverables {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-      margin-top: 16px;
-    }
-
-    .deliverable {
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      padding: 14px;
-      background: #fff;
-    }
-
-    .deliverable strong { display: block; margin-bottom: 6px; }
-    .deliverable span { color: var(--muted); font-size: 13px; }
-
-    /* 다른 포트폴리오 영역 */
+/* 다른 포트폴리오 영역 */
     .portfolio-more {
-      margin-top: 22px;
-      padding-top: 20px;
-      border-top: 1px dashed var(--line);
+      margin-top: 0;
+      padding-top: 0;
+      border-top: 0;
     }
 
     .portfolio-more-head {
@@ -911,10 +787,7 @@
     /* 반응형 화면 설정: 태블릿과 모바일 배치 */
     @media (max-width: 980px) {
       .hero,
-      main,
-      .featured-project { grid-template-columns: 1fr; }
-      .metric-grid,
-      .deliverables,
+      main { grid-template-columns: 1fr; }
       .filter-panel { grid-template-columns: 1fr 1fr; }
       .portfolio-file-list { grid-template-columns: 1fr; }
     }
@@ -939,8 +812,6 @@
         max-width: 100%;
         font-size: 24px;
       }
-      .metric-grid,
-      .deliverables,
       .filter-panel,
       .portfolio-file-list { grid-template-columns: 1fr; }
 
@@ -1112,65 +983,16 @@
         </section>
       </aside>
 
-      <!-- 포트폴리오 영역: 대표 포트폴리오와 테스트케이스 샘플 -->
+      <!-- 포트폴리오 영역: 작업물과 테스트케이스 샘플 -->
       <section class="stack">
-        <!-- 대표 포트폴리오 영역 -->
+        <!-- 포트폴리오 영역 -->
         <section class="card" id="portfolio">
-          <div class="section-title">
-            <h2>대표 포트폴리오</h2>
-            <small>Project</small>
-          </div>
-
-          <!-- 대표 포트폴리오 항목: 프로젝트 설명 및 요약 수치 -->
-          <div class="featured-project">
-            <div class="featured-main">
-              <div class="featured-tags">
-                <span class="pill red">Main Portfolio</span>
-                <span class="pill blue">Game QA</span>
-                <span class="pill green">Automation-ready</span>
-              </div>
-              <h3>inZOI 캐릭터 커스터마이징 QA 설계</h3>
-              <p>
-                피부톤, 얼굴/체형 편집, 의상·헤어 선택, 저장/불러오기, UI 이동 및 예외 상황을 기준으로 기능 검증 범위와 테스트케이스를 설계한 포트폴리오입니다.
-              </p>
-              <ul class="featured-points">
-                <li>커스터마이징 기능별 테스트 범위와 검증 기준 정리</li>
-                <li>Steps와 Expected Result를 실행 가능한 형태로 작성</li>
-                <li>Airtest 자동화 후보 흐름과 수동 검증 대상을 분리</li>
-              </ul>
-            </div>
-
-            <aside class="featured-side" aria-label="대표 포트폴리오 요약 수치">
-              <div class="metric-grid">
-                <div class="metric"><strong>36</strong><span>테스트케이스</span></div>
-                <div class="metric"><strong>9</strong><span>검증 컴포넌트</span></div>
-                <div class="metric"><strong>12</strong><span>High Priority</span></div>
-                <div class="metric"><strong>18</strong><span>자동화 후보</span></div>
-              </div>
-            </aside>
-          </div>
-
-          <!-- 대표 포트폴리오 항목: 산출물 카드 -->
-          <div class="deliverables" aria-label="대표 포트폴리오 산출물">
-            <div class="deliverable">
-              <strong>Test Strategy</strong>
-              <span>테스트 범위, 우선순위, 리스크, 종료 기준 정리</span>
-            </div>
-            <div class="deliverable">
-              <strong>Test Cases</strong>
-              <span>실행 절차와 기대 결과를 검증 가능하게 작성</span>
-            </div>
-            <div class="deliverable">
-              <strong>Automation Mapping</strong>
-              <span>Airtest 적용 가능 흐름과 이미지 기준점 분리</span>
-            </div>
-          </div>
 
           <!-- 다른 포트폴리오 영역 -->
           <div class="portfolio-more" aria-label="다른 포트폴리오">
             <div class="portfolio-more-head">
               <div>
-                <h4>다른 포트폴리오</h4>
+                <h4>포트폴리오</h4>
                 
               </div>
               <span class="portfolio-count" id="portfolioFileCount">3 Files</span>
@@ -1179,7 +1001,7 @@
             <div class="portfolio-grid">
               <div class="portfolio-group excel-group" data-portfolio-group>
                 <div class="portfolio-group-title">
-                  <strong>Excel TC</strong>
+                  <strong>테스트케이스</strong>
                   <span class="file-badge excel">Excel</span>
                 </div>
 
@@ -1325,22 +1147,6 @@
   </div>
 
   <script>
-    /* 미리보기 이미지 대체 경로 처리 */
-    function loadPreviewFallback(img) {
-      const tried = Number(img.dataset.tried || 0);
-      const fallbacks = (img.dataset.fallbacks || "").split("|").filter(Boolean);
-
-      if (tried < fallbacks.length) {
-        img.dataset.tried = String(tried + 1);
-        img.src = `${fallbacks[tried]}?v=20260516-${tried}`;
-        return;
-      }
-
-      img.style.display = "none";
-      if (img.nextElementSibling) {
-        img.nextElementSibling.style.display = "flex";
-      }
-    }
 
     /* JSON 데이터 경로: 프로필, 경력, 교육 및 활동, 테스트케이스 */
     const PROFILE_DATA_PATH = "./assets/data/profile.json";
