@@ -403,7 +403,6 @@
     .priority-high { background: #ffebe6; color: #de350b; }
     .priority-medium { background: #fff4e5; color: #974f0c; }
     .priority-low { background: #e3fcef; color: #006644; }
-    .priority-lowest { background: #e3fcef; color: #00875a; }
 
     /* 이력 영역: 프로필, 핵심 역량, 경력, 교육 및 활동 */
 
@@ -817,7 +816,7 @@
     /* 테스트케이스 검색 및 필터 영역 */
     .filter-panel {
       display: grid;
-      grid-template-columns: minmax(175px, 1.15fr) minmax(95px, 0.65fr) minmax(122px, 0.8fr) minmax(96px, 0.65fr) minmax(145px, 0.9fr);
+      grid-template-columns: minmax(190px, 1.2fr) minmax(120px, 0.75fr) minmax(150px, 0.9fr) minmax(120px, 0.7fr);
       gap: 8px;
       margin-bottom: 14px;
     }
@@ -846,6 +845,175 @@
     select:focus {
       border-color: var(--primary);
       box-shadow: 0 0 0 4px rgba(31, 78, 140, 0.12);
+    }
+
+
+    /* 커스텀 정렬/필터 드롭다운: 기본 select의 각진 목록 대신 둥근 패널로 표시 */
+    .native-select-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .custom-select {
+      position: relative;
+      min-width: 0;
+      z-index: 5;
+    }
+
+    .custom-select.is-open {
+      z-index: 30;
+    }
+
+    .custom-select-button {
+      width: 100%;
+      min-width: 0;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 12px 36px 12px 13px;
+      font: inherit;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text);
+      background: #fff;
+      outline: none;
+      cursor: pointer;
+      text-align: left;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      box-shadow: 0 8px 18px rgba(27, 31, 35, 0.025);
+      transition: border-color 0.16s ease, box-shadow 0.16s ease, background 0.16s ease;
+    }
+
+    .custom-select-button .option-row {
+      min-width: 0;
+      padding-right: 2px;
+    }
+
+    .custom-select-button .option-count {
+      display: none;
+    }
+
+    .custom-select-button::after {
+      content: "";
+      position: absolute;
+      right: 14px;
+      top: 50%;
+      width: 8px;
+      height: 8px;
+      border-right: 2px solid #7a8594;
+      border-bottom: 2px solid #7a8594;
+      transform: translateY(-65%) rotate(45deg);
+      transition: transform 0.16s ease;
+      pointer-events: none;
+    }
+
+    .custom-select.is-open .custom-select-button,
+    .custom-select-button:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 4px rgba(31, 78, 140, 0.12);
+    }
+
+    .custom-select.is-open .custom-select-button::after {
+      transform: translateY(-30%) rotate(225deg);
+    }
+
+    .custom-select-menu {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: calc(100% + 7px);
+      display: none;
+      max-height: 240px;
+      overflow-y: auto;
+      padding: 7px;
+      border: 1px solid rgba(31, 78, 140, 0.14);
+      border-radius: 18px;
+      background: #fff;
+      box-shadow: 0 18px 38px rgba(27, 31, 35, 0.13);
+    }
+
+    .custom-select.is-open .custom-select-menu {
+      display: grid;
+      gap: 4px;
+      animation: dropdownSoftOpen 0.14s ease-out;
+    }
+
+    .custom-select-option {
+      width: 100%;
+      border: 0;
+      border-radius: 13px;
+      padding: 10px 11px;
+      background: transparent;
+      color: var(--text);
+      font: inherit;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 1.25;
+      text-align: left;
+      cursor: pointer;
+      transition: background 0.14s ease, color 0.14s ease;
+    }
+
+    .option-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .option-label {
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .option-count {
+      flex: 0 0 auto;
+      min-width: 24px;
+      padding: 2px 7px;
+      border-radius: 999px;
+      background: #f2f4f8;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 900;
+      text-align: center;
+    }
+
+    .custom-select-option:hover .option-count,
+    .custom-select-option:focus .option-count,
+    .custom-select-option.is-selected .option-count {
+      background: #fff;
+      color: var(--primary-dark);
+    }
+
+    .custom-select-option:hover,
+    .custom-select-option:focus {
+      background: var(--primary-soft);
+      color: var(--primary-dark);
+      outline: none;
+    }
+
+    .custom-select-option.is-selected {
+      background: var(--primary-soft);
+      color: var(--primary-dark);
+      font-weight: 900;
+    }
+
+    @keyframes dropdownSoftOpen {
+      from {
+        opacity: 0;
+        transform: translateY(-4px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .tc-list { display: grid; gap: 10px; }
@@ -1201,7 +1369,7 @@
                 <h4>포트폴리오</h4>
                 
               </div>
-              <span class="portfolio-count" id="portfolioFileCount">3 Files</span>
+              <span class="portfolio-count" id="portfolioFileCount">4 Files</span>
             </div>
 
             <div class="portfolio-grid">
@@ -1240,6 +1408,22 @@
                       <span class="portfolio-meta">
                         <span class="game-badge">MapleIdle</span>
                         <a class="portfolio-download-btn" href="./assets/tc/MapleIdle_tc/MapleIdle.tc.xlsx" download data-file-required aria-label="MapleIdle TC Excel 다운로드">다운로드</a>
+                      </span>
+                    </span>
+                  </div>
+
+                  <div class="portfolio-card">
+                    <span class="portfolio-thumb">
+                      <!-- 게임 이미지 교체 위치: 아래 src에 FC Online 대표 이미지를 넣어주세요. -->
+                      <img src="./assets/tc/fcOnline/fcOnline.png" alt="FC Online 게임 이미지" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                      <span class="portfolio-thumb-placeholder">FC Online<br />Game Image</span>
+                    </span>
+                    <span class="portfolio-body">
+                      <strong>FC Online TC</strong>
+                      <p>FC Online 테스트케이스 Excel 자료</p>
+                      <span class="portfolio-meta">
+                        <span class="game-badge">FC Online</span>
+                        <a class="portfolio-download-btn" href="./assets/tc/fcOnline/fcOnline_tc.xlsx" download data-file-required aria-label="FC Online TC Excel 다운로드">다운로드</a>
                       </span>
                     </span>
                   </div>
@@ -1290,32 +1474,13 @@
               <option value="all">전체 게임</option>
             </select>
 
-            <select id="componentFilter" aria-label="component filter">
-              <option value="all">전체 컴포넌트</option>
-              <option value="Start">Start</option>
-              <option value="Login">Login</option>
-              <option value="UI">UI</option>
-              <option value="Navigation">Navigation</option>
-              <option value="Option">Option</option>
-              <option value="Save">Save</option>
-              <option value="Reward">Reward</option>
-              <option value="Inventory">Inventory</option>
-              <option value="Shop">Shop</option>
-              <option value="Quest">Quest</option>
-              <option value="Battle">Battle</option>
-              <option value="Skill">Skill</option>
-              <option value="Growth">Growth</option>
-              <option value="Network">Network</option>
-              <option value="Exception">Exception</option>
-              <option value="Tutorial">Tutorial</option>
-              <option value="Localization">Localization</option>
-              <option value="Audio">Audio</option>
-              <option value="Graphics">Graphics</option>
-              <option value="Performance">Performance</option>
-              <option value="Skin">Skin</option>
-              <option value="Face">Face</option>
-              <option value="Hair">Hair</option>
-              <option value="Outfit">Outfit</option>
+            <select id="componentFilter" aria-label="test area filter">
+              <option value="all">검증 영역</option>
+              <option value="ui">UI / 화면</option>
+              <option value="character">캐릭터 / 외형</option>
+              <option value="battle">전투 / 성장</option>
+              <option value="reward">보상 / 재화</option>
+              <option value="system">시스템 / 예외</option>
             </select>
 
             <select id="priorityFilter" aria-label="priority filter">
@@ -1324,14 +1489,8 @@
               <option value="High">High</option>
               <option value="Medium">Medium</option>
               <option value="Low">Low</option>
-              <option value="Lowest">Lowest</option>
             </select>
 
-            <select id="automationFilter" aria-label="automation filter">
-              <option value="all">자동화 전체</option>
-              <option value="Yes">자동화 후보</option>
-              <option value="No">수동 검증</option>
-            </select>
           </div>
 
           <!-- 테스트케이스 샘플 항목: 카드 목록 -->
@@ -1408,8 +1567,7 @@
         Highest: "priority-highest",
         High: "priority-high",
         Medium: "priority-medium",
-        Low: "priority-low",
-        Lowest: "priority-lowest"
+        Low: "priority-low"
       };
 
       return priorityMap[priority] || "priority-medium";
@@ -1441,7 +1599,6 @@
     const gameFilter = document.getElementById("gameFilter");
     const componentFilter = document.getElementById("componentFilter");
     const priorityFilter = document.getElementById("priorityFilter");
-    const automationFilter = document.getElementById("automationFilter");
     const tcPagination = document.getElementById("tcPagination");
 
     /* 프로필, 경력, 교육 및 활동 데이터 불러오기 */
@@ -1555,6 +1712,181 @@
       }
     }
 
+
+    /* 테스트케이스 필터용 커스텀 드롭다운: 둥근 메뉴 UI */
+    function closeCustomSelects(except = null) {
+      document.querySelectorAll(".custom-select.is-open").forEach((customSelect) => {
+        if (customSelect !== except) {
+          customSelect.classList.remove("is-open");
+          customSelect.querySelector(".custom-select-button")?.setAttribute("aria-expanded", "false");
+        }
+      });
+    }
+
+    function getOptionLabel(option) {
+      return option?.dataset.label || option?.textContent || "선택";
+    }
+
+    function getOptionCount(option) {
+      return option?.dataset.count || "";
+    }
+
+    function createOptionRowHTML(label, count = "") {
+      const countHTML = count !== "" ? `<span class="option-count">${escapeHTML(count)}</span>` : "";
+      return `<span class="option-row"><span class="option-label">${escapeHTML(label)}</span>${countHTML}</span>`;
+    }
+
+    function refreshCustomSelect(select) {
+      const customSelect = select.nextElementSibling;
+      if (!customSelect || !customSelect.classList.contains("custom-select")) return;
+
+      const button = customSelect.querySelector(".custom-select-button");
+      const menu = customSelect.querySelector(".custom-select-menu");
+      const selectedOption = select.options[select.selectedIndex] || select.options[0];
+
+      if (button) {
+        button.innerHTML = selectedOption
+          ? createOptionRowHTML(getOptionLabel(selectedOption))
+          : createOptionRowHTML("선택");
+      }
+
+      if (menu) {
+        menu.innerHTML = Array.from(select.options).map((option) => {
+          const isSelected = option.value === select.value ? " is-selected" : "";
+          return `<button class="custom-select-option${isSelected}" type="button" data-value="${escapeHTML(option.value)}">${createOptionRowHTML(getOptionLabel(option), getOptionCount(option))}</button>`;
+        }).join("");
+      }
+    }
+
+    function setupCustomSelects() {
+      const selects = document.querySelectorAll(".filter-panel select");
+
+      selects.forEach((select) => {
+        select.classList.add("native-select-hidden");
+
+        let customSelect = select.nextElementSibling;
+
+        if (!customSelect || !customSelect.classList.contains("custom-select")) {
+          customSelect = document.createElement("div");
+          customSelect.className = "custom-select";
+          customSelect.innerHTML = `
+            <button class="custom-select-button" type="button" aria-haspopup="listbox" aria-expanded="false"></button>
+            <div class="custom-select-menu" role="listbox"></div>
+          `;
+          select.insertAdjacentElement("afterend", customSelect);
+        }
+
+        const button = customSelect.querySelector(".custom-select-button");
+        const menu = customSelect.querySelector(".custom-select-menu");
+
+        if (!customSelect.dataset.ready) {
+          button.addEventListener("click", () => {
+            const willOpen = !customSelect.classList.contains("is-open");
+            closeCustomSelects(customSelect);
+            customSelect.classList.toggle("is-open", willOpen);
+            button.setAttribute("aria-expanded", String(willOpen));
+          });
+
+          menu.addEventListener("click", (event) => {
+            const optionButton = event.target.closest("[data-value]");
+            if (!optionButton) return;
+
+            select.value = optionButton.dataset.value;
+            select.dispatchEvent(new Event("change", { bubbles: true }));
+            refreshCustomSelect(select);
+            closeCustomSelects();
+          });
+
+          select.addEventListener("change", () => refreshCustomSelect(select));
+          customSelect.dataset.ready = "true";
+        }
+
+        refreshCustomSelect(select);
+      });
+
+      if (!window.__customSelectOutsideClickReady) {
+        document.addEventListener("click", (event) => {
+          if (!event.target.closest(".custom-select")) {
+            closeCustomSelects();
+          }
+        });
+
+        document.addEventListener("keydown", (event) => {
+          if (event.key === "Escape") {
+            closeCustomSelects();
+          }
+        });
+
+        window.__customSelectOutsideClickReady = true;
+      }
+    }
+
+    function getFilterBaseCases(excludeFilter = "") {
+      const keyword = (searchInput?.value || "").trim().toLowerCase();
+      const game = excludeFilter === "game" ? "all" : (gameFilter?.value || "all");
+      const component = excludeFilter === "component" ? "all" : (componentFilter?.value || "all");
+      const priority = excludeFilter === "priority" ? "all" : (priorityFilter?.value || "all");
+
+      return testCases.filter((tc) => {
+        const matchesKeyword = [tc.game, tc.id, tc.title, tc.desc, tc.component, tc.priority]
+          .join(" ")
+          .toLowerCase()
+          .includes(keyword);
+
+        const matchesGame = game === "all" || tc.game === game;
+        const matchesComponent = component === "all" || getComponentGroup(tc.component) === component;
+        const matchesPriority = priority === "all" || tc.priority === priority;
+
+        return matchesKeyword && matchesGame && matchesComponent && matchesPriority;
+      });
+    }
+
+    function setOptionBaseLabels(select) {
+      if (!select) return;
+
+      Array.from(select.options).forEach((option) => {
+        if (!option.dataset.label) {
+          option.dataset.label = option.textContent;
+        }
+      });
+    }
+
+    function updateFilterOptionCounts() {
+      setOptionBaseLabels(gameFilter);
+      setOptionBaseLabels(componentFilter);
+      setOptionBaseLabels(priorityFilter);
+
+      /*
+        필터 숫자 표시 기준:
+        - 전체 게임과 우선순위는 TC 데이터 값이 명확하므로 전체 TC 기준 고정 개수를 표시합니다.
+        - 검증 영역은 여러 세부 component를 큰 분류로 묶기 때문에 숫자가 어색해 보일 수 있어 표시하지 않습니다.
+        - 첫 번째 안내 옵션인 "전체 게임", "검증 영역", "우선순위"에는 숫자를 표시하지 않습니다.
+      */
+      Array.from(componentFilter?.options || []).forEach((option) => {
+        option.dataset.count = "";
+      });
+
+      const gameCounts = testCases.reduce((acc, tc) => {
+        acc[tc.game] = (acc[tc.game] || 0) + 1;
+        return acc;
+      }, {});
+
+      Array.from(gameFilter?.options || []).forEach((option) => {
+        option.dataset.count = option.value === "all" ? "" : String(gameCounts[option.value] || 0);
+      });
+
+      const priorityCounts = testCases.reduce((acc, tc) => {
+        acc[tc.priority] = (acc[tc.priority] || 0) + 1;
+        return acc;
+      }, {});
+
+      Array.from(priorityFilter?.options || []).forEach((option) => {
+        option.dataset.count = option.value === "all" ? "" : String(priorityCounts[option.value] || 0);
+      });
+
+      [gameFilter, componentFilter, priorityFilter].filter(Boolean).forEach(refreshCustomSelect);
+    }
+
     /* 테스트케이스 샘플 불러오기와 카드 표시 */
     async function loadTestCases() {
       try {
@@ -1579,7 +1911,9 @@
       }
 
       populateGameFilter();
+      updateFilterOptionCounts();
       renderCases();
+      setupCustomSelects();
     }
 
     function populateGameFilter() {
@@ -1618,13 +1952,47 @@
       `;
     }
 
+    function getComponentGroup(component) {
+      const componentName = String(component || "").trim();
+      const groupMap = {
+        UI: "ui",
+        Navigation: "ui",
+        Option: "ui",
+        Tutorial: "ui",
+        Localization: "ui",
+        Audio: "ui",
+        Graphics: "ui",
+        Performance: "ui",
+
+        Skin: "character",
+        Face: "character",
+        Hair: "character",
+        Outfit: "character",
+
+        Quest: "battle",
+        Battle: "battle",
+        Skill: "battle",
+        Growth: "battle",
+
+        Reward: "reward",
+        Inventory: "reward",
+        Shop: "reward",
+
+        Start: "system",
+        Login: "system",
+        Save: "system",
+        Network: "system",
+        Exception: "system"
+      };
+
+      return groupMap[componentName] || "system";
+    }
+
     function getFilteredCases() {
       const keyword = (searchInput?.value || "").trim().toLowerCase();
       const game = gameFilter?.value || "all";
       const component = componentFilter?.value || "all";
       const priority = priorityFilter?.value || "all";
-      const automation = automationFilter?.value || "all";
-
       return testCases.filter((tc) => {
         const matchesKeyword = [tc.game, tc.id, tc.title, tc.desc, tc.component, tc.priority]
           .join(" ")
@@ -1632,11 +2000,9 @@
           .includes(keyword);
 
         const matchesGame = game === "all" || tc.game === game;
-        const matchesComponent = component === "all" || tc.component === component;
+        const matchesComponent = component === "all" || getComponentGroup(tc.component) === component;
         const matchesPriority = priority === "all" || tc.priority === priority;
-        const matchesAutomation = automation === "all" || tc.automation === automation;
-
-        return matchesKeyword && matchesGame && matchesComponent && matchesPriority && matchesAutomation;
+        return matchesKeyword && matchesGame && matchesComponent && matchesPriority;
       });
     }
 
@@ -1664,6 +2030,7 @@
     function renderCases() {
       if (!list || !emptyState) return;
 
+      updateFilterOptionCounts();
       const filtered = getFilteredCases();
       const totalPages = Math.max(1, Math.ceil(filtered.length / TC_PAGE_SIZE));
       currentPage = Math.min(Math.max(currentPage, 1), totalPages);
@@ -1678,7 +2045,7 @@
     }
 
     /* 검색, 필터, 페이지 번호 클릭 이벤트 연결 */
-    [searchInput, gameFilter, componentFilter, priorityFilter, automationFilter]
+    [searchInput, gameFilter, componentFilter, priorityFilter]
       .filter(Boolean)
       .forEach((el) => {
         el.addEventListener("input", () => {
