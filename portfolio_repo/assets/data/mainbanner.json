@@ -1,17 +1,17 @@
 [
   {
-    "title": "첫 번째 사진 제목",
-    "content": "첫 번째 사진 설명을 입력하세요.",
+    "title": "2026 플레이엑스포",
+    "content": "플레이엑스포 5/22",
+    "fit": "cover" 
+  },
+  {
+    "title": "2026 플레이엑스포",
+    "content": "플레이엑스포 5/22",
     "fit": "cover"
   },
   {
-    "title": "두 번째 사진 제목",
-    "content": "두 번째 사진 설명을 입력하세요.",
-    "fit": "cover"
-  },
-  {
-    "title": "세 번째 사진 제목",
-    "content": "세 번째 사진 설명을 입력하세요.",
+    "title": "U Day Seoul 2024",
+    "content": "UDay seoul 5/22,23",
     "fit": "contain"
   }
 ]
