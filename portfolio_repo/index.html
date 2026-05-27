@@ -173,7 +173,56 @@
       letter-spacing: -0.03em;
       line-height: 1.28;
       color: rgba(255,255,255,0.94);
-      margin: 0 0 26px;
+      margin: 0 0 20px;
+    }
+
+    .hero-background-icons {
+      position: absolute;
+      right: -8px;
+      bottom: 8px;
+      width: 200px;
+      height: 124px;
+      pointer-events: none;
+      z-index: -1;
+      opacity: 0.16;
+    }
+
+    .hero-bg-icon {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 76px;
+      height: 76px;
+      pointer-events: none;
+    }
+
+    .hero-bg-icon.keyboard {
+      left: 0;
+      top: 18px;
+      transform: rotate(-10deg);
+    }
+
+    .hero-bg-icon.mouse {
+      right: 4px;
+      top: 2px;
+      transform: rotate(8deg);
+    }
+
+    .hero-bg-icon.controller {
+      left: 68px;
+      bottom: -2px;
+      transform: rotate(10deg);
+    }
+
+    .hero-bg-icon svg {
+      width: 38px;
+      height: 38px;
+      stroke: rgba(255,255,255,0.96);
+      fill: none;
+      stroke-width: 1.7;
+      stroke-linecap: round;
+      stroke-linejoin: round;
     }
 
     .hero-actions {
@@ -507,8 +556,10 @@
     }
 
     .tool-item.vscode { background: #007ACC; }
+    .tool-item.github { background: #6f5fb8; }
     .tool-item.unity { background: #6B46C1; }
     .tool-item.blackspace { background: #111827; }
+    .tool-item.obs { background: #3b4048; }
     .tool-item.confluence { background: #172B4D; }
     .tool-item.jira { background: #0052CC; }
 
@@ -777,6 +828,44 @@
       border-color: rgba(39, 115, 90, 0.18);
     }
 
+
+
+    /* 포트폴리오 자료 우선순위 배지: Jira 우선순위 아이콘 색상을 참고해 옅은 톤으로 구분 */
+    .portfolio-priority-badge {
+      border-width: 1px;
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.35);
+    }
+
+    .portfolio-priority-badge.priority-highest {
+      background: #fff1f2;
+      color: #b33a3a;
+      border-color: rgba(179, 58, 58, 0.16);
+    }
+
+    .portfolio-priority-badge.priority-high {
+      background: #fff4f4;
+      color: #c34a4a;
+      border-color: rgba(195, 74, 74, 0.16);
+    }
+
+    .portfolio-priority-badge.priority-medium {
+      background: #fff7ed;
+      color: #b85f1f;
+      border-color: rgba(184, 95, 31, 0.16);
+    }
+
+    .portfolio-priority-badge.priority-low {
+      background: #f0f6ff;
+      color: #3f73c5;
+      border-color: rgba(63, 115, 197, 0.16);
+    }
+
+    .portfolio-priority-badge.priority-lowest {
+      background: #eef5ff;
+      color: #4f7fd1;
+      border-color: rgba(79, 127, 209, 0.14);
+    }
+
     .file-badge.excel {
       background: rgba(255, 255, 255, 0.72);
       color: #217346;
@@ -873,6 +962,20 @@
       border-color: rgba(31, 78, 140, 0.34);
     }
 
+
+
+
+    /* 버그리포트 및 개선안 설명: 한 줄 요약 표시 */
+    .portfolio-card[data-report-card] .portfolio-body p {
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      line-height: 1.5;
+      word-break: keep-all;
+      overflow-wrap: anywhere;
+    }
 
     /* 테스트케이스 검색 및 필터 영역 */
     .filter-panel {
@@ -1209,6 +1312,10 @@
         font-size: 24px;
       }
 
+      .hero-background-icons {
+        display: none;
+      }
+
       .hero-media {
         height: 300px;
         min-height: 260px;
@@ -1232,6 +1339,234 @@
         gap: 2px;
       }
     }
+
+
+    /* 전체 톤 조정: 큰 레이아웃은 유지하고 색의 진하기만 차분하게 정리 */
+    :root {
+      --bg: #fbfcff;
+      --surface: #ffffff;
+      --text: #252b36;
+      --muted: #6f7785;
+      --line: #e5ebf3;
+      --primary: #2f5f95;
+      --primary-dark: #284966;
+      --primary-soft: #f0f6ff;
+      --blue-soft: #f3f7fd;
+      --green-soft: #f2faf6;
+      --yellow-soft: #fff8e8;
+      --shadow: 0 14px 34px rgba(30, 43, 62, 0.065);
+    }
+
+    body {
+      background: radial-gradient(circle at top left, #f0f6ff 0, transparent 34%), var(--bg);
+    }
+
+    .brand-mark {
+      background: linear-gradient(135deg, #2f5f95, #86b6dc);
+      box-shadow: 0 10px 24px rgba(47, 95, 149, 0.20);
+    }
+
+    .nav a {
+      background: rgba(255, 255, 255, 0.82);
+      border-color: #e5ebf3;
+      color: #747d8c;
+    }
+
+    .nav a:hover {
+      background: #f0f6ff;
+      color: #284966;
+      border-color: rgba(47, 95, 149, 0.18);
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #2f5f95 0%, #4f86b8 54%, #9ec9e7 100%);
+      box-shadow: 0 16px 38px rgba(30, 43, 62, 0.075);
+    }
+
+    .hero-actions a {
+      color: #284966;
+    }
+
+    .hero-actions a.secondary {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: rgba(255, 255, 255, 0.28);
+    }
+
+    .card {
+      border-color: #e5ebf3;
+      box-shadow: 0 10px 28px rgba(30, 43, 62, 0.038);
+    }
+
+    .pill {
+      background: #f4f6f9;
+      color: #566171;
+    }
+
+    .pill.red { background: #f0f6ff; color: #2f5f95; }
+    .pill.blue { background: #f3f7fd; color: #3d6f9f; }
+    .pill.green { background: #f2faf6; color: #34765a; }
+    .pill.yellow { background: #fff8e8; color: #8a640f; }
+
+    .tool-item {
+      box-shadow: 0 8px 18px rgba(30, 43, 62, 0.06);
+    }
+
+    .tool-item.vscode { background: #2d86bd; }
+    .tool-item.github { background: #6f5fb8; }
+    .tool-item.unity { background: #7564b6; }
+    .tool-item.blackspace { background: #2f3542; }
+    .tool-item.obs { background: #3b4048; }
+    .tool-item.jira { background: #2f68b8; }
+    .tool-item.confluence { background: #27476f; }
+
+    .portfolio-count {
+      background: #f4f6f9;
+      color: #6f7785;
+    }
+
+    .portfolio-group {
+      border-color: #e5ebf3;
+      background: linear-gradient(135deg, #ffffff 0%, #fbfcff 100%);
+    }
+
+    .portfolio-group.excel-group {
+      border-color: rgba(52, 118, 86, 0.12);
+      background:
+        linear-gradient(135deg, rgba(52, 118, 86, 0.055) 0%, rgba(52, 118, 86, 0.024) 38%, rgba(255, 255, 255, 0.98) 78%, #ffffff 100%);
+    }
+
+    .portfolio-group.ppt-group {
+      border-color: rgba(179, 94, 59, 0.12);
+      background:
+        linear-gradient(135deg, rgba(179, 94, 59, 0.052) 0%, rgba(179, 94, 59, 0.024) 38%, rgba(255, 255, 255, 0.98) 78%, #ffffff 100%);
+    }
+
+    .portfolio-group.pdf-group {
+      border-color: rgba(93, 90, 168, 0.13);
+      background:
+        linear-gradient(135deg, rgba(93, 90, 168, 0.055) 0%, rgba(93, 90, 168, 0.024) 38%, rgba(255, 255, 255, 0.98) 78%, #ffffff 100%);
+    }
+
+    .portfolio-card,
+    .tc-card {
+      border-color: #e6ebf2;
+      box-shadow: 0 8px 20px rgba(30, 43, 62, 0.02);
+    }
+
+    .portfolio-card:hover {
+      border-color: rgba(47, 95, 149, 0.18);
+      box-shadow: 0 10px 22px rgba(30, 43, 62, 0.04);
+    }
+
+    .game-badge {
+      background: #f6f8fb;
+      color: #566171;
+      border-color: #e6ebf2;
+    }
+
+    .file-badge.excel {
+      background: rgba(255, 255, 255, 0.78);
+      color: #347656;
+      border-color: rgba(52, 118, 86, 0.16);
+    }
+
+    .file-badge.powerpoint {
+      background: rgba(255, 255, 255, 0.78);
+      color: #a85a38;
+      border-color: rgba(168, 90, 56, 0.16);
+    }
+
+    .file-badge.pdf {
+      background: rgba(255, 255, 255, 0.78);
+      color: #5d5aa8;
+      border-color: rgba(93, 90, 168, 0.18);
+    }
+
+    .portfolio-download-btn,
+    .pdf-view-btn {
+      background: #f0f6ff;
+      color: #2f5f95;
+      border-color: rgba(47, 95, 149, 0.16);
+    }
+
+    .portfolio-download-btn:hover,
+    .pdf-view-btn:hover {
+      background: #e7f1ff;
+      border-color: rgba(47, 95, 149, 0.26);
+    }
+
+    .report-type-badge.bug-report {
+      background: #fff5f4;
+      color: #8e403a;
+      border-color: rgba(142, 64, 58, 0.15);
+    }
+
+    .report-type-badge.improvement {
+      background: #f1f8f4;
+      color: #34765a;
+      border-color: rgba(52, 118, 90, 0.15);
+    }
+
+    .portfolio-priority-badge.priority-highest {
+      background: #fff1f2;
+      color: #b33a3a;
+      border-color: rgba(179, 58, 58, 0.14);
+    }
+
+    .portfolio-priority-badge.priority-high {
+      background: #fff4f4;
+      color: #c34a4a;
+      border-color: rgba(195, 74, 74, 0.14);
+    }
+
+    .portfolio-priority-badge.priority-medium {
+      background: #fff7ed;
+      color: #b85f1f;
+      border-color: rgba(184, 95, 31, 0.14);
+    }
+
+    .portfolio-priority-badge.priority-low {
+      background: #f0f6ff;
+      color: #3f73c5;
+      border-color: rgba(63, 115, 197, 0.14);
+    }
+
+    .portfolio-priority-badge.priority-lowest {
+      background: #eef5ff;
+      color: #4f7fd1;
+      border-color: rgba(79, 127, 209, 0.12);
+    }
+
+    .priority-highest { background: #fff1f2; color: #b33a3a; }
+    .priority-high { background: #fff4f4; color: #c34a4a; }
+    .priority-medium { background: #fff7ed; color: #b85f1f; }
+    .priority-low { background: #f0f6ff; color: #3f73c5; }
+    .priority-lowest { background: #eef5ff; color: #4f7fd1; }
+
+    input,
+    select,
+    .custom-select-button {
+      border-color: #e5ebf3;
+      background: #ffffff;
+    }
+
+    input:focus,
+    select:focus,
+    .custom-select.is-open .custom-select-button,
+    .custom-select-button:focus {
+      border-color: #2f5f95;
+      box-shadow: 0 0 0 4px rgba(47, 95, 149, 0.10);
+    }
+
+    .custom-select-option:hover,
+    .custom-select-option:focus,
+    .custom-select-option.is-selected,
+    .page-btn:hover,
+    .page-btn.active {
+      background: #f0f6ff;
+      color: #284966;
+    }
+
   </style>
 </head>
 
@@ -1260,6 +1595,35 @@
           회사의 기준으로 완성도를 높이는<br />
           QA를 지향합니다.
         </p>
+
+        <div class="hero-background-icons" aria-hidden="true">
+          <span class="hero-bg-icon keyboard">
+            <svg viewBox="0 0 24 24" focusable="false">
+              <rect x="2.5" y="6" width="19" height="12" rx="2.8"></rect>
+              <path d="M6.5 10.5h3"></path>
+              <path d="M8 9v3"></path>
+              <path d="M14.5 10.5h0.01"></path>
+              <path d="M17.5 10.5h0.01"></path>
+              <path d="M6 14.5h12"></path>
+            </svg>
+          </span>
+          <span class="hero-bg-icon mouse">
+            <svg viewBox="0 0 24 24" focusable="false">
+              <path d="M12 3.5c-2.9 0-5 2.23-5 5.1v6.8c0 2.87 2.1 5.1 5 5.1s5-2.23 5-5.1V8.6c0-2.87-2.1-5.1-5-5.1Z"></path>
+              <path d="M12 7.3v4.1"></path>
+              <path d="M12 20.5v-2.2"></path>
+            </svg>
+          </span>
+          <span class="hero-bg-icon controller">
+            <svg viewBox="0 0 24 24" focusable="false">
+              <path d="M7 9.5 5.4 12l1.6 2.5h2.1l1.8-1.3h2.2l1.8 1.3H17l1.6-2.5L17 9.5h-2.1l-1.8 1.3h-2.2L9.1 9.5Z"></path>
+              <path d="M8.1 12H5.9"></path>
+              <path d="M7 10.9v2.2"></path>
+              <path d="M16.6 11.1h0.01"></path>
+              <path d="M18.1 12.7h0.01"></path>
+            </svg>
+          </span>
+        </div>
 
         <!-- 메인 소개 버튼: 포트폴리오, TC 샘플, PDF 이력서 -->
         <div class="hero-actions">
@@ -1356,8 +1720,10 @@
           <!-- 사용 툴 항목: 핵심 역량 태그처럼 툴 이름에 대표 배경색 적용 -->
           <div class="tool-grid" aria-label="사용 툴 목록">
             <span class="tool-item vscode">VS Code</span>
+            <span class="tool-item github">GitHub</span>
             <span class="tool-item unity">Unity</span>
             <span class="tool-item blackspace">Black Space</span>
+            <span class="tool-item obs">OBS</span>
             <span class="tool-item jira">Jira</span>
             <span class="tool-item confluence">Confluence Wiki</span>
           </div>
@@ -1419,7 +1785,7 @@
                 <h4>포트폴리오</h4>
                 
               </div>
-              <span class="portfolio-count" id="portfolioFileCount">8 Files</span>
+              <span class="portfolio-count" id="portfolioFileCount">9 Files</span>
             </div>
 
             <div class="portfolio-grid">
@@ -1518,14 +1884,28 @@
                     <span class="portfolio-body">
                       <strong>[INZOI-1] 조이가 이동하는 자동차와 충돌 시 자동차와 같이 이동되는 현상</strong>
                       <p>
-                        이동 중인 자동차와 충돌 시 조이가 자동차에 밀리며
-                        함께 이동되는 현상을 정리한 PDF 자료
+                        이동 중인 자동차와 충돌 시 조이가 자동차에 밀려 함께 이동되는 현상입니다.
                       </p>
                       <span class="portfolio-meta">
                         <span class="game-badge">inZOI</span>
                         <span class="game-badge report-type-badge bug-report">버그리포트</span>
-                        <span class="game-badge">Medium</span>
+                        <span class="game-badge portfolio-priority-badge priority-medium">Medium</span>
                         <a class="portfolio-download-btn pdf-view-btn" href="./assets/tc/inZOI_tc/inZOI_report1.pdf" target="_blank" rel="noopener" data-file-required aria-label="INZOI-1 inZOI 버그리포트 PDF 보기">PDF 보기</a>
+                      </span>
+                    </span>
+                  </div>
+
+                  <div class="portfolio-card" data-report-card>
+                    <span class="portfolio-body">
+                      <strong>[INZOI-2] 보닛 앞에서 셀카 촬영 시 핸드폰에 조이의 셀카가 나오지 않는 현상</strong>
+                      <p>
+                        보닛 앞에서 셀카 촬영 시 핸드폰 화면에 조이가 아닌 배경화면이 출력되는 현상입니다.
+                      </p>
+                      <span class="portfolio-meta">
+                        <span class="game-badge">inZOI</span>
+                        <span class="game-badge report-type-badge bug-report">버그리포트</span>
+                        <span class="game-badge portfolio-priority-badge priority-low">Low</span>
+                        <a class="portfolio-download-btn pdf-view-btn" href="./assets/tc/inZOI_tc/inZOI_report2.pdf" target="_blank" rel="noopener" data-file-required aria-label="INZOI-2 inZOI 버그리포트 PDF 보기">PDF 보기</a>
                       </span>
                     </span>
                   </div>
@@ -1534,13 +1914,12 @@
                     <span class="portfolio-body">
                       <strong>[OPS-25] 감독모드 경기 중 진행상황이 노출되지 않는 현상</strong>
                       <p>
-                        감독모드 경기 중 진행상황 및 선수 정보가<br class="desktop-break" />
-                        정상 노출되지 않는 현상을 정리한 PDF 자료
+                        감독모드 경기 중 선수 정보와 경기 진행상황이 정상 노출되지 않는 현상입니다.
                       </p>
                       <span class="portfolio-meta">
                         <span class="game-badge">FC Online</span>
                         <span class="game-badge report-type-badge bug-report">버그리포트</span>
-                        <span class="game-badge">Medium</span>
+                        <span class="game-badge portfolio-priority-badge priority-medium">Medium</span>
                         <a class="portfolio-download-btn pdf-view-btn" href="./assets/tc/fcOnline/fcOnline_report1.pdf" target="_blank" rel="noopener" data-file-required aria-label="OPS-25 FC Online 버그리포트 PDF 보기">PDF 보기</a>
                       </span>
                     </span>
@@ -1550,13 +1929,12 @@
                     <span class="portfolio-body">
                       <strong>[OPS-22] 감독모드 매치가 잡힌 직후 취소버튼을 누르면 메인화면으로 이동되는 현상</strong>
                       <p>
-                        감독모드 매치 직후 취소 시 메인화면으로<br class="desktop-break" />
-                        이동되는 현상을 정리한 PDF 자료
+                        감독모드 매칭 직후 취소 시 메인화면으로 이동 가능한 현상입니다.
                       </p>
                       <span class="portfolio-meta">
                         <span class="game-badge">FC Online</span>
                         <span class="game-badge report-type-badge bug-report">버그리포트</span>
-                        <span class="game-badge">Medium</span>
+                        <span class="game-badge portfolio-priority-badge priority-medium">Medium</span>
                         <a class="portfolio-download-btn pdf-view-btn" href="./assets/tc/fcOnline/fcOnline_report2.pdf" target="_blank" rel="noopener" data-file-required aria-label="OPS-22 FC Online 버그리포트 PDF 보기">PDF 보기</a>
                       </span>
                     </span>
@@ -1566,13 +1944,12 @@
                     <span class="portfolio-body">
                       <strong>[OPS-26] 중거리 프리킥 진행 시 패스미스 빈도가 높다고 느낄 수 있는 현상</strong>
                       <p>
-                        중거리 프리킥 진행 시 패스미스 빈도가 높게<br class="desktop-break" />
-                        느껴질 수 있는 지점과 개선 방향을 정리한 PDF 자료
+                        중거리 프리킥 진행 시 패스미스 빈도가 높다고 느낄 수 있는 현상입니다.
                       </p>
                       <span class="portfolio-meta">
                         <span class="game-badge">FC Online</span>
                         <span class="game-badge report-type-badge improvement">개선안</span>
-                        <span class="game-badge">Medium</span>
+                        <span class="game-badge portfolio-priority-badge priority-medium">Medium</span>
                         <a class="portfolio-download-btn pdf-view-btn" href="./assets/tc/fcOnline/fcOnline_report3.pdf" target="_blank" rel="noopener" data-file-required aria-label="OPS-26 FC Online 개선안 PDF 보기">PDF 보기</a>
                       </span>
                     </span>
