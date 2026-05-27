@@ -1419,7 +1419,7 @@
                 <h4>포트폴리오</h4>
                 
               </div>
-              <span class="portfolio-count" id="portfolioFileCount">7 Files</span>
+              <span class="portfolio-count" id="portfolioFileCount">8 Files</span>
             </div>
 
             <div class="portfolio-grid">
@@ -1433,7 +1433,7 @@
                   <div class="portfolio-card">
                     <span class="portfolio-thumb">
                       <!-- 게임 이미지 교체 위치: 아래 src에 inZOI 대표 이미지를 넣어주세요. -->
-                      <img src="./assets/tc/inZOI_TC/inZOI.jpg" alt="inZOI 게임 이미지" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                      <img src="./assets/tc/inZOI_tc/inZOI.jpg" alt="inZOI 게임 이미지" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
                       <span class="portfolio-thumb-placeholder">inZOI<br />Game Image</span>
                     </span>
                     <span class="portfolio-body">
@@ -1441,7 +1441,7 @@
                       <p>캐릭터 커스터마이징 테스트케이스 Excel 자료</p>
                       <span class="portfolio-meta">
                         <span class="game-badge">inZOI</span>
-                        <a class="portfolio-download-btn" href="./assets/tc/inZOI_TC/inZOI_TC.xlsx" download data-file-required aria-label="inZOI TC Excel 다운로드">다운로드</a>
+                        <a class="portfolio-download-btn" href="./assets/tc/inZOI_tc/inZOI_tc.xlsx" download data-file-required aria-label="inZOI TC Excel 다운로드">다운로드</a>
                       </span>
                     </span>
                   </div>
@@ -1516,6 +1516,22 @@
                 <div class="portfolio-file-list">
                   <div class="portfolio-card" data-report-card>
                     <span class="portfolio-body">
+                      <strong>[INZOI-1] 조이가 이동하는 자동차와 충돌 시 자동차와 같이 이동되는 현상</strong>
+                      <p>
+                        이동 중인 자동차와 충돌 시 조이가 자동차에 밀리며
+                        함께 이동되는 현상을 정리한 PDF 자료
+                      </p>
+                      <span class="portfolio-meta">
+                        <span class="game-badge">inZOI</span>
+                        <span class="game-badge report-type-badge bug-report">버그리포트</span>
+                        <span class="game-badge">Medium</span>
+                        <a class="portfolio-download-btn pdf-view-btn" href="./assets/tc/inZOI_tc/inZOI_report1.pdf" target="_blank" rel="noopener" data-file-required aria-label="INZOI-1 inZOI 버그리포트 PDF 보기">PDF 보기</a>
+                      </span>
+                    </span>
+                  </div>
+
+                  <div class="portfolio-card" data-report-card>
+                    <span class="portfolio-body">
                       <strong>[OPS-25] 감독모드 경기 중 진행상황이 노출되지 않는 현상</strong>
                       <p>
                         감독모드 경기 중 진행상황 및 선수 정보가<br class="desktop-break" />
@@ -1562,6 +1578,9 @@
                     </span>
                   </div>
                 </div>
+
+                <!-- 버그리포트 및 개선안 페이지 번호: 5개 초과 시 표시 -->
+                <div class="report-pagination" id="reportPagination" aria-label="버그리포트 및 개선안 페이지"></div>
               </div>
             </div>
           </div>
