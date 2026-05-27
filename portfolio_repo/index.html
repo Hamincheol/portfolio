@@ -481,42 +481,8 @@
       cursor: default;
     }
 
-    .github-link-wrap {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
 
-    .github-icon-link {
-      width: 30px;
-      height: 30px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      background: var(--primary-soft);
-      color: var(--primary-dark);
-      transition: transform 0.16s ease, border-color 0.16s ease, background 0.16s ease;
-    }
 
-    .github-icon-link:hover {
-      transform: translateY(-2px);
-      border-color: rgba(31, 78, 140, 0.35);
-      background: #fff;
-    }
-
-    .github-icon-link svg {
-      width: 17px;
-      height: 17px;
-      fill: currentColor;
-    }
-
-    .github-icon-link:not([href]) {
-      opacity: 0.45;
-      pointer-events: none;
-    }
 
 
     /* 사용 툴 영역: 핵심 역량 태그처럼 툴 이름 자체에 배경색 적용 */
@@ -660,6 +626,13 @@
         linear-gradient(135deg, rgba(210, 71, 38, 0.08) 0%, rgba(210, 71, 38, 0.035) 38%, rgba(255, 255, 255, 0.96) 78%, #ffffff 100%);
     }
 
+
+    .portfolio-group.pdf-group {
+      border-color: rgba(88, 80, 236, 0.14);
+      background:
+        linear-gradient(135deg, rgba(88, 80, 236, 0.09) 0%, rgba(88, 80, 236, 0.035) 38%, rgba(255, 255, 255, 0.96) 78%, #ffffff 100%);
+    }
+
     .portfolio-group-title {
       display: flex;
       align-items: center;
@@ -785,6 +758,25 @@
       color: #4b5563;
     }
 
+
+    /* 버그리포트 / 개선안 구분 배지: 가시성은 높이고 색감은 차분하게 유지 */
+    .report-type-badge {
+      border-width: 1px;
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.35);
+    }
+
+    .report-type-badge.bug-report {
+      background: #fff3f2;
+      color: #9f3a32;
+      border-color: rgba(159, 58, 50, 0.18);
+    }
+
+    .report-type-badge.improvement {
+      background: #eef7f3;
+      color: #27735a;
+      border-color: rgba(39, 115, 90, 0.18);
+    }
+
     .file-badge.excel {
       background: rgba(255, 255, 255, 0.72);
       color: #217346;
@@ -796,6 +788,75 @@
       background: rgba(255, 255, 255, 0.72);
       color: #d24726;
       border-color: rgba(210, 71, 38, 0.18);
+    }
+
+
+    .file-badge.pdf {
+      background: rgba(255, 255, 255, 0.72);
+      color: #4f46e5;
+      border-color: rgba(88, 80, 236, 0.22);
+    }
+
+    /* 버그리포트 및 개선안: 썸네일 미리보기 없이 문서 목록 형태로 정리 */
+    .pdf-group .portfolio-file-list {
+      grid-template-columns: 1fr;
+    }
+
+    .pdf-group .portfolio-card {
+      grid-template-columns: minmax(0, 1fr);
+      align-items: start;
+    }
+
+    .pdf-group .portfolio-thumb {
+      display: none;
+    }
+
+    .pdf-group .portfolio-body strong {
+      white-space: normal;
+      overflow: visible;
+      text-overflow: clip;
+      line-height: 1.35;
+    }
+
+    .pdf-group .portfolio-body p {
+      display: block;
+      -webkit-line-clamp: unset;
+      overflow: visible;
+      line-height: 1.55;
+      word-break: keep-all;
+    }
+
+    .pdf-group .portfolio-meta {
+      align-items: center;
+    }
+
+    .pdf-group .game-badge {
+      white-space: normal;
+      line-height: 1.25;
+      text-align: center;
+      word-break: keep-all;
+    }
+
+    .pdf-group .pdf-view-btn {
+      background: #f7f9fc;
+      color: #4f46e5;
+      border-color: rgba(88, 80, 236, 0.22);
+      white-space: nowrap;
+    }
+
+    .pdf-group .pdf-view-btn:hover {
+      background: rgba(88, 80, 236, 0.09);
+      border-color: rgba(88, 80, 236, 0.34);
+    }
+
+    .report-pagination {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 13px;
     }
 
     .portfolio-download-btn {
@@ -1159,6 +1220,8 @@
       .portfolio-card { grid-template-columns: 82px 1fr; }
       .portfolio-thumb { width: 82px; height: 58px; }
 
+      .desktop-break { display: none; }
+
       .portfolio-more-head {
         align-items: flex-start;
         flex-direction: column;
@@ -1278,19 +1341,6 @@
             <!-- 프로필 항목: 이메일 -->
             <li><span class="label">이메일</span><span class="value" data-profile="email">jka3200@naver.com</span></li>
 
-            <!-- 프로필 항목: GitHub 링크 -->
-            <li>
-              <span class="label">GitHub</span>
-              <span class="github-link-wrap">
-                <a class="github-icon-link" data-profile-link="github" data-profile-link-type="icon" aria-label="GitHub 바로가기" title="GitHub 바로가기">
-                  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                    <path d="M12 2C6.48 2 2 6.58 2 12.26c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-1.04-.01-1.89-2.78.62-3.37-1.21-3.37-1.21-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.63.07-.63 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.04 1.03-2.76-.1-.26-.45-1.31.1-2.72 0 0 .84-.28 2.75 1.05A9.3 9.3 0 0 1 12 6.99c.85 0 1.7.12 2.5.34 1.9-1.33 2.74-1.05 2.74-1.05.55 1.41.2 2.46.1 2.72.64.72 1.03 1.64 1.03 2.76 0 3.94-2.34 4.8-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.59.69.49A10.08 10.08 0 0 0 22 12.26C22 6.58 17.52 2 12 2Z" />
-                  </svg>
-                </a>
-                <a class="value profile-link" data-profile-link="github" data-profile-link-type="text" data-link-label="GitHub 바로가기">GitHub 바로가기</a>
-              </span>
-            </li>
-
             <!-- 프로필 항목: 공개하지 않을 개인정보
             <li><span class="label">공개 제외</span><span class="value">주소</span></li> -->
           </ul>
@@ -1369,7 +1419,7 @@
                 <h4>포트폴리오</h4>
                 
               </div>
-              <span class="portfolio-count" id="portfolioFileCount">4 Files</span>
+              <span class="portfolio-count" id="portfolioFileCount">7 Files</span>
             </div>
 
             <div class="portfolio-grid">
@@ -1433,7 +1483,7 @@
 
               <div class="portfolio-group ppt-group" data-portfolio-group>
                 <div class="portfolio-group-title">
-                  <strong>PPT 분석 자료</strong>
+                  <strong>게임 분석서</strong>
                   <span class="file-badge powerpoint">PPT</span>
                 </div>
 
@@ -1450,6 +1500,64 @@
                       <span class="portfolio-meta">
                         <span class="game-badge">Seven Knights</span>
                         <a class="portfolio-download-btn" href="./assets/analysis/seven_knights_rebirth/Seven%20Knights%20Rebirth(%EA%B2%8C%EC%9E%84%EB%B6%84%EC%84%9D%EC%84%9C).pptx" download data-file-required aria-label="Seven Knights Rebirth 게임분석서 PowerPoint 다운로드">다운로드</a>
+                      </span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="portfolio-group pdf-group" data-portfolio-group>
+                <div class="portfolio-group-title">
+                  <strong>버그리포트 및 개선안</strong>
+                  <span class="file-badge pdf">PDF</span>
+                </div>
+
+                <div class="portfolio-file-list">
+                  <div class="portfolio-card" data-report-card>
+                    <span class="portfolio-body">
+                      <strong>[OPS-25] 감독모드 경기 중 진행상황이 노출되지 않는 현상</strong>
+                      <p>
+                        감독모드 경기 중 진행상황 및 선수 정보가<br class="desktop-break" />
+                        정상 노출되지 않는 현상을 정리한 PDF 자료
+                      </p>
+                      <span class="portfolio-meta">
+                        <span class="game-badge">FC Online</span>
+                        <span class="game-badge report-type-badge bug-report">버그리포트</span>
+                        <span class="game-badge">Medium</span>
+                        <a class="portfolio-download-btn pdf-view-btn" href="./assets/analysis/fcOnline/fcOnline_report1.pdf" target="_blank" rel="noopener" data-file-required aria-label="OPS-25 FC Online 버그리포트 PDF 보기">PDF 보기</a>
+                      </span>
+                    </span>
+                  </div>
+
+                  <div class="portfolio-card" data-report-card>
+                    <span class="portfolio-body">
+                      <strong>[OPS-22] 감독모드 매치가 잡힌 직후 취소버튼을 누르면 메인화면으로 이동되는 현상</strong>
+                      <p>
+                        감독모드 매치 직후 취소 시 메인화면으로<br class="desktop-break" />
+                        이동되는 현상을 정리한 PDF 자료
+                      </p>
+                      <span class="portfolio-meta">
+                        <span class="game-badge">FC Online</span>
+                        <span class="game-badge report-type-badge bug-report">버그리포트</span>
+                        <span class="game-badge">Medium</span>
+                        <a class="portfolio-download-btn pdf-view-btn" href="./assets/analysis/fcOnline/fcOnline_report2.pdf" target="_blank" rel="noopener" data-file-required aria-label="OPS-22 FC Online 버그리포트 PDF 보기">PDF 보기</a>
+                      </span>
+                    </span>
+                  </div>
+
+                  <div class="portfolio-card" data-report-card>
+                    <span class="portfolio-body">
+                      <strong>[OPS-26] 중거리 프리킥 진행 시 패스미스 빈도가 높다고 느낄 수 있는 현상</strong>
+                      <p>
+                        중거리 프리킥 진행 시 패스미스 빈도가 높게<br class="desktop-break" />
+                        느껴질 수 있는 지점과 개선 방향을 정리한 PDF 자료
+                      </p>
+                      <span class="portfolio-meta">
+                        <span class="game-badge">FC Online</span>
+                        <span class="game-badge report-type-badge improvement">개선안</span>
+                        <span class="game-badge">Medium</span>
+                        <a class="portfolio-download-btn pdf-view-btn" href="./assets/analysis/fcOnline/fcOnline_report3.pdf" target="_blank" rel="noopener" data-file-required aria-label="OPS-26 FC Online 개선안 PDF 보기">PDF 보기</a>
                       </span>
                     </span>
                   </div>
@@ -1537,9 +1645,11 @@
     const TC_DATA_PATH = "./assets/data/tc_preview.json";
     const HERO_BANNER_TEXT_PATH = "./assets/data/mainbanner.json";
     const TC_PAGE_SIZE = 5;
+    const REPORT_PAGE_SIZE = 5;
 
     let testCases = [];
     let currentPage = 1;
+    let reportPage = 1;
 
     /* 공통 함수: 특수문자 처리, URL 정리, 우선순위 색상 */
     function escapeHTML(value) {
@@ -1616,29 +1726,6 @@
           const key = el.dataset.profile;
           if (profile[key]) {
             el.textContent = profile[key];
-          }
-        });
-
-        document.querySelectorAll("[data-profile-link]").forEach((el) => {
-          const key = el.dataset.profileLink;
-          const value = profile[key] || profile.githubUrl || "";
-          const url = normalizeExternalUrl(value);
-          const linkType = el.dataset.profileLinkType || "text";
-
-          if (value && linkType !== "icon") {
-            el.textContent = el.dataset.linkLabel || "GitHub 바로가기";
-          }
-
-          if (url) {
-            el.href = url;
-            el.target = "_blank";
-            el.rel = "noopener";
-            el.title = "GitHub 바로가기";
-          } else {
-            el.removeAttribute("href");
-            el.removeAttribute("target");
-            el.removeAttribute("rel");
-            el.title = "profile.json의 github 항목에 유효한 GitHub URL을 입력하면 바로가기가 활성화됩니다.";
           }
         });
 
@@ -2027,6 +2114,38 @@
       }).join("");
     }
 
+
+
+    function renderReportPagination() {
+      const reportPagination = document.getElementById("reportPagination");
+      const reportCards = Array.from(document.querySelectorAll("[data-report-card]"));
+      if (!reportPagination || !reportCards.length) return;
+
+      const totalCount = reportCards.length;
+      const totalPages = Math.ceil(totalCount / REPORT_PAGE_SIZE);
+      reportPage = Math.min(Math.max(reportPage, 1), Math.max(totalPages, 1));
+
+      reportCards.forEach((card, index) => {
+        const startIndex = (reportPage - 1) * REPORT_PAGE_SIZE;
+        const endIndex = startIndex + REPORT_PAGE_SIZE;
+        card.style.display = index >= startIndex && index < endIndex ? "grid" : "none";
+      });
+
+      if (totalCount <= REPORT_PAGE_SIZE) {
+        reportPagination.style.display = "none";
+        reportPagination.innerHTML = "";
+        return;
+      }
+
+      reportPagination.style.display = "flex";
+      reportPagination.innerHTML = Array.from({ length: totalPages }, (_, index) => {
+        const page = index + 1;
+        const divider = index === 0 ? "" : '<span class="page-divider">|</span>';
+        const activeClass = page === reportPage ? " active" : "";
+        return `${divider}<button class="page-btn${activeClass}" type="button" data-report-page="${page}">${page}</button>`;
+      }).join("");
+    }
+
     function renderCases() {
       if (!list || !emptyState) return;
 
@@ -2068,6 +2187,19 @@
       document.getElementById("testcases")?.scrollIntoView({ behavior: "smooth", block: "start" });
     });
 
+
+
+
+    document.getElementById("reportPagination")?.addEventListener("click", (event) => {
+      const pageButton = event.target.closest("[data-report-page]");
+      if (!pageButton) return;
+
+      reportPage = Number(pageButton.dataset.reportPage);
+      renderReportPagination();
+      document.querySelector(".pdf-group")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+
+    renderReportPagination();
 
     /* 다른 포트폴리오 표시 규칙: 다운로드 파일 경로가 비어 있거나 #이면 해당 항목 숨김 */
 
