@@ -2530,17 +2530,12 @@
 
       /*
         필터 숫자 표시 기준:
-        - 게임, 검증 영역, 우선순위 모두 실제 TC 데이터에 존재하는 값만 기준으로 개수를 표시합니다.
+        - 전체 게임과 우선순위는 TC 데이터 값이 명확하므로 전체 TC 기준 고정 개수를 표시합니다.
+        - 검증 영역은 여러 세부 component를 큰 분류로 묶기 때문에 숫자가 어색해 보일 수 있어 표시하지 않습니다.
         - 첫 번째 안내 옵션인 "전체 게임", "검증 영역", "우선순위"에는 숫자를 표시하지 않습니다.
       */
-      const componentCounts = testCases.reduce((acc, tc) => {
-        const group = getComponentGroup(tc.component);
-        acc[group] = (acc[group] || 0) + 1;
-        return acc;
-      }, {});
-
       Array.from(componentFilter?.options || []).forEach((option) => {
-        option.dataset.count = option.value === "all" ? "" : String(componentCounts[option.value] || 0);
+        option.dataset.count = "";
       });
 
       const gameCounts = testCases.reduce((acc, tc) => {
@@ -2588,7 +2583,6 @@
       }
 
       populateGameFilter();
-      populateComponentFilter();
       updateFilterOptionCounts();
       renderCases();
       setupCustomSelects();
@@ -2600,58 +2594,14 @@
       const selectedGame = gameFilter.value;
       const games = [...new Set(testCases.map((tc) => tc.game).filter(Boolean))].sort();
 
-      // 샘플 게임이 1개뿐이면 "전체 게임" 옵션을 노출하지 않고 해당 게임을 기본값으로 표시합니다.
-      if (games.length === 1) {
-        const onlyGame = games[0];
-        gameFilter.innerHTML = `<option value="${escapeHTML(onlyGame)}">${escapeHTML(onlyGame)}</option>`;
-        gameFilter.value = onlyGame;
-        return;
-      }
-
       gameFilter.innerHTML = `
         <option value="all">전체 게임</option>
         ${games.map((game) => `<option value="${escapeHTML(game)}">${escapeHTML(game)}</option>`).join("")}
       `;
 
-      gameFilter.value = games.includes(selectedGame) ? selectedGame : "all";
-    }
-
-    function populateComponentFilter() {
-      if (!componentFilter) return;
-
-      const selectedComponent = componentFilter.value;
-      const componentLabels = {
-        ui: "UI / 화면",
-        character: "캐릭터 / 외형",
-        battle: "전투 / 성장",
-        reward: "보상 / 재화",
-        system: "시스템 / 예외"
-      };
-
-      const existingGroups = [...new Set(testCases.map((tc) => getComponentGroup(tc.component)).filter(Boolean))]
-        .filter((group) => componentLabels[group])
-        .sort((a, b) => Object.keys(componentLabels).indexOf(a) - Object.keys(componentLabels).indexOf(b));
-
-      if (existingGroups.length === 0) {
-        componentFilter.innerHTML = `<option value="all">검증 영역</option>`;
-        componentFilter.value = "all";
-        return;
+      if (games.includes(selectedGame)) {
+        gameFilter.value = selectedGame;
       }
-
-      // 검증영역도 실제 TC 데이터에 존재하는 분류만 옵션으로 표시합니다.
-      if (existingGroups.length === 1) {
-        const onlyGroup = existingGroups[0];
-        componentFilter.innerHTML = `<option value="${escapeHTML(onlyGroup)}">${escapeHTML(componentLabels[onlyGroup])}</option>`;
-        componentFilter.value = onlyGroup;
-        return;
-      }
-
-      componentFilter.innerHTML = `
-        <option value="all">검증 영역</option>
-        ${existingGroups.map((group) => `<option value="${escapeHTML(group)}">${escapeHTML(componentLabels[group])}</option>`).join("")}
-      `;
-
-      componentFilter.value = existingGroups.includes(selectedComponent) ? selectedComponent : "all";
     }
 
     function createCaseCard(tc) {
