@@ -1,158 +1,5 @@
 [
   {
-    "game": "inZOI",
-    "id": "TC-INZOI-001",
-    "title": "커스터마이징 진입 및 기본 화면 확인",
-    "component": "Entry",
-    "priority": "High",
-    "automation": "Yes",
-    "desc": "캐릭터 커스터마이징 화면 진입 시 기본 모델, 주요 탭, 완료 버튼이 누락 없이 표시되고 조작 가능한지 검증"
-  },
-  {
-    "game": "inZOI",
-    "id": "TC-INZOI-002",
-    "title": "얼굴 프리셋 커스터마이징 검증",
-    "component": "FacePreset",
-    "priority": "Medium",
-    "automation": "Yes",
-    "desc": "얼굴 프리셋 목록과 썸네일이 표시되고 선택한 프리셋이 캐릭터 얼굴 외형에 반영되는지 검증"
-  },
-  {
-    "game": "inZOI",
-    "id": "TC-INZOI-003",
-    "title": "얼굴 프리셋 상태 유지 검증",
-    "component": "FacePreset",
-    "priority": "Medium",
-    "automation": "Yes",
-    "desc": "얼굴 프리셋 변경 후 탭 이동, 복귀, 저장, 재로드 시 선택 상태와 저장값이 유지되는지 검증"
-  },
-  {
-    "game": "inZOI",
-    "id": "TC-INZOI-004",
-    "title": "헤어 커스터마이징 검증",
-    "component": "Hair",
-    "priority": "Medium",
-    "automation": "Yes",
-    "desc": "헤어 카테고리별 항목 선택 시 선택한 헤어가 캐릭터 모델에 정상 반영되는지 검증"
-  },
-  {
-    "game": "inZOI",
-    "id": "TC-INZOI-005",
-    "title": "헤어 표시 품질 검증",
-    "component": "Hair",
-    "priority": "Medium",
-    "automation": "No",
-    "desc": "헤어 적용 후 텍스처 누락, 메시 파손, 비정상 투명화, 얼굴·목·어깨 주변 메시 교차가 발생하지 않는지 검증"
-  },
-  {
-    "game": "inZOI",
-    "id": "TC-INZOI-006",
-    "title": "피부 커스터마이징 검증",
-    "component": "Skin",
-    "priority": "Medium",
-    "automation": "Yes",
-    "desc": "피부톤 선택 시 캐릭터 얼굴과 전신 피부톤에 변경값이 반영되고 UI 선택 상태가 유지되는지 검증"
-  },
-  {
-    "game": "inZOI",
-    "id": "TC-INZOI-007",
-    "title": "피부 표시 품질 검증",
-    "component": "Skin",
-    "priority": "Medium",
-    "automation": "No",
-    "desc": "피부톤 변경 후 얼굴, 목, 손, 팔, 다리 노출 부위에서 텍스처 누락, 메시 파손, 경계선 오류가 발생하지 않는지 검증"
-  },
-  {
-    "game": "inZOI",
-    "id": "TC-INZOI-008",
-    "title": "얼굴 특징 커스터마이징 검증",
-    "component": "FaceFeature",
-    "priority": "Medium",
-    "automation": "Yes",
-    "desc": "얼굴 특징, 점, 주근깨, 흉터 옵션 선택 시 선택 상태가 UI에 반영되고 캐릭터 얼굴에 적용되는지 검증"
-  },
-  {
-    "game": "inZOI",
-    "id": "TC-INZOI-009",
-    "title": "얼굴 특징 표시 품질 검증",
-    "component": "FaceFeature",
-    "priority": "Medium",
-    "automation": "No",
-    "desc": "얼굴 특징, 점, 주근깨, 흉터가 피부톤 변경 후에도 초기화되지 않고 얼굴 위치에서 어긋나지 않는지 검증"
-  },
-  {
-    "game": "inZOI",
-    "id": "TC-INZOI-010",
-    "title": "눈 커스터마이징 검증",
-    "component": "Eye",
-    "priority": "Medium",
-    "automation": "Yes",
-    "desc": "렌즈, 눈썹, 속눈썹 옵션 선택 시 선택 항목이 눈 주변 외형에 반영되고 선택 상태가 유지되는지 검증"
-  },
-  {
-    "game": "inZOI",
-    "id": "TC-INZOI-011",
-    "title": "눈 표시 품질 검증",
-    "component": "Eye",
-    "priority": "Medium",
-    "automation": "No",
-    "desc": "렌즈, 눈썹, 속눈썹 적용 후 눈 주변 메시 교차, 텍스처 누락, 위치 어긋남이 발생하지 않는지 검증"
-  },
-  {
-    "game": "inZOI",
-    "id": "TC-INZOI-012",
-    "title": "메이크업 커스터마이징 검증",
-    "component": "Makeup",
-    "priority": "Medium",
-    "automation": "Yes",
-    "desc": "메이크업 프리셋, 하이라이트, 블러셔, 아이쉐도우, 아이라인, 립스틱, 페이스 아트 선택값이 얼굴 영역에 반영되는지 검증"
-  },
-  {
-    "game": "inZOI",
-    "id": "TC-INZOI-013",
-    "title": "메이크업 표시 품질 검증",
-    "component": "Makeup",
-    "priority": "Medium",
-    "automation": "No",
-    "desc": "메이크업 적용 후 피부톤 변경 시 옵션이 초기화되지 않고 위치 어긋남, 번짐, 텍스처 누락이 발생하지 않는지 검증"
-  },
-  {
-    "game": "inZOI",
-    "id": "TC-INZOI-014",
-    "title": "커스터마이징 저장 및 재로드 검증",
-    "component": "SaveLoad",
-    "priority": "Medium",
-    "automation": "Yes",
-    "desc": "얼굴 프리셋, 헤어, 피부, 얼굴 특징, 눈, 메이크업 변경값이 저장 후 재로드 시 저장값과 일치하는지 검증"
-  },
-  {
-    "game": "inZOI",
-    "id": "TC-INZOI-015",
-    "title": "Win/Mac 커스터마이징 호환성 검증",
-    "component": "Compatibility",
-    "priority": "Medium",
-    "automation": "No",
-    "desc": "Windows와 macOS에서 동일 캐릭터 저장 데이터를 로드했을 때 커스터마이징 값이 초기화되거나 누락되지 않는지 검증"
-  },
-  {
-    "game": "FC Online",
-    "id": "TC-FCONLINE-001",
-    "title": "로그인 계정 닉네임 표시 검증",
-    "component": "계정 정보",
-    "priority": "Medium",
-    "automation": "No",
-    "desc": "로그인한 계정의 닉네임이 계정 정보 영역에 정상적으로 표시되는지 검증"
-  },
-  {
-    "game": "FC Online",
-    "id": "TC-FCONLINE-002",
-    "title": "로그인 계정 레벨 표시 검증",
-    "component": "계정 정보",
-    "priority": "Medium",
-    "automation": "No",
-    "desc": "로그인한 계정의 현재 레벨이 계정 정보 영역에 정상적으로 표시되는지 검증"
-  },
-  {
     "game": "메이플 키우기",
     "id": "TC-MAPLE-001",
     "title": "자동사냥 몬스터 리젠 후 공격 검증",
@@ -331,6 +178,159 @@
     "priority": "Medium",
     "automation": "No",
     "desc": "노치, 카메라 홀, UI 스케일 변경 환경에서 주요 UI가 가려지거나 깨지지 않는지 검증"
+  },
+  {
+    "game": "inZOI",
+    "id": "TC-INZOI-001",
+    "title": "커스터마이징 진입 및 기본 화면 확인",
+    "component": "Entry",
+    "priority": "High",
+    "automation": "Yes",
+    "desc": "캐릭터 커스터마이징 화면 진입 시 기본 모델, 주요 탭, 완료 버튼이 누락 없이 표시되고 조작 가능한지 검증"
+  },
+  {
+    "game": "inZOI",
+    "id": "TC-INZOI-002",
+    "title": "얼굴 프리셋 커스터마이징 검증",
+    "component": "FacePreset",
+    "priority": "Medium",
+    "automation": "Yes",
+    "desc": "얼굴 프리셋 목록과 썸네일이 표시되고 선택한 프리셋이 캐릭터 얼굴 외형에 반영되는지 검증"
+  },
+  {
+    "game": "inZOI",
+    "id": "TC-INZOI-003",
+    "title": "얼굴 프리셋 상태 유지 검증",
+    "component": "FacePreset",
+    "priority": "Medium",
+    "automation": "Yes",
+    "desc": "얼굴 프리셋 변경 후 탭 이동, 복귀, 저장, 재로드 시 선택 상태와 저장값이 유지되는지 검증"
+  },
+  {
+    "game": "inZOI",
+    "id": "TC-INZOI-004",
+    "title": "헤어 커스터마이징 검증",
+    "component": "Hair",
+    "priority": "Medium",
+    "automation": "Yes",
+    "desc": "헤어 카테고리별 항목 선택 시 선택한 헤어가 캐릭터 모델에 정상 반영되는지 검증"
+  },
+  {
+    "game": "inZOI",
+    "id": "TC-INZOI-005",
+    "title": "헤어 표시 품질 검증",
+    "component": "Hair",
+    "priority": "Medium",
+    "automation": "No",
+    "desc": "헤어 적용 후 텍스처 누락, 메시 파손, 비정상 투명화, 얼굴·목·어깨 주변 메시 교차가 발생하지 않는지 검증"
+  },
+  {
+    "game": "inZOI",
+    "id": "TC-INZOI-006",
+    "title": "피부 커스터마이징 검증",
+    "component": "Skin",
+    "priority": "Medium",
+    "automation": "Yes",
+    "desc": "피부톤 선택 시 캐릭터 얼굴과 전신 피부톤에 변경값이 반영되고 UI 선택 상태가 유지되는지 검증"
+  },
+  {
+    "game": "inZOI",
+    "id": "TC-INZOI-007",
+    "title": "피부 표시 품질 검증",
+    "component": "Skin",
+    "priority": "Medium",
+    "automation": "No",
+    "desc": "피부톤 변경 후 얼굴, 목, 손, 팔, 다리 노출 부위에서 텍스처 누락, 메시 파손, 경계선 오류가 발생하지 않는지 검증"
+  },
+  {
+    "game": "inZOI",
+    "id": "TC-INZOI-008",
+    "title": "얼굴 특징 커스터마이징 검증",
+    "component": "FaceFeature",
+    "priority": "Medium",
+    "automation": "Yes",
+    "desc": "얼굴 특징, 점, 주근깨, 흉터 옵션 선택 시 선택 상태가 UI에 반영되고 캐릭터 얼굴에 적용되는지 검증"
+  },
+  {
+    "game": "inZOI",
+    "id": "TC-INZOI-009",
+    "title": "얼굴 특징 표시 품질 검증",
+    "component": "FaceFeature",
+    "priority": "Medium",
+    "automation": "No",
+    "desc": "얼굴 특징, 점, 주근깨, 흉터가 피부톤 변경 후에도 초기화되지 않고 얼굴 위치에서 어긋나지 않는지 검증"
+  },
+  {
+    "game": "inZOI",
+    "id": "TC-INZOI-010",
+    "title": "눈 커스터마이징 검증",
+    "component": "Eye",
+    "priority": "Medium",
+    "automation": "Yes",
+    "desc": "렌즈, 눈썹, 속눈썹 옵션 선택 시 선택 항목이 눈 주변 외형에 반영되고 선택 상태가 유지되는지 검증"
+  },
+  {
+    "game": "inZOI",
+    "id": "TC-INZOI-011",
+    "title": "눈 표시 품질 검증",
+    "component": "Eye",
+    "priority": "Medium",
+    "automation": "No",
+    "desc": "렌즈, 눈썹, 속눈썹 적용 후 눈 주변 메시 교차, 텍스처 누락, 위치 어긋남이 발생하지 않는지 검증"
+  },
+  {
+    "game": "inZOI",
+    "id": "TC-INZOI-012",
+    "title": "메이크업 커스터마이징 검증",
+    "component": "Makeup",
+    "priority": "Medium",
+    "automation": "Yes",
+    "desc": "메이크업 프리셋, 하이라이트, 블러셔, 아이쉐도우, 아이라인, 립스틱, 페이스 아트 선택값이 얼굴 영역에 반영되는지 검증"
+  },
+  {
+    "game": "inZOI",
+    "id": "TC-INZOI-013",
+    "title": "메이크업 표시 품질 검증",
+    "component": "Makeup",
+    "priority": "Medium",
+    "automation": "No",
+    "desc": "메이크업 적용 후 피부톤 변경 시 옵션이 초기화되지 않고 위치 어긋남, 번짐, 텍스처 누락이 발생하지 않는지 검증"
+  },
+  {
+    "game": "inZOI",
+    "id": "TC-INZOI-014",
+    "title": "커스터마이징 저장 및 재로드 검증",
+    "component": "SaveLoad",
+    "priority": "Medium",
+    "automation": "Yes",
+    "desc": "얼굴 프리셋, 헤어, 피부, 얼굴 특징, 눈, 메이크업 변경값이 저장 후 재로드 시 저장값과 일치하는지 검증"
+  },
+  {
+    "game": "inZOI",
+    "id": "TC-INZOI-015",
+    "title": "Win/Mac 커스터마이징 호환성 검증",
+    "component": "Compatibility",
+    "priority": "Medium",
+    "automation": "No",
+    "desc": "Windows와 macOS에서 동일 캐릭터 저장 데이터를 로드했을 때 커스터마이징 값이 초기화되거나 누락되지 않는지 검증"
+  },
+  {
+    "game": "FC Online",
+    "id": "TC-FCONLINE-001",
+    "title": "로그인 계정 닉네임 표시 검증",
+    "component": "계정 정보",
+    "priority": "Medium",
+    "automation": "No",
+    "desc": "로그인한 계정의 닉네임이 계정 정보 영역에 정상적으로 표시되는지 검증"
+  },
+  {
+    "game": "FC Online",
+    "id": "TC-FCONLINE-002",
+    "title": "로그인 계정 레벨 표시 검증",
+    "component": "계정 정보",
+    "priority": "Medium",
+    "automation": "No",
+    "desc": "로그인한 계정의 현재 레벨이 계정 정보 영역에 정상적으로 표시되는지 검증"
   },
   {
     "game": "FC Online",
