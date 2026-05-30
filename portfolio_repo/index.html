@@ -1273,151 +1273,6 @@
       font-weight: 700;
     }
 
-
-    /* 공식 노운이슈 URL 기반 TC 자동 생성 영역 */
-    .tc-generator-panel {
-      display: grid;
-      gap: 12px;
-    }
-
-    .tc-generator-desc {
-      margin: 0;
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.6;
-      word-break: keep-all;
-    }
-
-    .tc-generator-form {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) auto;
-      gap: 8px;
-      align-items: center;
-    }
-
-    .tc-generator-btn,
-    .tc-generator-action {
-      border: 1px solid rgba(47, 95, 149, 0.18);
-      border-radius: 14px;
-      padding: 12px 15px;
-      background: var(--primary-soft);
-      color: var(--primary-dark);
-      font: inherit;
-      font-size: 13px;
-      font-weight: 900;
-      cursor: pointer;
-      white-space: nowrap;
-      transition: transform 0.16s ease, background 0.16s ease, border-color 0.16s ease;
-    }
-
-    .tc-generator-btn:hover,
-    .tc-generator-action:hover {
-      transform: translateY(-1px);
-      background: #e7f1ff;
-      border-color: rgba(47, 95, 149, 0.28);
-    }
-
-    .tc-generator-btn:disabled,
-    .tc-generator-action:disabled {
-      cursor: not-allowed;
-      opacity: 0.55;
-      transform: none;
-    }
-
-    .tc-generator-status {
-      display: none;
-      border-radius: 16px;
-      padding: 12px 14px;
-      background: #f6f8fb;
-      color: var(--muted);
-      font-size: 13px;
-      font-weight: 800;
-    }
-
-    .tc-generator-status.is-visible { display: block; }
-    .tc-generator-status.is-error { background: #fff4f4; color: #a13c3c; }
-    .tc-generator-status.is-success { background: #f2faf6; color: #34765a; }
-
-    .tc-generator-result {
-      display: none;
-      gap: 10px;
-    }
-
-    .tc-generator-result.is-visible {
-      display: grid;
-    }
-
-    .tc-generator-result-head {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-top: 4px;
-    }
-
-    .tc-generator-result-head strong {
-      letter-spacing: -0.025em;
-    }
-
-    .tc-generator-actions {
-      display: flex;
-      gap: 6px;
-      flex-wrap: wrap;
-    }
-
-    .tc-generator-action {
-      padding: 8px 11px;
-      border-radius: 999px;
-      font-size: 12px;
-    }
-
-    .generated-tc-list {
-      display: grid;
-      gap: 10px;
-    }
-
-    .generated-tc-card {
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      padding: 14px;
-      background: #fff;
-      display: grid;
-      gap: 8px;
-    }
-
-    .generated-tc-top {
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      align-items: flex-start;
-    }
-
-    .generated-tc-id {
-      color: var(--primary-dark);
-      font-size: 12px;
-      font-weight: 900;
-    }
-
-    .generated-tc-title {
-      margin-top: 2px;
-      font-weight: 900;
-      letter-spacing: -0.025em;
-    }
-
-    .generated-tc-desc,
-    .generated-tc-steps {
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.55;
-      word-break: keep-all;
-    }
-
-    .generated-tc-steps ol {
-      margin: 6px 0 0 18px;
-      padding: 0;
-    }
-
     /* 반응형 화면 설정: 태블릿과 모바일 배치 */
     @media (max-width: 980px) {
       .hero,
@@ -1467,8 +1322,7 @@
         max-height: 420px;
       }
       .filter-panel,
-      .portfolio-file-list,
-      .tc-generator-form { grid-template-columns: 1fr; }
+      .portfolio-file-list { grid-template-columns: 1fr; }
 
       .portfolio-card { grid-template-columns: 82px 1fr; }
       .portfolio-thumb { width: 82px; height: 58px; }
@@ -1730,7 +1584,6 @@
         <a href="#resume">프로필</a>
         <a href="#portfolio">작업물</a>
         <a href="#testcases">TC 샘플</a>
-        <a href="#tc-generator">TC 자동 생성</a>
       </nav>
     </header>
 
@@ -2153,39 +2006,6 @@
           <!-- 테스트케이스 샘플 항목: 페이지 번호 -->
           <div class="tc-pagination" id="tcPagination" aria-label="테스트케이스 페이지"></div>
         </section>
-
-        <!-- 공식 노운이슈 URL 기반 TC 자동 생성 영역 -->
-        <section class="card" id="tc-generator">
-          <div class="section-title">
-            <h2>Known Issue URL 기반 TC 자동 생성</h2>
-            <small>Auto TC</small>
-          </div>
-
-          <div class="tc-generator-panel">
-            <p class="tc-generator-desc">
-              공식 홈페이지의 노운이슈 공지사항 URL을 입력하면 서버 함수가 본문을 파싱하고, assets/templates/tc_template.xlsx 양식 기준으로 테스트케이스 초안을 생성합니다.
-              본 기능은 유료 AI API 없이 동작하는 규칙 기반 자동화 예시이며, 최종 TC는 QA 검토 후 확정하는 것을 전제로 합니다.
-            </p>
-
-            <div class="tc-generator-form">
-              <input id="updateUrlInput" type="url" placeholder="공식 노운이슈 공지 URL 입력 예: https://forum.playinzoi.com/..." aria-label="공식 노운이슈 공지 URL" />
-              <button class="tc-generator-btn" id="generateTcBtn" type="button">TC 자동 생성</button>
-            </div>
-
-            <div class="tc-generator-status" id="tcGeneratorStatus" role="status"></div>
-
-            <div class="tc-generator-result" id="tcGeneratorResult" aria-live="polite">
-              <div class="tc-generator-result-head">
-                <strong id="generatedTcSummary">생성된 TC 0개</strong>
-                <div class="tc-generator-actions">
-                  <button class="tc-generator-action" id="copyGeneratedTcBtn" type="button">JSON 복사</button>
-                  <button class="tc-generator-action" id="downloadGeneratedTcBtn" type="button">JSON 다운로드</button>
-                </div>
-              </div>
-              <div class="generated-tc-list" id="generatedTcList"></div>
-            </div>
-          </div>
-        </section>
       </section>
     </main>
 
@@ -2224,7 +2044,6 @@
     const REPORT_PAGE_SIZE = 5;
 
     let testCases = [];
-    let generatedTestCases = [];
     let currentPage = 1;
     let reportPage = 1;
 
@@ -2287,14 +2106,6 @@
     const componentFilter = document.getElementById("componentFilter");
     const priorityFilter = document.getElementById("priorityFilter");
     const tcPagination = document.getElementById("tcPagination");
-    const updateUrlInput = document.getElementById("updateUrlInput");
-    const generateTcBtn = document.getElementById("generateTcBtn");
-    const tcGeneratorStatus = document.getElementById("tcGeneratorStatus");
-    const tcGeneratorResult = document.getElementById("tcGeneratorResult");
-    const generatedTcSummary = document.getElementById("generatedTcSummary");
-    const generatedTcList = document.getElementById("generatedTcList");
-    const copyGeneratedTcBtn = document.getElementById("copyGeneratedTcBtn");
-    const downloadGeneratedTcBtn = document.getElementById("downloadGeneratedTcBtn");
 
     /* 프로필, 경력, 교육 및 활동 데이터 불러오기 */
     async function loadProfileData() {
@@ -2530,12 +2341,17 @@
 
       /*
         필터 숫자 표시 기준:
-        - 전체 게임과 우선순위는 TC 데이터 값이 명확하므로 전체 TC 기준 고정 개수를 표시합니다.
-        - 검증 영역은 여러 세부 component를 큰 분류로 묶기 때문에 숫자가 어색해 보일 수 있어 표시하지 않습니다.
+        - 게임, 검증 영역, 우선순위 모두 실제 TC 데이터에 존재하는 값만 기준으로 개수를 표시합니다.
         - 첫 번째 안내 옵션인 "전체 게임", "검증 영역", "우선순위"에는 숫자를 표시하지 않습니다.
       */
+      const componentCounts = testCases.reduce((acc, tc) => {
+        const group = getComponentGroup(tc.component);
+        acc[group] = (acc[group] || 0) + 1;
+        return acc;
+      }, {});
+
       Array.from(componentFilter?.options || []).forEach((option) => {
-        option.dataset.count = "";
+        option.dataset.count = option.value === "all" ? "" : String(componentCounts[option.value] || 0);
       });
 
       const gameCounts = testCases.reduce((acc, tc) => {
@@ -2583,6 +2399,7 @@
       }
 
       populateGameFilter();
+      populateComponentFilter();
       updateFilterOptionCounts();
       renderCases();
       setupCustomSelects();
@@ -2594,14 +2411,58 @@
       const selectedGame = gameFilter.value;
       const games = [...new Set(testCases.map((tc) => tc.game).filter(Boolean))].sort();
 
+      // 샘플 게임이 1개뿐이면 "전체 게임" 옵션을 노출하지 않고 해당 게임을 기본값으로 표시합니다.
+      if (games.length === 1) {
+        const onlyGame = games[0];
+        gameFilter.innerHTML = `<option value="${escapeHTML(onlyGame)}">${escapeHTML(onlyGame)}</option>`;
+        gameFilter.value = onlyGame;
+        return;
+      }
+
       gameFilter.innerHTML = `
         <option value="all">전체 게임</option>
         ${games.map((game) => `<option value="${escapeHTML(game)}">${escapeHTML(game)}</option>`).join("")}
       `;
 
-      if (games.includes(selectedGame)) {
-        gameFilter.value = selectedGame;
+      gameFilter.value = games.includes(selectedGame) ? selectedGame : "all";
+    }
+
+    function populateComponentFilter() {
+      if (!componentFilter) return;
+
+      const selectedComponent = componentFilter.value;
+      const componentLabels = {
+        ui: "UI / 화면",
+        character: "캐릭터 / 외형",
+        battle: "전투 / 성장",
+        reward: "보상 / 재화",
+        system: "시스템 / 예외"
+      };
+
+      const existingGroups = [...new Set(testCases.map((tc) => getComponentGroup(tc.component)).filter(Boolean))]
+        .filter((group) => componentLabels[group])
+        .sort((a, b) => Object.keys(componentLabels).indexOf(a) - Object.keys(componentLabels).indexOf(b));
+
+      if (existingGroups.length === 0) {
+        componentFilter.innerHTML = `<option value="all">검증 영역</option>`;
+        componentFilter.value = "all";
+        return;
       }
+
+      // 검증영역도 실제 TC 데이터에 존재하는 분류만 옵션으로 표시합니다.
+      if (existingGroups.length === 1) {
+        const onlyGroup = existingGroups[0];
+        componentFilter.innerHTML = `<option value="${escapeHTML(onlyGroup)}">${escapeHTML(componentLabels[onlyGroup])}</option>`;
+        componentFilter.value = onlyGroup;
+        return;
+      }
+
+      componentFilter.innerHTML = `
+        <option value="all">검증 영역</option>
+        ${existingGroups.map((group) => `<option value="${escapeHTML(group)}">${escapeHTML(componentLabels[group])}</option>`).join("")}
+      `;
+
+      componentFilter.value = existingGroups.includes(selectedComponent) ? selectedComponent : "all";
     }
 
     function createCaseCard(tc) {
@@ -2703,14 +2564,29 @@
 
     function renderReportPagination() {
       const reportPagination = document.getElementById("reportPagination");
-      const reportCards = Array.from(document.querySelectorAll("[data-report-card]"));
-      if (!reportPagination || !reportCards.length) return;
+      const allReportCards = Array.from(document.querySelectorAll("[data-report-card]"));
+      if (!reportPagination || !allReportCards.length) return;
 
-      const totalCount = reportCards.length;
+      // 파일이 없는 PDF 카드는 initPortfolioVisibility()에서 is-hidden 처리됩니다.
+      // 페이지네이션은 실제로 표시 가능한 리포트 카드만 기준으로 다시 계산합니다.
+      const visibleReportCards = allReportCards.filter((card) => !card.classList.contains("is-hidden"));
+      const hiddenReportCards = allReportCards.filter((card) => card.classList.contains("is-hidden"));
+
+      hiddenReportCards.forEach((card) => {
+        card.style.display = "none";
+      });
+
+      const totalCount = visibleReportCards.length;
+      if (totalCount === 0) {
+        reportPagination.style.display = "none";
+        reportPagination.innerHTML = "";
+        return;
+      }
+
       const totalPages = Math.ceil(totalCount / REPORT_PAGE_SIZE);
       reportPage = Math.min(Math.max(reportPage, 1), Math.max(totalPages, 1));
 
-      reportCards.forEach((card, index) => {
+      visibleReportCards.forEach((card, index) => {
         const startIndex = (reportPage - 1) * REPORT_PAGE_SIZE;
         const endIndex = startIndex + REPORT_PAGE_SIZE;
         card.style.display = index >= startIndex && index < endIndex ? "grid" : "none";
@@ -2748,250 +2624,6 @@
       renderPagination(filtered.length);
     }
 
-
-    /* 공식 노운이슈 URL 기반 TC 자동 생성
-       - 무료 규칙 기반 파싱 방식입니다. OpenAI API / OPENAI_API_KEY가 필요하지 않습니다.
-       - 템플릿 파일 경로: assets/templates/tc_template.xlsx
-       - Netlify Function 응답 형식:
-         { "cases": [...inZOI_Cases 컬럼...], "steps": [...inZOI_Steps 컬럼...] }
-    */
-    const TC_TEMPLATE_PATH = "assets/templates/tc_template.xlsx";
-
-    function setTCGeneratorStatus(message, type = "") {
-      if (!tcGeneratorStatus) return;
-
-      tcGeneratorStatus.textContent = message;
-      tcGeneratorStatus.className = "tc-generator-status is-visible";
-
-      if (type === "error") tcGeneratorStatus.classList.add("is-error");
-      if (type === "success") tcGeneratorStatus.classList.add("is-success");
-    }
-
-    function clearTCGeneratorStatus() {
-      if (!tcGeneratorStatus) return;
-      tcGeneratorStatus.textContent = "";
-      tcGeneratorStatus.className = "tc-generator-status";
-    }
-
-    function normalizeGeneratedResponse(data) {
-      /*
-        신규 형식: { cases: [], steps: [] }
-        기존 형식: { testCases: [] }
-        두 형식을 모두 받아서 화면 표시가 깨지지 않게 처리합니다.
-      */
-      if (Array.isArray(data?.cases)) {
-        return {
-          cases: data.cases,
-          steps: Array.isArray(data.steps) ? data.steps : []
-        };
-      }
-
-      if (Array.isArray(data?.testCases)) {
-        const cases = data.testCases.map((tc, index) => {
-          const testKey = tc.id || `AUTO-TC-${String(index + 1).padStart(3, "0")}`;
-          return {
-            Project_Key: "AUTO",
-            Folder_L1: "Update",
-            Folder_L2: "Patch Note",
-            Component: tc.component || tc.area || "Update",
-            Test_Key_Local: testKey,
-            Name: tc.title || "업데이트 검증 TC",
-            Objective_or_Description: tc.desc || tc.objective || "노운이슈 공지 기반으로 생성된 테스트케이스입니다.",
-            Precondition: tc.precondition || "노운이슈 수정 또는 대응이 적용된 빌드에 접속 가능해야 합니다.",
-            Priority: tc.priority || "Medium",
-            Owner: "",
-            Labels_Tags: "known-issue,regression",
-            Requirement_ID: "",
-            Automation_Status: tc.automation || "Manual",
-            Version_or_FixVersion: "",
-            Comment: "공식 노운이슈 공지 기반 자동 생성"
-          };
-        });
-
-        const steps = data.testCases.flatMap((tc, index) => {
-          const testKey = tc.id || `AUTO-TC-${String(index + 1).padStart(3, "0")}`;
-          const stepList = Array.isArray(tc.steps) && tc.steps.length
-            ? tc.steps
-            : ["업데이트 대상 기능에 진입한다.", "공지에 명시된 변경사항을 확인한다.", "기존 기능에 영향이 없는지 확인한다."];
-
-          return stepList.map((step, stepIndex) => ({
-            Test_Key_Local: testKey,
-            Step_No: stepIndex + 1,
-            Test_Step: step,
-            Test_Data: "",
-            Expected_Result: stepIndex === stepList.length - 1
-              ? (tc.expected || "공지된 업데이트 내용이 정상 반영되고 관련 기능에 오류가 발생하지 않는다.")
-              : "다음 검증 단계로 정상 진행된다.",
-            Actual_Result: ""
-          }));
-        });
-
-        return { cases, steps };
-      }
-
-      return { cases: [], steps: [] };
-    }
-
-    function getGeneratedStepsByCaseId(steps, testKeyLocal) {
-      return steps
-        .filter((step) => String(step.Test_Key_Local || "") === String(testKeyLocal || ""))
-        .sort((a, b) => Number(a.Step_No || 0) - Number(b.Step_No || 0));
-    }
-
-    function normalizeGeneratedCase(tc, index) {
-      return {
-        projectKey: tc.Project_Key || "AUTO",
-        folderL1: tc.Folder_L1 || "Update",
-        folderL2: tc.Folder_L2 || "Patch Note",
-        component: tc.Component || "Update",
-        id: tc.Test_Key_Local || `AUTO-TC-${String(index + 1).padStart(3, "0")}`,
-        title: tc.Name || "업데이트 검증 TC",
-        desc: tc.Objective_or_Description || "노운이슈 공지 기반으로 생성된 테스트케이스입니다.",
-        precondition: tc.Precondition || "노운이슈 수정 또는 대응이 적용된 빌드에 접속 가능해야 합니다.",
-        priority: tc.Priority || "Medium",
-        owner: tc.Owner || "",
-        labels: tc.Labels_Tags || "known-issue,regression",
-        requirementId: tc.Requirement_ID || "",
-        automation: tc.Automation_Status || "Manual",
-        version: tc.Version_or_FixVersion || "",
-        comment: tc.Comment || "공식 노운이슈 공지 기반 자동 생성"
-      };
-    }
-
-    function createGeneratedTCCard(tc, steps) {
-      const caseSteps = getGeneratedStepsByCaseId(steps, tc.id);
-      const stepsHTML = caseSteps.length
-        ? caseSteps.map((step) => `
-            <li>
-              ${escapeHTML(step.Test_Step || "")}
-              ${step.Test_Data ? `<br /><span class="tag">Data: ${escapeHTML(step.Test_Data)}</span>` : ""}
-              ${step.Expected_Result ? `<br /><span class="tag">Expected: ${escapeHTML(step.Expected_Result)}</span>` : ""}
-            </li>
-          `).join("")
-        : `<li>상세 Step이 생성되지 않았습니다.</li>`;
-
-      return `
-        <article class="generated-tc-card">
-          <div class="generated-tc-top">
-            <div>
-              <div class="generated-tc-id">${escapeHTML(tc.id)}</div>
-              <div class="generated-tc-title">${escapeHTML(tc.title)}</div>
-            </div>
-            <span class="pill ${getPriorityClass(tc.priority)}">${escapeHTML(tc.priority)}</span>
-          </div>
-
-          <div class="tc-tags">
-            <span class="tag">${escapeHTML(tc.projectKey)}</span>
-            <span class="tag">${escapeHTML(tc.folderL1)}</span>
-            <span class="tag">${escapeHTML(tc.folderL2)}</span>
-            <span class="tag">${escapeHTML(tc.component)}</span>
-            <span class="tag">Automation: ${escapeHTML(tc.automation)}</span>
-          </div>
-
-          <div class="generated-tc-desc"><strong>목적</strong> · ${escapeHTML(tc.desc)}</div>
-          <div class="generated-tc-desc"><strong>사전조건</strong> · ${escapeHTML(tc.precondition)}</div>
-          <div class="generated-tc-steps"><strong>절차 / 기대 결과</strong><ol>${stepsHTML}</ol></div>
-          ${tc.requirementId ? `<div class="generated-tc-desc"><strong>Requirement</strong> · ${escapeHTML(tc.requirementId)}</div>` : ""}
-          ${tc.comment ? `<div class="generated-tc-desc"><strong>Comment</strong> · ${escapeHTML(tc.comment)}</div>` : ""}
-        </article>
-      `;
-    }
-
-    function renderGeneratedTCs(data) {
-      const normalized = normalizeGeneratedResponse(data);
-      const normalizedCases = normalized.cases.map(normalizeGeneratedCase);
-
-      generatedTestCases = normalized;
-
-      if (!generatedTcList || !tcGeneratorResult || !generatedTcSummary) return;
-
-      generatedTcSummary.textContent = `생성된 TC ${normalizedCases.length}개`;
-      generatedTcList.innerHTML = normalizedCases
-        .map((tc) => createGeneratedTCCard(tc, normalized.steps))
-        .join("");
-      tcGeneratorResult.classList.toggle("is-visible", normalizedCases.length > 0);
-    }
-
-    async function generateTCFromUpdateUrl() {
-      const url = normalizeExternalUrl(updateUrlInput?.value || "");
-
-      if (!url) {
-        setTCGeneratorStatus("공식 노운이슈 공지 URL을 http 또는 https 형식으로 입력해주세요.", "error");
-        return;
-      }
-
-      clearTCGeneratorStatus();
-      renderGeneratedTCs({ cases: [], steps: [] });
-
-      if (generateTcBtn) {
-        generateTcBtn.disabled = true;
-        generateTcBtn.textContent = "생성 중...";
-      }
-
-      setTCGeneratorStatus("노운이슈 공지를 파싱하고 tc_template.xlsx 양식 기준으로 TC 초안을 생성하는 중입니다.");
-
-      try {
-        const response = await fetch("/.netlify/functions/generate-tc-from-update", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            url,
-            templatePath: TC_TEMPLATE_PATH
-          })
-        });
-
-        const data = await response.json().catch(() => ({}));
-
-        if (!response.ok) {
-          throw new Error(data.message || data.error || "TC 자동 생성 서버 함수 호출에 실패했습니다.");
-        }
-
-        const normalized = normalizeGeneratedResponse(data);
-
-        if (!normalized.cases.length) {
-          throw new Error("생성된 TC가 없습니다. 노운이슈 공지 본문 또는 서버 함수 응답 형식을 확인해주세요.");
-        }
-
-        renderGeneratedTCs(normalized);
-        setTCGeneratorStatus("TC 초안 생성이 완료되었습니다. 실제 제출 전 우선순위와 예상 결과를 검토해주세요.", "success");
-      } catch (error) {
-        console.warn("TC 자동 생성 실패", error);
-        setTCGeneratorStatus(`${error.message} Netlify Functions 연결과 tc_template.xlsx 경로를 확인해주세요.`, "error");
-      } finally {
-        if (generateTcBtn) {
-          generateTcBtn.disabled = false;
-          generateTcBtn.textContent = "TC 자동 생성";
-        }
-      }
-    }
-
-    async function copyGeneratedTCJSON() {
-      if (!generatedTestCases?.cases?.length) return;
-      await navigator.clipboard.writeText(JSON.stringify(generatedTestCases, null, 2));
-      setTCGeneratorStatus("생성된 TC JSON을 복사했습니다.", "success");
-    }
-
-    function downloadGeneratedTCJSON() {
-      if (!generatedTestCases?.cases?.length) return;
-
-      const blob = new Blob([JSON.stringify(generatedTestCases, null, 2)], { type: "application/json;charset=utf-8" });
-      const url = URL.createObjectURL(blob);
-      const link = document.createElement("a");
-      link.href = url;
-      link.download = "generated_known_issue_tc_template_format.json";
-      document.body.appendChild(link);
-      link.click();
-      link.remove();
-      URL.revokeObjectURL(url);
-    }
-
-    generateTcBtn?.addEventListener("click", generateTCFromUpdateUrl);
-    updateUrlInput?.addEventListener("keydown", (event) => {
-      if (event.key === "Enter") generateTCFromUpdateUrl();
-    });
-    copyGeneratedTcBtn?.addEventListener("click", copyGeneratedTCJSON);
-    downloadGeneratedTcBtn?.addEventListener("click", downloadGeneratedTCJSON);
-
     /* 검색, 필터, 페이지 번호 클릭 이벤트 연결 */
     [searchInput, gameFilter, componentFilter, priorityFilter]
       .filter(Boolean)
@@ -3027,8 +2659,6 @@
       renderReportPagination();
       document.querySelector(".pdf-group")?.scrollIntoView({ behavior: "smooth", block: "start" });
     });
-
-    renderReportPagination();
 
     /* 다른 포트폴리오 표시 규칙: 다운로드 파일 경로가 비어 있거나 #이면 해당 항목 숨김 */
 
@@ -3236,39 +2866,98 @@
       }
     }
 
-    function initPortfolioVisibility() {
-      document.querySelectorAll("[data-file-required]").forEach((button) => {
-        const href = (button.getAttribute("href") || "").trim();
-        const hasFile = href && href !== "#";
+    function hidePortfolioFile(button) {
+      button.classList.add("is-hidden");
+      button.removeAttribute("download");
+      button.removeAttribute("href");
 
-        if (!hasFile) {
-          button.classList.add("is-hidden");
-          button.removeAttribute("download");
-          const parentCard = button.closest(".portfolio-card");
-          if (parentCard) parentCard.classList.add("is-hidden");
+      const parentCard = button.closest(".portfolio-card");
+      if (parentCard) {
+        parentCard.classList.add("is-hidden");
+        parentCard.style.display = "none";
+      }
+    }
+
+    async function checkFileExists(href) {
+      const cleanHref = (href || "").trim();
+
+      if (!cleanHref || cleanHref === "#" || cleanHref.toLowerCase().startsWith("javascript:")) {
+        return false;
+      }
+
+      try {
+        const fileURL = new URL(cleanHref, window.location.href);
+
+        // HTML 파일을 직접 열었을 때(file://)는 브라우저 보안 정책 때문에 존재 여부 확인이 제한됩니다.
+        // 이 경우에는 Go Live 또는 Netlify 배포 환경에서 최종 확인하는 것을 기준으로 합니다.
+        if (fileURL.protocol === "file:") {
+          return true;
         }
-      });
+
+        const headResponse = await fetch(fileURL.href, {
+          method: "HEAD",
+          cache: "no-store"
+        });
+
+        if (headResponse.ok) return true;
+
+        // 일부 정적 서버는 HEAD 요청을 막을 수 있어 GET으로 한 번 더 확인합니다.
+        if (headResponse.status === 405 || headResponse.status === 403) {
+          const getResponse = await fetch(fileURL.href, {
+            method: "GET",
+            cache: "no-store"
+          });
+
+          return getResponse.ok;
+        }
+
+        return false;
+      } catch (error) {
+        console.warn("포트폴리오 파일 존재 여부를 확인하지 못했습니다.", cleanHref, error);
+        return false;
+      }
+    }
+
+    async function initPortfolioVisibility() {
+      const requiredFileButtons = Array.from(document.querySelectorAll("[data-file-required]"));
+
+      await Promise.all(requiredFileButtons.map(async (button) => {
+        const href = button.getAttribute("href");
+        const fileExists = await checkFileExists(href);
+
+        if (!fileExists) {
+          hidePortfolioFile(button);
+        }
+      }));
 
       document.querySelectorAll("[data-portfolio-group]").forEach((group) => {
-        const visibleCards = group.querySelectorAll(".portfolio-download-btn:not(.is-hidden)");
-        if (!visibleCards.length) {
-          group.classList.add("is-hidden");
-        }
+        const visibleCards = group.querySelectorAll(".portfolio-card:not(.is-hidden)");
+        group.classList.toggle("is-hidden", visibleCards.length === 0);
       });
 
-      const visiblePortfolioCards = document.querySelectorAll(".portfolio-download-btn:not(.is-hidden)");
+      const visiblePortfolioCards = document.querySelectorAll(".portfolio-card:not(.is-hidden) [data-file-required]");
+      const visiblePortfolioGroups = document.querySelectorAll("[data-portfolio-group]:not(.is-hidden)");
       const portfolioFileCount = document.getElementById("portfolioFileCount");
+      const portfolioSection = document.getElementById("portfolio");
 
       if (portfolioFileCount) {
         portfolioFileCount.textContent = `${visiblePortfolioCards.length} Files`;
       }
+
+      if (portfolioSection) {
+        portfolioSection.classList.toggle("is-hidden", visiblePortfolioGroups.length === 0);
+      }
+
+      // 버그리포트 및 개선안은 파일 확인 이후 실제 남은 PDF 카드만 기준으로 페이지 번호를 다시 계산합니다.
+      reportPage = 1;
+      renderReportPagination();
     }
 
     async function initPage() {
       await loadHeroBannerText();
       applyHeroImageFit();
       initHeroSlider();
-      initPortfolioVisibility();
+      await initPortfolioVisibility();
       loadProfileData();
       loadTimelineData(EXPERIENCE_DATA_PATH, "experienceTimeline", "경력");
       loadTimelineData(ACTIVITIES_DATA_PATH, "activitiesTimeline", "교육 및 활동");
