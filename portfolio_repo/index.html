@@ -2514,14 +2514,29 @@
 
     function renderReportPagination() {
       const reportPagination = document.getElementById("reportPagination");
-      const reportCards = Array.from(document.querySelectorAll("[data-report-card]"));
-      if (!reportPagination || !reportCards.length) return;
+      const allReportCards = Array.from(document.querySelectorAll("[data-report-card]"));
+      if (!reportPagination || !allReportCards.length) return;
 
-      const totalCount = reportCards.length;
+      // 파일이 없는 PDF 카드는 initPortfolioVisibility()에서 is-hidden 처리됩니다.
+      // 페이지네이션은 실제로 표시 가능한 리포트 카드만 기준으로 다시 계산합니다.
+      const visibleReportCards = allReportCards.filter((card) => !card.classList.contains("is-hidden"));
+      const hiddenReportCards = allReportCards.filter((card) => card.classList.contains("is-hidden"));
+
+      hiddenReportCards.forEach((card) => {
+        card.style.display = "none";
+      });
+
+      const totalCount = visibleReportCards.length;
+      if (totalCount === 0) {
+        reportPagination.style.display = "none";
+        reportPagination.innerHTML = "";
+        return;
+      }
+
       const totalPages = Math.ceil(totalCount / REPORT_PAGE_SIZE);
       reportPage = Math.min(Math.max(reportPage, 1), Math.max(totalPages, 1));
 
-      reportCards.forEach((card, index) => {
+      visibleReportCards.forEach((card, index) => {
         const startIndex = (reportPage - 1) * REPORT_PAGE_SIZE;
         const endIndex = startIndex + REPORT_PAGE_SIZE;
         card.style.display = index >= startIndex && index < endIndex ? "grid" : "none";
@@ -2594,8 +2609,6 @@
       renderReportPagination();
       document.querySelector(".pdf-group")?.scrollIntoView({ behavior: "smooth", block: "start" });
     });
-
-    renderReportPagination();
 
     /* 다른 포트폴리오 표시 규칙: 다운로드 파일 경로가 비어 있거나 #이면 해당 항목 숨김 */
 
@@ -2803,39 +2816,98 @@
       }
     }
 
-    function initPortfolioVisibility() {
-      document.querySelectorAll("[data-file-required]").forEach((button) => {
-        const href = (button.getAttribute("href") || "").trim();
-        const hasFile = href && href !== "#";
+    function hidePortfolioFile(button) {
+      button.classList.add("is-hidden");
+      button.removeAttribute("download");
+      button.removeAttribute("href");
 
-        if (!hasFile) {
-          button.classList.add("is-hidden");
-          button.removeAttribute("download");
-          const parentCard = button.closest(".portfolio-card");
-          if (parentCard) parentCard.classList.add("is-hidden");
+      const parentCard = button.closest(".portfolio-card");
+      if (parentCard) {
+        parentCard.classList.add("is-hidden");
+        parentCard.style.display = "none";
+      }
+    }
+
+    async function checkFileExists(href) {
+      const cleanHref = (href || "").trim();
+
+      if (!cleanHref || cleanHref === "#" || cleanHref.toLowerCase().startsWith("javascript:")) {
+        return false;
+      }
+
+      try {
+        const fileURL = new URL(cleanHref, window.location.href);
+
+        // HTML 파일을 직접 열었을 때(file://)는 브라우저 보안 정책 때문에 존재 여부 확인이 제한됩니다.
+        // 이 경우에는 Go Live 또는 Netlify 배포 환경에서 최종 확인하는 것을 기준으로 합니다.
+        if (fileURL.protocol === "file:") {
+          return true;
         }
-      });
+
+        const headResponse = await fetch(fileURL.href, {
+          method: "HEAD",
+          cache: "no-store"
+        });
+
+        if (headResponse.ok) return true;
+
+        // 일부 정적 서버는 HEAD 요청을 막을 수 있어 GET으로 한 번 더 확인합니다.
+        if (headResponse.status === 405 || headResponse.status === 403) {
+          const getResponse = await fetch(fileURL.href, {
+            method: "GET",
+            cache: "no-store"
+          });
+
+          return getResponse.ok;
+        }
+
+        return false;
+      } catch (error) {
+        console.warn("포트폴리오 파일 존재 여부를 확인하지 못했습니다.", cleanHref, error);
+        return false;
+      }
+    }
+
+    async function initPortfolioVisibility() {
+      const requiredFileButtons = Array.from(document.querySelectorAll("[data-file-required]"));
+
+      await Promise.all(requiredFileButtons.map(async (button) => {
+        const href = button.getAttribute("href");
+        const fileExists = await checkFileExists(href);
+
+        if (!fileExists) {
+          hidePortfolioFile(button);
+        }
+      }));
 
       document.querySelectorAll("[data-portfolio-group]").forEach((group) => {
-        const visibleCards = group.querySelectorAll(".portfolio-download-btn:not(.is-hidden)");
-        if (!visibleCards.length) {
-          group.classList.add("is-hidden");
-        }
+        const visibleCards = group.querySelectorAll(".portfolio-card:not(.is-hidden)");
+        group.classList.toggle("is-hidden", visibleCards.length === 0);
       });
 
-      const visiblePortfolioCards = document.querySelectorAll(".portfolio-download-btn:not(.is-hidden)");
+      const visiblePortfolioCards = document.querySelectorAll(".portfolio-card:not(.is-hidden) [data-file-required]");
+      const visiblePortfolioGroups = document.querySelectorAll("[data-portfolio-group]:not(.is-hidden)");
       const portfolioFileCount = document.getElementById("portfolioFileCount");
+      const portfolioSection = document.getElementById("portfolio");
 
       if (portfolioFileCount) {
         portfolioFileCount.textContent = `${visiblePortfolioCards.length} Files`;
       }
+
+      if (portfolioSection) {
+        portfolioSection.classList.toggle("is-hidden", visiblePortfolioGroups.length === 0);
+      }
+
+      // 버그리포트 및 개선안은 파일 확인 이후 실제 남은 PDF 카드만 기준으로 페이지 번호를 다시 계산합니다.
+      reportPage = 1;
+      renderReportPagination();
     }
 
     async function initPage() {
       await loadHeroBannerText();
       applyHeroImageFit();
       initHeroSlider();
-      initPortfolioVisibility();
+      await initPortfolioVisibility();
       loadProfileData();
       loadTimelineData(EXPERIENCE_DATA_PATH, "experienceTimeline", "경력");
       loadTimelineData(ACTIVITIES_DATA_PATH, "activitiesTimeline", "교육 및 활동");

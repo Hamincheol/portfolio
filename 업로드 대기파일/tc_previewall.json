@@ -1,0 +1,362 @@
+[
+{
+    "game": "FC Online",
+    "id": "TC-FCONLINE-001",
+    "title": "로그인 계정 닉네임 표시 검증",
+    "component": "계정 정보",
+    "priority": "Medium",
+    "automation": "No",
+    "desc": "로그인한 계정의 닉네임이 계정 정보 영역에 정상적으로 표시되는지 검증"
+  },
+  {
+    "game": "FC Online",
+    "id": "TC-FCONLINE-002",
+    "title": "로그인 계정 레벨 표시 검증",
+    "component": "계정 정보",
+    "priority": "Medium",
+    "automation": "No",
+    "desc": "로그인한 계정의 현재 레벨이 계정 정보 영역에 정상적으로 표시되는지 검증"
+  },
+  {
+    "game": "메이플 키우기",
+    "id": "TC-MAPLE-001",
+    "title": "자동사냥 몬스터 리젠 후 공격 검증",
+    "component": "자동사냥",
+    "priority": "High",
+    "automation": "No",
+    "desc": "몬스터 리젠 후 캐릭터가 지연 없이 자동으로 공격을 시작하는지 검증"
+  },
+  {
+    "game": "메이플 키우기",
+    "id": "TC-MAPLE-002",
+    "title": "자동사냥 타겟 상실 방지 검증",
+    "component": "자동사냥",
+    "priority": "High",
+    "automation": "No",
+    "desc": "다수 몬스터 처치 중 캐릭터가 Idle 상태로 멈추지 않고 다음 타겟을 정상 탐색하는지 검증"
+  },
+  {
+    "game": "메이플 키우기",
+    "id": "TC-MAPLE-003",
+    "title": "원거리 캐릭터 사거리 판정 검증",
+    "component": "자동사냥",
+    "priority": "Medium",
+    "automation": "No",
+    "desc": "원거리 캐릭터가 사거리 끝부분의 몬스터를 정상적으로 인식하고 공격하는지 검증"
+  },
+  {
+    "game": "메이플 키우기",
+    "id": "TC-MAPLE-004",
+    "title": "버프 사용 후 자동공격 전환 검증",
+    "component": "자동사냥",
+    "priority": "Medium",
+    "automation": "No",
+    "desc": "버프 스킬 사용 후 캐릭터가 정지하지 않고 공격 상태로 정상 전환되는지 검증"
+  },
+  {
+    "game": "메이플 키우기",
+    "id": "TC-MAPLE-005",
+    "title": "지형 경계 몬스터 타겟팅 검증",
+    "component": "자동사냥",
+    "priority": "Medium",
+    "automation": "No",
+    "desc": "사다리, 계단 등 경계 지형 주변의 몬스터를 정상적으로 타겟팅하는지 검증"
+  },
+  {
+    "game": "메이플 키우기",
+    "id": "TC-MAPLE-006",
+    "title": "앱 재접속 후 자동사냥 상태 검증",
+    "component": "자동사냥",
+    "priority": "High",
+    "automation": "No",
+    "desc": "앱 재부팅 또는 재접속 후 자동사냥이 즉시 재활성화되고 Idle 상태로 남지 않는지 검증"
+  },
+  {
+    "game": "메이플 키우기",
+    "id": "TC-MAPLE-007",
+    "title": "스킬 쿨타임 표시 및 발동 검증",
+    "component": "스킬",
+    "priority": "Medium",
+    "automation": "No",
+    "desc": "스킬 사용 후 쿨타임 UI가 정상 표시되고 쿨타임 종료 시 스킬이 정상 발동되는지 검증"
+  },
+  {
+    "game": "메이플 키우기",
+    "id": "TC-MAPLE-008",
+    "title": "자원 부족 시 스킬 사용 차단 검증",
+    "component": "스킬",
+    "priority": "Medium",
+    "automation": "No",
+    "desc": "MP 또는 스킬 자원이 부족한 상태에서 스킬이 발동되지 않고 안내 메시지가 표시되는지 검증"
+  },
+  {
+    "game": "메이플 키우기",
+    "id": "TC-MAPLE-009",
+    "title": "스킬 연타 입력 처리 검증",
+    "component": "스킬",
+    "priority": "Medium",
+    "automation": "No",
+    "desc": "스킬 버튼을 빠르게 연속 입력했을 때 조건에 맞는 횟수만 발동되고 중복 데미지 계산이 발생하지 않는지 검증"
+  },
+  {
+    "game": "메이플 키우기",
+    "id": "TC-MAPLE-010",
+    "title": "스킬 레벨 변경 후 데미지 반영 검증",
+    "component": "스킬",
+    "priority": "Medium",
+    "automation": "No",
+    "desc": "스킬 레벨업 직후 변경된 데미지 값이 전투에 즉시 반영되는지 검증"
+  },
+  {
+    "game": "메이플 키우기",
+    "id": "TC-MAPLE-011",
+    "title": "네트워크 지연 환경 스킬 입력 검증",
+    "component": "스킬",
+    "priority": "High",
+    "automation": "No",
+    "desc": "네트워크 전환 또는 지연 상황에서도 스킬 입력이 무시되지 않고 정상 처리되는지 검증"
+  },
+  {
+    "game": "메이플 키우기",
+    "id": "TC-MAPLE-012",
+    "title": "오프라인 보상 수식 정합성 검증",
+    "component": "오프라인 보상",
+    "priority": "Medium",
+    "automation": "No",
+    "desc": "오프라인 유지 시간과 몬스터 경험치 기준으로 계산된 보상 수량이 기대 수식과 일치하는지 검증"
+  },
+  {
+    "game": "메이플 키우기",
+    "id": "TC-MAPLE-013",
+    "title": "오프라인 보상 최대 시간 제한 검증",
+    "component": "오프라인 보상",
+    "priority": "Medium",
+    "automation": "No",
+    "desc": "기본 등급에서 최대 보상 시간이 초과되었을 때 초과분이 지급되지 않는지 검증"
+  },
+  {
+    "game": "메이플 키우기",
+    "id": "TC-MAPLE-014",
+    "title": "스페셜 등급 오프라인 시간 확장 검증",
+    "component": "오프라인 보상",
+    "priority": "Medium",
+    "automation": "No",
+    "desc": "스페셜 등급에서 확장된 오프라인 보상 시간이 정상 적용되는지 검증"
+  },
+  {
+    "game": "메이플 키우기",
+    "id": "TC-MAPLE-015",
+    "title": "블루다이아 오프라인 보상 배율 검증",
+    "component": "오프라인 보상",
+    "priority": "Medium",
+    "automation": "No",
+    "desc": "블루다이아를 사용해 오프라인 보상을 수령할 때 배율 보상이 정확히 적용되는지 검증"
+  },
+  {
+    "game": "메이플 키우기",
+    "id": "TC-MAPLE-016",
+    "title": "장시간 자동사냥 안정성 검증",
+    "component": "안정성",
+    "priority": "Highest",
+    "automation": "No",
+    "desc": "자동사냥 상태로 장시간 방치했을 때 앱 강제 종료, 프리징, 심각한 발열이 발생하지 않는지 검증"
+  },
+  {
+    "game": "메이플 키우기",
+    "id": "TC-MAPLE-017",
+    "title": "백그라운드 전환 후 복귀 검증",
+    "component": "안정성",
+    "priority": "High",
+    "automation": "No",
+    "desc": "다른 앱으로 전환 후 게임에 복귀했을 때 화면과 전투 상태가 정상 유지되는지 검증"
+  },
+  {
+    "game": "메이플 키우기",
+    "id": "TC-MAPLE-018",
+    "title": "절전 모드 해제 후 화면 복구 검증",
+    "component": "안정성",
+    "priority": "Highest",
+    "automation": "No",
+    "desc": "절전 모드 해제 시 캐릭터와 UI가 정상 렌더링되고 Black Screen 상태가 지속되지 않는지 검증"
+  },
+  {
+    "game": "메이플 키우기",
+    "id": "TC-MAPLE-019",
+    "title": "캐릭터 투명화 및 리소스 오류 검증",
+    "component": "렌더링",
+    "priority": "Medium",
+    "automation": "No",
+    "desc": "코디 아이템 또는 스킨 변경 후 캐릭터가 투명하게 보이거나 핑크 박스로 출력되지 않는지 검증"
+  },
+  {
+    "game": "메이플 키우기",
+    "id": "TC-MAPLE-020",
+    "title": "UI 해상도 및 노치 대응 검증",
+    "component": "UI/UX",
+    "priority": "Medium",
+    "automation": "No",
+    "desc": "노치, 카메라 홀, UI 스케일 변경 환경에서 주요 UI가 가려지거나 깨지지 않는지 검증"
+  },
+  {
+    "game": "FC Online",
+    "id": "TC-FCONLINE-003",
+    "title": "스쿼드 관리 화면 이동 검증",
+    "component": "스쿼드 관리",
+    "priority": "High",
+    "automation": "No",
+    "desc": "스쿼드 관리 버튼 클릭 시 스쿼드 관리 탭으로 정상 이동하는지 검증"
+  },
+  {
+    "game": "FC Online",
+    "id": "TC-FCONLINE-004",
+    "title": "등록 선수 급여 표시 검증",
+    "component": "등록 선수",
+    "priority": "Medium",
+    "automation": "No",
+    "desc": "선발 등록 선수의 급여 총합과 화면에 표시되는 현재 급여가 일치하는지 검증"
+  },
+  {
+    "game": "FC Online",
+    "id": "TC-FCONLINE-005",
+    "title": "등록 선수 리스트 스크롤 검증",
+    "component": "등록 선수",
+    "priority": "Medium",
+    "automation": "No",
+    "desc": "선발 등록 선수 리스트에서 상하 스크롤이 정상적으로 동작하는지 검증"
+  },
+  {
+    "game": "FC Online",
+    "id": "TC-FCONLINE-006",
+    "title": "선발 선수 정보 표시 검증",
+    "component": "등록 선수",
+    "priority": "Medium",
+    "automation": "No",
+    "desc": "선발 선수 카드에 선발 문구, 포지션, 페이스온, 시즌, 이름, 능력치, 강화등급, 가치가 정상 표시되는지 검증"
+  },
+  {
+    "game": "FC Online",
+    "id": "TC-FCONLINE-007",
+    "title": "교체 선수 정보 표시 검증",
+    "component": "등록 선수",
+    "priority": "Medium",
+    "automation": "No",
+    "desc": "교체 선수 카드에 교체 문구, 추천 포지션, 페이스온, 시즌, 이름, 능력치, 강화등급, 가치가 정상 표시되는지 검증"
+  },
+  {
+    "game": "FC Online",
+    "id": "TC-FCONLINE-008",
+    "title": "후보 선수 정보 표시 검증",
+    "component": "등록 선수",
+    "priority": "Medium",
+    "automation": "No",
+    "desc": "후보 선수 카드에 후보 문구, 추천 포지션, 페이스온, 시즌, 이름, 능력치, 강화등급, 가치가 정상 표시되는지 검증"
+  },
+  {
+    "game": "FC Online",
+    "id": "TC-FCONLINE-009",
+    "title": "팀컬러 적용 아이콘 및 툴팁 검증",
+    "component": "팀컬러",
+    "priority": "Low",
+    "automation": "No",
+    "desc": "팀컬러 적용 중인 선수의 포지션 하단 애니메이션과 마우스 오버 시 팀컬러 툴팁이 정상 표시되는지 검증"
+  },
+  {
+    "game": "FC Online",
+    "id": "TC-FCONLINE-010",
+    "title": "제한 선수 아이콘 표시 검증",
+    "component": "등록 선수",
+    "priority": "Low",
+    "automation": "No",
+    "desc": "제한 선수 조건에 해당하는 선수 카드에서 제한 선수 아이콘이 정상적으로 표시되는지 검증"
+  },
+  {
+    "game": "FC Online",
+    "id": "TC-FCONLINE-011",
+    "title": "선수 잠금 버튼 및 팝업 검증",
+    "component": "선수 UI",
+    "priority": "Low",
+    "automation": "No",
+    "desc": "선수 잠금 버튼 클릭 시 잠금 또는 해제 비밀번호 입력 팝업이 정상적으로 출력되는지 검증"
+  },
+  {
+    "game": "FC Online",
+    "id": "TC-FCONLINE-012",
+    "title": "2차 비밀번호 입력 UI 검증",
+    "component": "선수 UI",
+    "priority": "Low",
+    "automation": "No",
+    "desc": "숫자패드 입력 시 4개의 입력 박스가 순서대로 활성화되고 4자리 입력 후 확인 버튼이 활성화되는지 검증"
+  },
+  {
+    "game": "FC Online",
+    "id": "TC-FCONLINE-013",
+    "title": "선수 정보 팝업 진입 검증",
+    "component": "선수 정보 팝업창",
+    "priority": "Low",
+    "automation": "No",
+    "desc": "선수 정보 자세히 보기 버튼 클릭 시 선수 정보 팝업창이 정상적으로 출력되는지 검증"
+  },
+  {
+    "game": "FC Online",
+    "id": "TC-FCONLINE-014",
+    "title": "선수 기본 정보 표시 검증",
+    "component": "선수 정보 팝업창",
+    "priority": "Medium",
+    "automation": "No",
+    "desc": "선수 정보 팝업창에서 시즌 이미지, 이름, 포지션, 오버롤, 소속팀, 국적, 급여, 키, 몸무게, 체형 정보가 정상 표시되는지 검증"
+  },
+  {
+    "game": "FC Online",
+    "id": "TC-FCONLINE-015",
+    "title": "강화 등급 변경 UI 검증",
+    "component": "선수 정보 팝업창",
+    "priority": "Medium",
+    "automation": "No",
+    "desc": "강화 등급 버튼 클릭 시 강화 단계 선택창이 출력되고 선택한 강화 단계에 맞춰 오버롤이 변경되는지 검증"
+  },
+  {
+    "game": "FC Online",
+    "id": "TC-FCONLINE-016",
+    "title": "레벨 변경 UI 검증",
+    "component": "선수 정보 팝업창",
+    "priority": "Medium",
+    "automation": "No",
+    "desc": "레벨 버튼 클릭 시 레벨 선택창이 출력되고 선택한 레벨에 맞춰 오버롤이 변경되는지 검증"
+  },
+  {
+    "game": "FC Online",
+    "id": "TC-FCONLINE-017",
+    "title": "선수 시세 그래프 표시 검증",
+    "component": "시세",
+    "priority": "Medium",
+    "automation": "No",
+    "desc": "시세 버튼 클릭 시 과거 5주간의 가격 그래프와 현재가가 정상적으로 표시되는지 검증"
+  },
+  {
+    "game": "FC Online",
+    "id": "TC-FCONLINE-018",
+    "title": "선수 상세 능력치 표시 검증",
+    "component": "선수 상세 오버롤",
+    "priority": "Medium",
+    "automation": "No",
+    "desc": "선수 상세 능력치 목록에서 속력, 가속력, 슛, 패스, 드리블, 수비, 피지컬, GK 관련 수치가 정상 표시되는지 검증"
+  },
+  {
+    "game": "FC Online",
+    "id": "TC-FCONLINE-019",
+    "title": "미등록 선수 정렬 기능 검증",
+    "component": "미등록 선수",
+    "priority": "Medium",
+    "automation": "No",
+    "desc": "미등록 선수 목록에서 포지션, 선수명, 급여, 강화, 잠금, 선수 가치 컬럼 클릭 시 오름차순, 내림차순, 기본 상태 정렬이 정상 동작하는지 검증"
+  },
+  {
+    "game": "FC Online",
+    "id": "TC-FCONLINE-020",
+    "title": "미등록 선수 이동 기능 검증",
+    "component": "미등록 선수",
+    "priority": "High",
+    "automation": "No",
+    "desc": "미등록 선수에서 이동 버튼 클릭 시 선택한 선수가 등록 선수 영역으로 정상 이동하는지 검증"
+  }
+]
