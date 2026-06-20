@@ -1662,6 +1662,15 @@
             </div>
           </div>
 
+          <div class="hero-slide">
+            <img src="./assets/mainbanner/portfolio_4.jpg" data-fallbacks="./assets/mainbanner/portfolio_4.png|./assets/mainbanner/portfolio_4.jpeg|./assets/mainbanner/portfolio_4.webp" alt="추가 포트폴리오 활동 사진" onerror="loadHeroImageFallback(this)" />
+            <div class="hero-slide-placeholder">추가 포트폴리오 활동 사진 영역</div>
+            <div class="hero-slide-caption" data-hero-caption-index="3">
+              <strong data-hero-slide-title>네 번째 사진 제목</strong>
+              <span data-hero-slide-content>네 번째 사진 설명을 입력하세요.</span>
+            </div>
+          </div>
+
           <div class="hero-slider-dots" id="heroSliderDots" aria-label="메인 배너 슬라이드 페이지"></div>
         </div>
       </aside>
@@ -2677,7 +2686,7 @@
 
       function setHeroMediaHeight(height) {
         media.style.height = height;
-        hero?.style.setProperty("--hero-media-height", height);
+        hero?.style.setProperty("--hero-media-height", height); 
       }
 
       const img = activeSlide.querySelector("img");
@@ -2747,7 +2756,38 @@
       }
     }
 
+    function getHeroImageNumber(slide) {
+      const img = slide.querySelector("img");
+      const src = img?.getAttribute("src") || "";
+      const match = src.match(/portfolio_(\d+)/i);
+
+      return match ? Number(match[1]) : 0;
+    }
+
+    function sortHeroSlidesByImageNumberDesc() {
+      const slider = document.getElementById("heroSlider");
+      const dotsWrap = document.getElementById("heroSliderDots");
+      if (!slider || !dotsWrap) return;
+
+      const slides = Array.from(slider.querySelectorAll(".hero-slide"));
+
+      slides
+        .sort((a, b) => getHeroImageNumber(b) - getHeroImageNumber(a))
+        .forEach((slide, index) => {
+          slide.classList.toggle("is-active", index === 0);
+
+          const caption = slide.querySelector("[data-hero-caption-index]");
+          if (caption) {
+            caption.dataset.heroCaptionIndex = String(index);
+          }
+
+          slider.insertBefore(slide, dotsWrap);
+        });
+    }
+
     function initHeroSlider() {
+      sortHeroSlidesByImageNumberDesc();
+
       const slider = document.getElementById("heroSlider");
       const dotsWrap = document.getElementById("heroSliderDots");
       const hero = slider?.closest(".hero");

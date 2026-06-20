@@ -1,8 +1,8 @@
 [
   {
-    "title": "2026 플레이엑스포",
-    "content": "플레이엑스포 5/22",
-    "fit": "cover" 
+    "title": "U Day Seoul 2024",
+    "content": "UDay Seoul 5/22, 5/23",
+    "fit": "contain"
   },
   {
     "title": "2026 플레이엑스포",
@@ -10,8 +10,13 @@
     "fit": "cover"
   },
   {
-    "title": "U Day Seoul 2024",
-    "content": "UDay seoul 5/22,23",
-    "fit": "contain"
+    "title": "2026 플레이엑스포",
+    "content": "플레이엑스포 5/22",
+    "fit": "cover"
+  },
+  {
+    "title": "MapleStory Overdrive",
+    "content": "2026-06-13",
+    "fit": "cover"
   }
 ]
