@@ -684,6 +684,13 @@
         linear-gradient(135deg, rgba(88, 80, 236, 0.09) 0%, rgba(88, 80, 236, 0.035) 38%, rgba(255, 255, 255, 0.96) 78%, #ffffff 100%);
     }
 
+    .portfolio-group.web-group {
+      border-color: rgba(47, 95, 149, 0.14);
+      background:
+        linear-gradient(135deg, rgba(47, 95, 149, 0.08) 0%, rgba(47, 95, 149, 0.035) 38%, rgba(255, 255, 255, 0.96) 78%, #ffffff 100%);
+    }
+
+
     .portfolio-group-title {
       display: flex;
       align-items: center;
@@ -884,6 +891,12 @@
       background: rgba(255, 255, 255, 0.72);
       color: #4f46e5;
       border-color: rgba(88, 80, 236, 0.22);
+    }
+
+    .file-badge.web {
+      background: rgba(255, 255, 255, 0.72);
+      color: var(--primary-dark);
+      border-color: rgba(47, 95, 149, 0.22);
     }
 
     /* 버그리포트 및 개선안: 썸네일 미리보기 없이 문서 목록 형태로 정리 */
@@ -1447,6 +1460,13 @@
         linear-gradient(135deg, rgba(93, 90, 168, 0.055) 0%, rgba(93, 90, 168, 0.024) 38%, rgba(255, 255, 255, 0.98) 78%, #ffffff 100%);
     }
 
+    .portfolio-group.web-group {
+      border-color: rgba(47, 95, 149, 0.13);
+      background:
+        linear-gradient(135deg, rgba(47, 95, 149, 0.055) 0%, rgba(47, 95, 149, 0.024) 38%, rgba(255, 255, 255, 0.98) 78%, #ffffff 100%);
+    }
+
+
     .portfolio-card,
     .tc-card {
       border-color: #e6ebf2;
@@ -1480,6 +1500,12 @@
       background: rgba(255, 255, 255, 0.78);
       color: #5d5aa8;
       border-color: rgba(93, 90, 168, 0.18);
+    }
+
+    .file-badge.web {
+      background: rgba(255, 255, 255, 0.78);
+      color: #2f5f95;
+      border-color: rgba(47, 95, 149, 0.18);
     }
 
     .portfolio-download-btn,
@@ -1794,7 +1820,7 @@
                 <h4>포트폴리오</h4>
                 
               </div>
-              <span class="portfolio-count" id="portfolioFileCount">9 Files</span>
+              <span class="portfolio-count" id="portfolioFileCount">10 Items</span>
             </div>
 
             <div class="portfolio-grid">
@@ -1852,6 +1878,31 @@
                       </span>
                     </span>
                   </div>
+                </div>
+              </div>
+
+
+              <div class="portfolio-group web-group" data-portfolio-group>
+                <div class="portfolio-group-title">
+                  <strong>웹 포트폴리오</strong>
+                  <span class="file-badge web">WEB</span>
+                </div>
+
+                <div class="portfolio-file-list">
+                  <a class="portfolio-card" href="https://inzoimcha.netlify.app/" target="_blank" rel="noopener" aria-label="URL 기반 테스트케이스 자동 생성기 새 탭에서 열기">
+                    <span class="portfolio-thumb">
+                      <img src="./assets/tc/inZOI_tc/inZOI.jpg" alt="URL 기반 테스트케이스 자동 생성기 이미지" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                      <span class="portfolio-thumb-placeholder">URL TC<br />Generator</span>
+                    </span>
+                    <span class="portfolio-body">
+                      <strong>URL 기반 테스트케이스 자동 생성기</strong>
+                      <p>AI를 활용한 URL 기반 TC 자동생성기 입니다.</p>
+                      <span class="portfolio-meta">
+                        <span class="game-badge">inZOI</span>
+                        <span class="portfolio-download-btn">사이트 바로가기</span>
+                      </span>
+                    </span>
+                  </a>
                 </div>
               </div>
 
